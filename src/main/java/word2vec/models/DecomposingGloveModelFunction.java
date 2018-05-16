@@ -2,22 +2,22 @@ package word2vec.models;
 
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
-import gnu.trove.list.TIntList;
-import gnu.trove.list.array.TIntArrayList;
-import gnu.trove.list.linked.TIntLinkedList;
 import word2vec.exceptions.LoadingModelException;
 import word2vec.exceptions.Word2VecUsageException;
 import word2vec.text_utils.Cooccurences;
 import word2vec.text_utils.Vocabulary;
+import word2vec.text_utils.ArrayVector;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
-    final private static int TRAINING_ITERS = 1;
-    final private static double TRAINING_STEP_COEFF = -0.01;
+    final private static int TRAINING_ITERS = 10;
+    private static double TRAINING_STEP_COEFF = -0.00001;
+    private static boolean IS_STOCHASTIC = true;
 
     private final static int VECTOR_SIZE = 25;
     private final static double WEIGHTING_X_MAX = 100;
@@ -29,14 +29,14 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     public DecomposingGloveModelFunction(Vocabulary voc, Cooccurences coocc) {
         super(voc, coocc, VECTOR_SIZE);
-        symDecomp = new ArrayVec[VECTOR_SIZE];
-        skewsymDecomp = new ArrayVec[VECTOR_SIZE];
-        for (int i = 0; i < VECTOR_SIZE; i++) {
-            symDecomp[i] = new ArrayVec(vocab_size);
-            skewsymDecomp[i] = new ArrayVec(vocab_size);
-            for (int j = i; j < vocab_size; j++) {
-                symDecomp[i].set(j, 2d);
-                skewsymDecomp[i].set(j, 2d);
+        symDecomp = new ArrayVec[vocab_size];
+        skewsymDecomp = new ArrayVec[vocab_size];
+        for (int i = 0; i < vocab_size; i++) {
+            symDecomp[i] = new ArrayVec(VECTOR_SIZE);
+            skewsymDecomp[i] = new ArrayVec(VECTOR_SIZE);
+            for (int j = 0; j < VECTOR_SIZE; j++) {
+                symDecomp[i].set(j, 1d + Math.random());
+                skewsymDecomp[i].set(j, 1d + Math.random());
             }
         }
     }
@@ -48,7 +48,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
             throw new Word2VecUsageException("There's no word " + word + " in the vocabulary.");
         ArrayVec vector = new ArrayVec(vector_size);
         for (int i = 0; i < vector_size; i++)
-            vector.set(i, symDecomp[i].get(0));
+            vector.set(i, symDecomp[w].get(i));
         return vector;
     }
 
@@ -59,7 +59,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
         for (int i = 0; i < vector_size; i++) {
             List<Integer> new_ind = new ArrayList<>();
             for (Integer j : wordsIndexes)
-                if (symDecomp[i].get(j) != vector.get(i))
+                if (symDecomp[j].get(i) != vector.get(i))
                     new_ind.add(j);
             wordsIndexes.removeAll(new_ind);
         }
@@ -75,33 +75,17 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
         PrintStream fout = new PrintStream(file);
         fout.println("DECOMP");
         fout.println("!!! SYMMETRIC !!!");
-        for (int i = 0; i < vector_size; i++)
-            writeArrayVec(symDecomp[i], fout);
+        for (int i = 0; i < vocab_size; i++)
+            ArrayVector.writeArrayVec(symDecomp[i], fout);
         fout.println("!!! SKEWSYMMETRIC !!!");
-        for (int i = 0; i < vector_size; i++)
-            writeArrayVec(skewsymDecomp[i], fout);
+        for (int i = 0; i < vocab_size; i++)
+            ArrayVector.writeArrayVec(skewsymDecomp[i], fout);
         fout.close();
     }
 
     @Override
     public void loadModel(String filepath) throws IOException {
-        File file = new File(filepath);
-        BufferedReader fin;
-        try {
-            fin = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            throw new LoadingModelException("Couldn't find vocabulary file to load the model from.");
-        }
-        fin.readLine();
-        fin.readLine();
-        symDecomp = new ArrayVec[vector_size];
-        skewsymDecomp = new ArrayVec[vector_size];
-        for (int i = 0; i < vector_size; i++)
-            symDecomp[i] = readArrayVec(fin);
-        fin.readLine();
-        for (int i = 0; i < vector_size; i++)
-            skewsymDecomp[i] = readArrayVec(fin);
-        fin.close();
+        loadModel(filepath, symDecomp, skewsymDecomp);
     }
 
     private double weightingFunc(double x) {
@@ -110,40 +94,76 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     @Override
     public void trainModel() {
-        for (int iter = 0; iter < TRAINING_ITERS; iter++) {
-            ArrayVec[] dsymVecs = new ArrayVec[VECTOR_SIZE];
-            ArrayVec[] dskewsymVecs = new ArrayVec[VECTOR_SIZE];
-            double norm = 0d;
-            for (int i = 0; i < VECTOR_SIZE; i++) {
-                dsymVecs[i] = countVecDerivative(i, true);
-                norm += countVecNorm(dsymVecs[i]);
-                dsymVecs[i].scale(TRAINING_STEP_COEFF);
-                dskewsymVecs[i] = countVecDerivative(i, false);
-                norm += countVecNorm(dskewsymVecs[i]);
-                dskewsymVecs[i].scale(TRAINING_STEP_COEFF);
+        Random random = new Random();
+        double norm2 = Double.MAX_VALUE;
+        if (IS_STOCHASTIC) {
+            for (int iter = 0; iter < TRAINING_ITERS; iter++) {
+                double[] dSym = new double[vocab_size];
+                double[] dSkewsym = new double[vocab_size];
+                double norm = 0d;
+                int derivativeIndex = random.nextInt(vector_size);
+                System.out.println(derivativeIndex);
+                for (int i = 0; i < vocab_size; i++) {
+                    dSym[i] = countDerivative(i, derivativeIndex, true);
+                    norm += vector_size * dSym[i] * dSym[i];
+                    dSym[i] *= TRAINING_STEP_COEFF;
+                    dSkewsym[i] = countDerivative(i, derivativeIndex, false);
+                    norm += vector_size * dSkewsym[i] * dSkewsym[i];
+                    dSkewsym[i] *= TRAINING_STEP_COEFF;
+                }
+                if (norm == Double.POSITIVE_INFINITY || Double.isNaN(norm) || norm > norm2) {
+                    break;
+                }
+                norm2 = norm;
+                for (int i = 0; i < vocab_size; i++) {
+                    for (int j = 0; j < vector_size; j++) {
+                        symDecomp[i].adjust(j, dSym[i]);
+                        skewsymDecomp[i].adjust(j, dSkewsym[i]);
+                    }
+                }
+                System.out.println("Gradient norm: " + Math.sqrt(norm));
             }
-            for (int i = 0; i < VECTOR_SIZE; i++) {
-                symDecomp[i] = sumVecs(symDecomp[i], dsymVecs[i]);
-                skewsymDecomp[i] = sumVecs(skewsymDecomp[i], dskewsymVecs[i]);
+        } else {
+            for (int iter = 0; iter < TRAINING_ITERS; iter++) {
+                ArrayVec[] dSym = new ArrayVec[vocab_size];
+                ArrayVec[] dSkewsym = new ArrayVec[vocab_size];
+                double norm = 0d;
+                for (int i = 0; i < vocab_size; i++) {
+                    dSym[i] = countDerivative(i, true);
+                    norm += ArrayVector.countVecNorm(dSym[i]);
+                    dSym[i].scale(TRAINING_STEP_COEFF);
+                    dSkewsym[i] = countDerivative(i, false);
+                    norm += ArrayVector.countVecNorm(dSkewsym[i]);
+                    dSkewsym[i].scale(TRAINING_STEP_COEFF);
+                }
+                if (norm == Double.POSITIVE_INFINITY || Double.isNaN(norm) || norm > norm2) {
+                    break;
+                }
+                norm2 = norm;
+                for (int i = 0; i < vocab_size; i++) {
+                    symDecomp[i] = ArrayVector.sumVectors(symDecomp[i], dSym[i]);
+                    skewsymDecomp[i] = ArrayVector.sumVectors(skewsymDecomp[i], dSkewsym[i]);
+                }
+                System.out.println("Gradient norm: " + Math.sqrt(norm));
             }
-            System.out.println("Gradient norm: " + Math.sqrt(norm));
         }
     }
 
-    private ArrayVec countVecDerivative(int i, boolean isSym) {
-        ArrayVec res = new ArrayVec(vocab_size);
-        for (int k = i; k < vocab_size; k++) {
-            res.set(k, countVecDerivative(i, k, isSym));
+    private ArrayVec countDerivative(int i, boolean isSym) {
+        ArrayVec res = new ArrayVec(vector_size);
+        for (int k = i; k < vector_size; k++) {
+            res.set(k, countDerivative(i, k, isSym));
         }
         return res;
     }
 
-    private double countVecDerivative(int r, int c, boolean isSym) {
+    //c = vocab_size, r = vector_size
+    private double countDerivative(int c, int r, boolean isSym) {
         ArrayVec[] mat;
         if (isSym) mat = symDecomp;
         else mat = skewsymDecomp;
         double x = crcs.getValue(c, c);
-        double res = weightingFunc(x) * mat[r].get(c) * 2 *
+        double res = weightingFunc(x) * mat[c].get(r) * 2 *
                 (multMatrixLines(c, c, true) + multMatrixLines(c, c, false) - Math.log(1d + x));
         for (int i = 0; i < vocab_size; i++) {
             if (i == c) continue;
@@ -152,11 +172,11 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
             double sign = 1d;
             if (!isSym && i > c) sign = -1d;
             x = crcs.getValue(i, c);
-            res += weightingFunc(x) * sign * mat[r].get(i) * (asum + sign * bsum - Math.log(1d + x));
+            res += weightingFunc(x) * sign * mat[i].get(r) * (asum + sign * bsum - Math.log(1d + x));
             x = crcs.getValue(c, i);
             if (!isSym && i < c) sign = -1d;
             else sign = 1d;
-            res += weightingFunc(x) * sign * mat[r].get(i) * (asum + sign * bsum - Math.log(1d + x));
+            res += weightingFunc(x) * sign * mat[i].get(r) * (asum + sign * bsum - Math.log(1d + x));
         }
         return res;
     }
@@ -166,8 +186,8 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
         if (isSym) mat = symDecomp;
         else mat = skewsymDecomp;
         double sum = 0d;
-        for (int l = 0; l < VECTOR_SIZE; l++) {
-            sum += mat[l].get(j) * mat[l].get(i);
+        for (int l = 0; l < vector_size; l++) {
+            sum += mat[j].get(l) * mat[i].get(l);
         }
         return sum;
     }

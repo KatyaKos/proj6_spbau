@@ -3,6 +3,7 @@ package word2vec.models;
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import word2vec.exceptions.LoadingModelException;
+import word2vec.text_utils.ArrayVector;
 import word2vec.text_utils.Cooccurences;
 import word2vec.text_utils.Vocabulary;
 
@@ -51,32 +52,16 @@ public class GloveModelFunction extends AbstractModelFunction {
         fout.println("GLOVE");
         fout.println("!!! LEFT !!!");
         for (int i = 0; i < vocab_size; i++)
-            writeArrayVec(leftVectors[i], fout);
+            ArrayVector.writeArrayVec(leftVectors[i], fout);
         fout.println("!!! RIGHT !!!");
         for (int i = 0; i < vocab_size; i++)
-            writeArrayVec(rightVectors[i], fout);
+            ArrayVector.writeArrayVec(rightVectors[i], fout);
         fout.close();
     }
 
     @Override
     public void loadModel(String filepath) throws IOException {
-        File file = new File(filepath);
-        BufferedReader fin;
-        try {
-            fin = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            throw new LoadingModelException("Couldn't find vocabulary file to load the model from.");
-        }
-        fin.readLine();
-        fin.readLine();
-        leftVectors = new ArrayVec[vocab_size];
-        rightVectors = new ArrayVec[vocab_size];
-        for (int i = 0; i < vocab_size; i++)
-            leftVectors[i] = readArrayVec(fin);
-        fin.readLine();
-        for (int i = 0; i < vocab_size; i++)
-            rightVectors[i] = readArrayVec(fin);
-        fin.close();
+        loadModel(filepath, leftVectors, rightVectors);
     }
 
     private double weightingFunc(double x) {
@@ -92,11 +77,11 @@ public class GloveModelFunction extends AbstractModelFunction {
             for (int i = 0; i < vocab_size; i++) {
                 dLeftVecs[i] = countVecDerivative(i, true);
                 dRightVecs[i] = countVecDerivative(i, false);
-                norm += countVecNorm(dLeftVecs[i]) + countVecNorm(dRightVecs[i]);
+                norm += ArrayVector.countVecNorm(dLeftVecs[i]) + ArrayVector.countVecNorm(dRightVecs[i]);
                 dLeftVecs[i].scale(TRAINING_STEP_COEFF);
-                leftVectors[i] = sumVecs(leftVectors[i], dLeftVecs[i]);
+                leftVectors[i] = ArrayVector.sumVectors(leftVectors[i], dLeftVecs[i]);
                 dRightVecs[i].scale(TRAINING_STEP_COEFF);
-                rightVectors[i] = sumVecs(rightVectors[i], dRightVecs[i]);
+                rightVectors[i] = ArrayVector.sumVectors(rightVectors[i], dRightVecs[i]);
             }
             System.out.println("Grad norm: " + Math.sqrt(norm));
         }

@@ -1,5 +1,6 @@
 package word2vec.text_utils;
 
+import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import word2vec.exceptions.VocabularyBuildingException;
@@ -7,11 +8,11 @@ import word2vec.exceptions.VocabularyBuildingException;
 import java.io.*;
 import java.text.BreakIterator;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 //Immutable vocabulary. Create new vocab if you want to change smth.
 //TODO слова с большой буквы то же самое, что с маленькой? А капслок? Просто изменения размера.
-//TODO min_count
 public class Vocabulary {
 
     private List<String> wordsList = new ArrayList<>();
@@ -19,6 +20,7 @@ public class Vocabulary {
     private int size = 0;
 
     public static int NO_ENTRY_VALUE = -1;
+    public static final int MIN_COUNT = 2;
 
     public Vocabulary(final String filepath) throws VocabularyBuildingException {
         try {
@@ -69,6 +71,7 @@ public class Vocabulary {
         }
         String line;
         try {
+            TObjectIntMap<String> wordsCount = new TObjectIntHashMap<>();
             while ((line = fin.readLine()) != null) {
                 BreakIterator breakIterator = BreakIterator.getWordInstance();
                 breakIterator.setText(line);
@@ -78,12 +81,16 @@ public class Vocabulary {
                     lastIndex = breakIterator.next();
                     if (lastIndex != BreakIterator.DONE && Character.isLetterOrDigit(line.charAt(firstIndex))) {
                         final String word = line.substring(firstIndex, lastIndex).toLowerCase();
-                        if (!wordsIndx.containsKey(word)) {
-                            wordsIndx.put(word, size);
-                            wordsList.add(word);
-                            size++;
-                        }
+                        wordsCount.adjustOrPutValue(word, 1, 1);
                     }
+                }
+            }
+            for (TObjectIntIterator<String> it = wordsCount.iterator(); it.hasNext();) {
+                it.advance();
+                if (it.value() >= MIN_COUNT) {
+                    wordsList.add(it.key());
+                    wordsIndx.put(it.key(), size);
+                    size++;
                 }
             }
         } catch (IOException e) {

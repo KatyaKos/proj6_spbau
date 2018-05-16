@@ -1,14 +1,12 @@
 package word2vec;
 
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
-import word2vec.exceptions.CooccurencesBuildingException;
-import word2vec.exceptions.EmptyVocabularyException;
-import word2vec.exceptions.LoadingModelException;
-import word2vec.exceptions.VocabularyBuildingException;
+import word2vec.exceptions.*;
 import word2vec.models.AbstractModelFunction;
 import word2vec.models.ModelChooser;
 import word2vec.text_utils.Cooccurences;
 import word2vec.text_utils.Vocabulary;
+import word2vec.text_utils.ArrayVector;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,22 +16,10 @@ public class Word2Vec {
 
     private final static String DEFAULT_MODEL = "GLOVE";
 
-    private final int min_count;
-
     private Vocabulary vocabulary = null;
     private int vocab_size = 0;
     private Cooccurences cooccurences = null;
     private AbstractModelFunction model = null;
-
-
-
-    public Word2Vec() {
-        min_count = 5;
-    }
-
-    public Word2Vec(int min_count) {
-        this.min_count = min_count;
-    }
 
     public List<String> vocab() throws EmptyVocabularyException {
         if (vocabulary == null) {
@@ -109,7 +95,7 @@ public class Word2Vec {
             for (int j = 0; j < vocab_size; j++)
                 crcs[i][j] = Double.parseDouble(values[j]);
         }
-        cooccurences = new Cooccurences(vocabulary, window, symmetry, crcs);
+        cooccurences = new Cooccurences(vocab_size, window, symmetry, crcs);
         fin.close();
         file = new File(filepath + "/model.txt");
         try {
@@ -124,17 +110,49 @@ public class Word2Vec {
     }
 
     public class Model {
-        public String vecMinusVec(String word1, String word2) {
-            ArrayVec w1 = model.getVectorByWord(word1);
-            ArrayVec w2 = model.getVectorByWord(word2);
-            ArrayVec result = new ArrayVec(w1.dim());
-            for (int i = 0; i < w1.dim(); i++)
-                result.set(i, w1.get(i) - w2.get(i));
-            return model.getWordByVector(result);
+        public String wordsDifference(String word1, String word2) {
+            final ArrayVec v1 = model.getVectorByWord(word1);
+            final ArrayVec v2 = model.getVectorByWord(word2);
+            String result = "";
+            try {
+                result = getClosest(ArrayVector.vectorsDifference(v1, v2), "");
+            } catch (Word2VecUsageException e) {
+                throw new Word2VecUsageException("There is no word with the meaning close to " + word1 + " - " + word2);
+            }
+            return result;
+        }
+
+        public String addWord(String word1, String word2) {
+            ArrayVec v1 = model.getVectorByWord(word1);
+            ArrayVec v2 = model.getVectorByWord(word2);
+            String result = "";
+            try {
+                result = getClosest(ArrayVector.sumVectors(v1, v2), "");
+            } catch (Word2VecUsageException e) {
+                throw new Word2VecUsageException("There is no word with the meaning close to " + word1 + " + " + word2);
+            }
+            return result;
         }
 
         public String getClosest(String word) {
-            return null;
+            return getClosest(model.getVectorByWord(word), word);
+        }
+
+        private String getClosest(ArrayVec v1, String word) {
+            double minNorm = Double.MAX_VALUE;
+            String closest = null;
+            for (String word2 : vocabulary.getEntries()) {
+                final ArrayVec v2 = model.getVectorByWord(word2);
+                final double norm = ArrayVector.countVecNorm(ArrayVector.vectorsDifference(v1, v2));
+                if (norm < minNorm && !word.equals(word2)) {
+                    minNorm = norm;
+                    closest = word2;
+                }
+            }
+            if (closest == null) {
+                throw new Word2VecUsageException("There is no word with the meaning close to " + word);
+            }
+            return closest;
         }
     }
 
@@ -145,7 +163,8 @@ public class Word2Vec {
         }
 
         private void training(String modelName) {
-            model = ModelChooser.model(modelName, vocabulary, cooccurences);
+            if (model == null)
+                model = ModelChooser.model(modelName, vocabulary, cooccurences);
             model.trainModel();
         }
 

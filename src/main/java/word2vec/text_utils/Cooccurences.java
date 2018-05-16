@@ -1,6 +1,7 @@
 package word2vec.text_utils;
 
 
+import com.expleague.commons.math.vectors.impl.vectors.SparseVec;
 import gnu.trove.iterator.TIntIterator;
 import gnu.trove.list.linked.TIntLinkedList;
 import word2vec.exceptions.CooccurencesBuildingException;
@@ -10,25 +11,23 @@ import java.text.BreakIterator;
 
 // Table X = {Xij}, Xij = number of times word j occures in the context of the word i.
 // If not symmetric - only looks at word's left neighbours.
-//TODO remove 'a', 'the', 'and', etc. ?Normalization?
 public class Cooccurences {
 
-    private CooccurenceRecord[][] crcs;
+    private SparseVec[] crcs;
     private int vocab_size = 0;
-    private Vocabulary vocab;
 
     private int WINDOW_SIZE;
     private boolean SYMMETRIC;
 
-    public Cooccurences(Vocabulary vocab, int window, boolean symmetry, double[][] coocures) {
-        this.vocab = vocab;
+    public Cooccurences(int vocab_size, int window, boolean symmetry, double[][] coocures) {
         this.WINDOW_SIZE = window;
         this.SYMMETRIC = symmetry;
-        this.vocab_size = vocab.size();
-        crcs = new CooccurenceRecord[vocab_size][vocab_size];
+        this.vocab_size = vocab_size;
+        crcs = new SparseVec[vocab_size];
         for (int i = 0; i < vocab_size; i++) {
+            crcs[i] = new SparseVec(vocab_size);
             for (int j = 0; j < vocab_size; j++) {
-                crcs[i][j] = new CooccurenceRecord(i, j, coocures[i][j]);
+                crcs[i].set(j, coocures[i][j]);
             }
         }
     }
@@ -46,20 +45,20 @@ public class Cooccurences {
     }
 
     public Cooccurences(Vocabulary vocab, String filepath, int window, boolean symmetr) throws CooccurencesBuildingException {
-        this.vocab = vocab;
         this.WINDOW_SIZE = window;
         this.SYMMETRIC = symmetr;
         this.vocab_size = vocab.size();
 
-        crcs = new CooccurenceRecord[vocab_size][vocab_size];
+        crcs = new SparseVec[vocab_size];
         for (int i = 0; i < vocab_size; i++) {
+            crcs[i] = new SparseVec(vocab_size);
             for (int j = 0; j < vocab_size; j++) {
-                crcs[i][j] = new CooccurenceRecord(i, j);
+                crcs[i].set(j, 0d);
             }
         }
 
         try {
-            count_cooccur(filepath);
+            count_cooccur(filepath, vocab);
         } catch (RuntimeException e) {
             //e.printStackTrace();
             final String message = "Constructing coocurences table failed." + e.getMessage();
@@ -80,10 +79,10 @@ public class Cooccurences {
             throw new RuntimeException("Trying to acces word [" + String.valueOf(i) + "," +
                     String.valueOf(j) + "] in the cooccurences table of size " + String.valueOf(vocab_size));
         }
-        return crcs[i][j].value;
+        return crcs[i].get(j);
     }
 
-    private void count_cooccur(String filepath) throws RuntimeException {
+    private void count_cooccur(String filepath, Vocabulary vocab) throws RuntimeException {
         TIntLinkedList queue = new TIntLinkedList() {
             @Override
             public boolean add(int val) {
@@ -123,9 +122,9 @@ public class Cooccurences {
                         TIntIterator iter = queue.iterator();
                         while (iter.hasNext()) {
                             int w2 = iter.next();
-                            crcs[w2][w1].incrVal();
+                            crcs[w2].adjust(w1, 1d);
                             if (SYMMETRIC) {
-                                crcs[w1][w2].incrVal();
+                                crcs[w1].adjust(w2, 1d);
                             }
                         }
                         queue.add(w1);
@@ -134,28 +133,6 @@ public class Cooccurences {
             }
         } catch (IOException e) {
             throw new RuntimeException("Couldn't read the file.");
-        }
-    }
-
-    private static class CooccurenceRecord {
-        private int w1; // leading
-        private int w2; //context
-        private double value;
-
-        CooccurenceRecord(int w1, int w2) {
-            this.w1 = w1;
-            this.w2 = w2;
-            this.value = 0d;
-        }
-
-        CooccurenceRecord(int w1, int w2, double value) {
-            this.w1 = w1;
-            this.w2 = w2;
-            this.value = value;
-        }
-
-        void incrVal() {
-            value++;
         }
     }
 }
