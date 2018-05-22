@@ -46,6 +46,11 @@ public class GloveModelFunction extends AbstractModelFunction {
     }
 
     @Override
+    public void prepareReadyModel() {
+
+    }
+
+    @Override
     public void saveModel(String filepath) throws IOException {
         File file = new File(filepath);
         PrintStream fout = new PrintStream(file);

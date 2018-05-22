@@ -1,6 +1,7 @@
 package word2vec;
 
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
+import com.expleague.commons.math.vectors.impl.vectors.SparseVec;
 import word2vec.exceptions.*;
 import word2vec.models.AbstractModelFunction;
 import word2vec.models.ModelChooser;
@@ -55,8 +56,13 @@ public class Word2Vec {
         for (int i = 0; i < vocab_size; i++) {
             StringBuilder str = new StringBuilder();
             for (int j = 0; j < vocab_size; j++) {
-                str.append(cooccurences.getValue(i, j));
-                str.append("\t");
+                double crc = cooccurences.getValue(i, j);
+                if (crc > 0d) {
+                    str.append(j);
+                    str.append("\t");
+                    str.append(cooccurences.getValue(i, j));
+                    str.append("\t");
+                }
             }
             fout.println(str.toString());
         }
@@ -89,11 +95,19 @@ public class Word2Vec {
         }
         int window = Integer.parseInt(fin.readLine());
         boolean symmetry = Boolean.parseBoolean(fin.readLine());
-        double[][] crcs = new double[vocab_size][vocab_size];
+        SparseVec[] crcs = new SparseVec[vocab_size];
         for (int i = 0; i < vocab_size; i++) {
-            String[] values = fin.readLine().split("\t");
-            for (int j = 0; j < vocab_size; j++)
-                crcs[i][j] = Double.parseDouble(values[j]);
+            crcs[i] = new SparseVec(vocab_size);
+            for (int j = 0; j < vocab_size; j++) {
+                crcs[i].set(j, 0d);
+            }
+            String s = fin.readLine();
+            if (s.isEmpty()) continue;
+            String[] values = s.split("\t");
+            for (int k = 0; k < values.length; k += 2) {
+                int j = Integer.parseInt(values[k]);
+                crcs[i].set(j, Double.parseDouble(values[k + 1]));
+            }
         }
         cooccurences = new Cooccurences(vocab_size, window, symmetry, crcs);
         fin.close();
@@ -110,6 +124,10 @@ public class Word2Vec {
     }
 
     public class Model {
+
+        public Model() {
+            model.prepareReadyModel();
+        }
         public String wordsDifference(String word1, String word2) {
             final ArrayVec v1 = model.getVectorByWord(word1);
             final ArrayVec v2 = model.getVectorByWord(word2);

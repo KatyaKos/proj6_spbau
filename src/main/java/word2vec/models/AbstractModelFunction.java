@@ -26,6 +26,8 @@ public abstract class AbstractModelFunction extends Stub {
         this.vector_size = vector_size;
     }
 
+    public abstract void prepareReadyModel();
+
     public abstract void trainModel();
 
     public abstract void saveModel(String filepath) throws IOException;

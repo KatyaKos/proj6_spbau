@@ -19,17 +19,11 @@ public class Cooccurences {
     private int WINDOW_SIZE;
     private boolean SYMMETRIC;
 
-    public Cooccurences(int vocab_size, int window, boolean symmetry, double[][] coocures) {
+    public Cooccurences(int vocab_size, int window, boolean symmetry, SparseVec[] coocures) {
         this.WINDOW_SIZE = window;
         this.SYMMETRIC = symmetry;
         this.vocab_size = vocab_size;
-        crcs = new SparseVec[vocab_size];
-        for (int i = 0; i < vocab_size; i++) {
-            crcs[i] = new SparseVec(vocab_size);
-            for (int j = 0; j < vocab_size; j++) {
-                crcs[i].set(j, coocures[i][j]);
-            }
-        }
+        this.crcs = coocures;
     }
 
     public Cooccurences(Vocabulary vocab, String filepath) throws CooccurencesBuildingException {

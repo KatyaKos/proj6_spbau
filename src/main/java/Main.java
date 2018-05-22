@@ -2,6 +2,7 @@ import com.expleague.commons.math.vectors.impl.vectors.SparseVec;
 import word2vec.Word2Vec;
 
 import java.io.IOException;
+import java.io.*;
 
 public class Main {
 
@@ -13,18 +14,21 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Word2Vec word2Vec = new Word2Vec();
         /*Word2Vec.ModelTrainer modelTrainer = word2Vec.createTrainer();
-        modelTrainer.buildVocab(hobbit);
+        modelTrainer.buildVocab(wikiforia_dump);
         System.out.println(word2Vec.vocabSize());
-        System.out.println(word2Vec.vocab());
-        modelTrainer.trainModel(hobbit, "DECOMP");
-        word2Vec.saveModel("data/models/hobbit");
+        modelTrainer.trainModel(wikiforia_dump, "DECOMP");
+        word2Vec.saveModel("data/models/wikiforia");
         /*word2Vec.loadModel("data/models/hobbit");
         System.out.println(word2Vec.vocabSize());
         System.out.println(word2Vec.vocab());
         Word2Vec.Model model = word2Vec.getModel();*/
-        word2Vec.loadModel("data/models/hobbit");
+        /*word2Vec.loadModel("data/models/wikiforia");
+        Word2Vec.Model model = word2Vec.getModel();
+        System.out.println(model.getClosest("friend"));*/
+        //System.out.println(model.addWord(model.wordsDifference("keyhole", "key"), "hobbit"));
+        word2Vec.loadModel("data/models/wikiforia");
         Word2Vec.ModelTrainer modelTrainer = word2Vec.createTrainer();
-        modelTrainer.trainModel(hobbit, "DECOMP");
-        word2Vec.saveModel("data/models/hobbit");
+        modelTrainer.trainModel(wikiforia_dump, "DECOMP");
+        word2Vec.saveModel("data/models/wikiforia");
     }
 }

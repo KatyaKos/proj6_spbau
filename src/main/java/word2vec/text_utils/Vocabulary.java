@@ -20,7 +20,7 @@ public class Vocabulary {
     private int size = 0;
 
     public static int NO_ENTRY_VALUE = -1;
-    public static final int MIN_COUNT = 2;
+    public static final int MIN_COUNT = 10;
 
     public Vocabulary(final String filepath) throws VocabularyBuildingException {
         try {
@@ -87,7 +87,7 @@ public class Vocabulary {
             }
             for (TObjectIntIterator<String> it = wordsCount.iterator(); it.hasNext();) {
                 it.advance();
-                if (it.value() >= MIN_COUNT) {
+                if (it.value() >= MIN_COUNT && it.key().length() > 2) {
                     wordsList.add(it.key());
                     wordsIndx.put(it.key(), size);
                     size++;

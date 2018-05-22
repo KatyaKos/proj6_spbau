@@ -16,8 +16,8 @@ import java.util.Random;
 public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     final private static int TRAINING_ITERS = 10;
-    private static double TRAINING_STEP_COEFF = -0.00001;
-    private static boolean IS_STOCHASTIC = true;
+    private static double TRAINING_STEP_COEFF = -0.01;
+    private static boolean IS_STOCHASTIC = false;
 
     private final static int VECTOR_SIZE = 25;
     private final static double WEIGHTING_X_MAX = 100;
@@ -25,6 +25,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     private ArrayVec[] symDecomp;
     private ArrayVec[] skewsymDecomp;
+    private ArrayVec[] wordsRepresentation;
 
 
     public DecomposingGloveModelFunction(Vocabulary voc, Cooccurences coocc) {
@@ -46,28 +47,34 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
         int w = vocab.wordToIndex(word);
         if (w == Vocabulary.NO_ENTRY_VALUE)
             throw new Word2VecUsageException("There's no word " + word + " in the vocabulary.");
-        ArrayVec vector = new ArrayVec(vector_size);
-        for (int i = 0; i < vector_size; i++)
-            vector.set(i, symDecomp[w].get(i));
-        return vector;
+        return symDecomp[w];
     }
 
     @Override
     public String getWordByVector(ArrayVec vector) {
-        List<Integer> wordsIndexes = new ArrayList<>(vocab_size);
-        for (int i = 0; i < vocab_size; i++) wordsIndexes.add(i);
-        for (int i = 0; i < vector_size; i++) {
-            List<Integer> new_ind = new ArrayList<>();
-            for (Integer j : wordsIndexes)
-                if (symDecomp[j].get(i) != vector.get(i))
-                    new_ind.add(j);
-            wordsIndexes.removeAll(new_ind);
+        double minNorm = Double.MAX_VALUE;
+        int closest = -1;
+        for (int i = 0; i < vocab_size; i++) {
+            final ArrayVec vec = symDecomp[i];
+            final double norm = ArrayVector.countVecNorm(ArrayVector.vectorsDifference(vector, vec));
+            if (norm < minNorm) {
+                minNorm = norm;
+                closest = i;
+            }
         }
-        if (wordsIndexes.isEmpty())
-            throw new Word2VecUsageException("No such word found in trained model");
-        return vocab.indexToWord(wordsIndexes.get(0));
+        if (closest == -1) {
+            return null;
+        }
+        return vocab.indexToWord(closest);
     }
 
+    @Override
+    public void prepareReadyModel() {
+        wordsRepresentation = new ArrayVec[vocab_size];
+        for (int i = 0; i < vocab_size; i++) {
+            wordsRepresentation[i] = ArrayVector.sumVectors(symDecomp[i], skewsymDecomp[i]);
+        }
+    }
 
     @Override
     public void saveModel(String filepath) throws IOException {
@@ -147,6 +154,23 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
                 System.out.println("Gradient norm: " + Math.sqrt(norm));
             }
         }
+        //System.out.println("Likelihood: " + likelihood());
+    }
+
+    private double likelihood() {
+        double res = 0d;
+        for (int i = 0; i < vocab_size; i++) {
+            for (int j = 0; j < vocab_size; j++) {
+                double diff;
+                double v = symDecomp[i].mul(symDecomp[j]);
+                double u = skewsymDecomp[i].mul(skewsymDecomp[j]);
+                if (i > j) u *= -1d;
+                double xij = crcs.getValue(i, j);
+                diff = v + u - Math.log(1d + xij);
+                res += weightingFunc(xij) * diff * diff;
+            }
+        }
+        return res;
     }
 
     private ArrayVec countDerivative(int i, boolean isSym) {
