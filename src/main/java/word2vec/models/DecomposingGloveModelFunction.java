@@ -1,7 +1,12 @@
 package word2vec.models;
 
 import com.expleague.commons.math.vectors.Vec;
+import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
+import com.expleague.commons.util.ArrayTools;
+import gnu.trove.list.TIntList;
+import gnu.trove.list.array.TDoubleArrayList;
+import gnu.trove.list.array.TIntArrayList;
 import word2vec.exceptions.LoadingModelException;
 import word2vec.exceptions.Word2VecUsageException;
 import word2vec.text_utils.Cooccurences;
@@ -12,6 +17,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
@@ -51,21 +59,29 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
     }
 
     @Override
-    public String getWordByVector(ArrayVec vector) {
+    public List<String> getWordByVector(ArrayVec vector) {
         double minNorm = Double.MAX_VALUE;
-        int closest = -1;
+        int[] order = ArrayTools.sequence(0, vocab_size);
+        double[] weights = IntStream.of(order).mapToDouble(idx -> VecTools.distanceL2(symDecomp[idx], vector)).toArray();
+        ArrayTools.parallelSort(weights, order);
+        return IntStream.range(0, 5).mapToObj(idx -> vocab.indexToWord(order[idx])).collect(Collectors.toList());
+    }
+
+    @Override
+    public double likelihood() {
+        double res = 0d;
         for (int i = 0; i < vocab_size; i++) {
-            final ArrayVec vec = symDecomp[i];
-            final double norm = ArrayVector.countVecNorm(ArrayVector.vectorsDifference(vector, vec));
-            if (norm < minNorm) {
-                minNorm = norm;
-                closest = i;
+            for (int j = 0; j < vocab_size; j++) {
+                double diff;
+                double v = symDecomp[i].mul(symDecomp[j]);
+                double u = skewsymDecomp[i].mul(skewsymDecomp[j]);
+                if (i > j) u *= -1d;
+                double xij = crcs.getValue(i, j);
+                diff = v + u - Math.log(1d + xij);
+                res += weightingFunc(xij) * diff * diff;
             }
         }
-        if (closest == -1) {
-            return null;
-        }
-        return vocab.indexToWord(closest);
+        return res;
     }
 
     @Override
@@ -155,22 +171,6 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
             }
         }
         //System.out.println("Likelihood: " + likelihood());
-    }
-
-    private double likelihood() {
-        double res = 0d;
-        for (int i = 0; i < vocab_size; i++) {
-            for (int j = 0; j < vocab_size; j++) {
-                double diff;
-                double v = symDecomp[i].mul(symDecomp[j]);
-                double u = skewsymDecomp[i].mul(skewsymDecomp[j]);
-                if (i > j) u *= -1d;
-                double xij = crcs.getValue(i, j);
-                diff = v + u - Math.log(1d + xij);
-                res += weightingFunc(xij) * diff * diff;
-            }
-        }
-        return res;
     }
 
     private ArrayVec countDerivative(int i, boolean isSym) {

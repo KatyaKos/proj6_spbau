@@ -8,6 +8,7 @@ import word2vec.text_utils.Cooccurences;
 import word2vec.text_utils.Vocabulary;
 
 import java.io.*;
+import java.util.List;
 
 public class GloveModelFunction extends AbstractModelFunction {
 
@@ -41,13 +42,19 @@ public class GloveModelFunction extends AbstractModelFunction {
     }
 
     @Override
-    public String getWordByVector(ArrayVec vector) {
+    public List<String> getWordByVector(ArrayVec vector) {
         return null;
     }
 
     @Override
     public void prepareReadyModel() {
 
+    }
+
+    @Override
+    public double likelihood() {
+        double res = 0d;
+        return res;
     }
 
     @Override

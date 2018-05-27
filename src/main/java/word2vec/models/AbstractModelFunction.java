@@ -9,6 +9,7 @@ import word2vec.text_utils.Vocabulary;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.util.List;
 
 // Model J = sum[ f(Xij) * (viT*uj - logXij)^2]
 //TODO stochastic gradient
@@ -36,7 +37,9 @@ public abstract class AbstractModelFunction extends Stub {
 
     public abstract ArrayVec getVectorByWord(String word);
 
-    public abstract String getWordByVector(ArrayVec vector);
+    public abstract List<String> getWordByVector(ArrayVec vector);
+
+    public abstract double likelihood();
 
     void loadModel(String filepath, ArrayVec[] arr1, ArrayVec[] arr2) throws IOException {
         File file = new File(filepath);

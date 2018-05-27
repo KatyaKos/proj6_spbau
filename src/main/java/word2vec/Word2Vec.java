@@ -128,10 +128,15 @@ public class Word2Vec {
         public Model() {
             model.prepareReadyModel();
         }
-        public String wordsDifference(String word1, String word2) {
+
+        public double countLikelihood() {
+            return model.likelihood();
+        }
+
+        public List<String> wordsDifference(String word1, String word2) {
             final ArrayVec v1 = model.getVectorByWord(word1);
             final ArrayVec v2 = model.getVectorByWord(word2);
-            String result = "";
+            List<String> result;
             try {
                 result = getClosest(ArrayVector.vectorsDifference(v1, v2), "");
             } catch (Word2VecUsageException e) {
@@ -140,10 +145,10 @@ public class Word2Vec {
             return result;
         }
 
-        public String addWord(String word1, String word2) {
+        public List<String> addWord(String word1, String word2) {
             ArrayVec v1 = model.getVectorByWord(word1);
             ArrayVec v2 = model.getVectorByWord(word2);
-            String result = "";
+            List<String> result;
             try {
                 result = getClosest(ArrayVector.sumVectors(v1, v2), "");
             } catch (Word2VecUsageException e) {
@@ -152,12 +157,13 @@ public class Word2Vec {
             return result;
         }
 
-        public String getClosest(String word) {
+        public List<String> getClosest(String word) {
             return getClosest(model.getVectorByWord(word), word);
         }
 
-        private String getClosest(ArrayVec v1, String word) {
-            double minNorm = Double.MAX_VALUE;
+        private List<String> getClosest(ArrayVec v1, String word) {
+            return model.getWordByVector(v1);
+            /*double minNorm = Double.MAX_VALUE;
             String closest = null;
             for (String word2 : vocabulary.getEntries()) {
                 final ArrayVec v2 = model.getVectorByWord(word2);
@@ -170,7 +176,7 @@ public class Word2Vec {
             if (closest == null) {
                 throw new Word2VecUsageException("There is no word with the meaning close to " + word);
             }
-            return closest;
+            return closest;*/
         }
     }
 
