@@ -2,6 +2,8 @@ package word2vec;
 
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import com.expleague.commons.math.vectors.impl.vectors.SparseVec;
+import com.expleague.commons.util.ArrayTools;
+import gnu.trove.list.array.TDoubleArrayList;
 import word2vec.exceptions.*;
 import word2vec.models.AbstractModelFunction;
 import word2vec.models.ModelChooser;
@@ -12,6 +14,9 @@ import word2vec.text_utils.ArrayVector;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+
+import static word2vec.text_utils.ArrayVector.countVecNorm;
 
 public class Word2Vec {
 
@@ -133,6 +138,10 @@ public class Word2Vec {
             return model.likelihood();
         }
 
+        public boolean isCloser(String objectWord, String closerWord, String furtherWord) {
+            return model.getDistance(objectWord, closerWord) < model.getDistance(objectWord, furtherWord);
+        }
+
         public List<String> wordsDifference(String word1, String word2) {
             final ArrayVec v1 = model.getVectorByWord(word1);
             final ArrayVec v2 = model.getVectorByWord(word2);
@@ -143,6 +152,18 @@ public class Word2Vec {
                 throw new Word2VecUsageException("There is no word with the meaning close to " + word1 + " - " + word2);
             }
             return result;
+        }
+
+        public void sdf() {
+            int[] order = ArrayTools.sequence(0, vocab_size);
+            double[] weights = IntStream.of(order).mapToDouble(idx -> {
+                return model.getSkewVector(vocab().get(idx));
+            }).toArray();
+            ArrayTools.parallelSort(weights, order);
+            IntStream.of(order).forEach(idx -> {
+                String word = vocab().get(idx);
+                System.out.println(word + "\t" + model.getSkewVector(word));
+            });
         }
 
         public List<String> addWord(String word1, String word2) {

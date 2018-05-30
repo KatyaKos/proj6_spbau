@@ -20,7 +20,7 @@ public class Vocabulary {
     private int size = 0;
 
     public static int NO_ENTRY_VALUE = -1;
-    public static final int MIN_COUNT = 10;
+    public static final int MIN_COUNT = 2;
 
     public Vocabulary(final String filepath) throws VocabularyBuildingException {
         try {

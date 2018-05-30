@@ -4,27 +4,22 @@ import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import com.expleague.commons.util.ArrayTools;
-import gnu.trove.list.TIntList;
-import gnu.trove.list.array.TDoubleArrayList;
-import gnu.trove.list.array.TIntArrayList;
-import word2vec.exceptions.LoadingModelException;
 import word2vec.exceptions.Word2VecUsageException;
 import word2vec.text_utils.Cooccurences;
 import word2vec.text_utils.Vocabulary;
-import word2vec.text_utils.ArrayVector;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
+
+import static word2vec.text_utils.ArrayVector.*;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     final private static int TRAINING_ITERS = 10;
-    private static double TRAINING_STEP_COEFF = -0.01;
+    private static double TRAINING_STEP_COEFF = -0.001;
     private static boolean IS_STOCHASTIC = false;
 
     private final static int VECTOR_SIZE = 25;
@@ -33,7 +28,6 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     private ArrayVec[] symDecomp;
     private ArrayVec[] skewsymDecomp;
-    private ArrayVec[] wordsRepresentation;
 
 
     public DecomposingGloveModelFunction(Vocabulary voc, Cooccurences coocc) {
@@ -60,11 +54,38 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     @Override
     public List<String> getWordByVector(ArrayVec vector) {
-        double minNorm = Double.MAX_VALUE;
+        double norm = Math.sqrt(countVecNorm(vector));
         int[] order = ArrayTools.sequence(0, vocab_size);
-        double[] weights = IntStream.of(order).mapToDouble(idx -> VecTools.distanceL2(symDecomp[idx], vector)).toArray();
+        double[] weights = IntStream.of(order).mapToDouble(idx -> {
+            return -1 * symDecomp[idx].mul(vector) /
+                    (Math.sqrt(countVecNorm(symDecomp[idx])) * norm);
+        }).toArray();
         ArrayTools.parallelSort(weights, order);
         return IntStream.range(0, 5).mapToObj(idx -> vocab.indexToWord(order[idx])).collect(Collectors.toList());
+        /*int[] order = ArrayTools.sequence(0, vocab_size);
+        double[] weights = IntStream.of(order).mapToDouble(idx ->
+                countVecNorm(vectorsDifference(symDecomp[idx], vector))).toArray();
+        ArrayTools.parallelSort(weights, order);
+        return IntStream.range(0, 5).mapToObj(idx -> vocab.indexToWord(order[idx])).collect(Collectors.toList());*/
+    }
+
+    @Override
+    public double getSkewVector(String word) {
+        int w = vocab.wordToIndex(word);
+//        double result = 0;
+//        for (int i = 0; i < vocab_size; i++) {
+//            if (i == w)
+//                continue;
+//            result += VecTools.multiply(skewsymDecomp[i], skewsymDecomp[w]);
+//        }
+        return VecTools.norm(skewsymDecomp[w]); //result;
+    }
+
+    @Override
+    public double getDistance(String from, String to) {
+        ArrayVec fromVec = getVectorByWord(from);
+        ArrayVec toVec = getVectorByWord(to);
+        return fromVec.mul(toVec) / (Math.sqrt(countVecNorm(fromVec)) * Math.sqrt(countVecNorm(toVec)));
     }
 
     @Override
@@ -86,10 +107,6 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     @Override
     public void prepareReadyModel() {
-        wordsRepresentation = new ArrayVec[vocab_size];
-        for (int i = 0; i < vocab_size; i++) {
-            wordsRepresentation[i] = ArrayVector.sumVectors(symDecomp[i], skewsymDecomp[i]);
-        }
     }
 
     @Override
@@ -99,10 +116,10 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
         fout.println("DECOMP");
         fout.println("!!! SYMMETRIC !!!");
         for (int i = 0; i < vocab_size; i++)
-            ArrayVector.writeArrayVec(symDecomp[i], fout);
+            writeArrayVec(symDecomp[i], fout);
         fout.println("!!! SKEWSYMMETRIC !!!");
         for (int i = 0; i < vocab_size; i++)
-            ArrayVector.writeArrayVec(skewsymDecomp[i], fout);
+            writeArrayVec(skewsymDecomp[i], fout);
         fout.close();
     }
 
@@ -153,10 +170,10 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
                 double norm = 0d;
                 for (int i = 0; i < vocab_size; i++) {
                     dSym[i] = countDerivative(i, true);
-                    norm += ArrayVector.countVecNorm(dSym[i]);
+                    norm += countVecNorm(dSym[i]);
                     dSym[i].scale(TRAINING_STEP_COEFF);
                     dSkewsym[i] = countDerivative(i, false);
-                    norm += ArrayVector.countVecNorm(dSkewsym[i]);
+                    norm += countVecNorm(dSkewsym[i]);
                     dSkewsym[i].scale(TRAINING_STEP_COEFF);
                 }
                 if (norm == Double.POSITIVE_INFINITY || Double.isNaN(norm) || norm > norm2) {
@@ -164,8 +181,8 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
                 }
                 norm2 = norm;
                 for (int i = 0; i < vocab_size; i++) {
-                    symDecomp[i] = ArrayVector.sumVectors(symDecomp[i], dSym[i]);
-                    skewsymDecomp[i] = ArrayVector.sumVectors(skewsymDecomp[i], dSkewsym[i]);
+                    symDecomp[i] = sumVectors(symDecomp[i], dSym[i]);
+                    skewsymDecomp[i] = sumVectors(skewsymDecomp[i], dSkewsym[i]);
                 }
                 System.out.println("Gradient norm: " + Math.sqrt(norm));
             }

@@ -41,6 +41,10 @@ public abstract class AbstractModelFunction extends Stub {
 
     public abstract double likelihood();
 
+    public abstract double getDistance(String from, String to);
+
+    public abstract double getSkewVector(String word);
+
     void loadModel(String filepath, ArrayVec[] arr1, ArrayVec[] arr2) throws IOException {
         File file = new File(filepath);
         BufferedReader fin;
