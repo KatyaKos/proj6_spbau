@@ -53,13 +53,9 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
     }
 
     @Override
-    public List<String> getWordByVector(ArrayVec vector) {
-        double norm = Math.sqrt(countVecNorm(vector));
+    public List<String> getWordByVector(Vec vector) {
         int[] order = ArrayTools.sequence(0, vocab_size);
-        double[] weights = IntStream.of(order).mapToDouble(idx -> {
-            return -1 * symDecomp[idx].mul(vector) /
-                    (Math.sqrt(countVecNorm(symDecomp[idx])) * norm);
-        }).toArray();
+        double[] weights = IntStream.of(order).mapToDouble(idx -> -VecTools.cosine(symDecomp[idx], vector)).toArray();
         ArrayTools.parallelSort(weights, order);
         return IntStream.range(0, 5).mapToObj(idx -> vocab.indexToWord(order[idx])).collect(Collectors.toList());
         /*int[] order = ArrayTools.sequence(0, vocab_size);
@@ -83,9 +79,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
 
     @Override
     public double getDistance(String from, String to) {
-        ArrayVec fromVec = getVectorByWord(from);
-        ArrayVec toVec = getVectorByWord(to);
-        return fromVec.mul(toVec) / (Math.sqrt(countVecNorm(fromVec)) * Math.sqrt(countVecNorm(toVec)));
+        return VecTools.cosine(getVectorByWord(from), getVectorByWord(to));
     }
 
     @Override
@@ -165,24 +159,22 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction{
             }
         } else {
             for (int iter = 0; iter < TRAINING_ITERS; iter++) {
-                ArrayVec[] dSym = new ArrayVec[vocab_size];
-                ArrayVec[] dSkewsym = new ArrayVec[vocab_size];
+                Vec[] dSym = new ArrayVec[vocab_size];
+                Vec[] dSkewsym = new ArrayVec[vocab_size];
                 double norm = 0d;
                 for (int i = 0; i < vocab_size; i++) {
                     dSym[i] = countDerivative(i, true);
-                    norm += countVecNorm(dSym[i]);
-                    dSym[i].scale(TRAINING_STEP_COEFF);
+                    norm += VecTools.sum2(dSym[i]);
                     dSkewsym[i] = countDerivative(i, false);
-                    norm += countVecNorm(dSkewsym[i]);
-                    dSkewsym[i].scale(TRAINING_STEP_COEFF);
+                    norm += VecTools.sum2(dSkewsym[i]);
                 }
                 if (norm == Double.POSITIVE_INFINITY || Double.isNaN(norm) || norm > norm2) {
                     break;
                 }
                 norm2 = norm;
                 for (int i = 0; i < vocab_size; i++) {
-                    symDecomp[i] = sumVectors(symDecomp[i], dSym[i]);
-                    skewsymDecomp[i] = sumVectors(skewsymDecomp[i], dSkewsym[i]);
+                    VecTools.incscale(symDecomp[i], dSym[i], TRAINING_STEP_COEFF);
+                    VecTools.incscale(skewsymDecomp[i], dSkewsym[i], TRAINING_STEP_COEFF);
                 }
                 System.out.println("Gradient norm: " + Math.sqrt(norm));
             }

@@ -1,6 +1,7 @@
 package word2vec.models;
 
 import com.expleague.commons.math.FuncC1.Stub;
+import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import word2vec.exceptions.LoadingModelException;
 import word2vec.text_utils.ArrayVector;
@@ -8,7 +9,6 @@ import word2vec.text_utils.Cooccurences;
 import word2vec.text_utils.Vocabulary;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.List;
 
 // Model J = sum[ f(Xij) * (viT*uj - logXij)^2]
@@ -37,7 +37,7 @@ public abstract class AbstractModelFunction extends Stub {
 
     public abstract ArrayVec getVectorByWord(String word);
 
-    public abstract List<String> getWordByVector(ArrayVec vector);
+    public abstract List<String> getWordByVector(Vec vector);
 
     public abstract double likelihood();
 
@@ -45,7 +45,7 @@ public abstract class AbstractModelFunction extends Stub {
 
     public abstract double getSkewVector(String word);
 
-    void loadModel(String filepath, ArrayVec[] arr1, ArrayVec[] arr2) throws IOException {
+    void loadModel(String filepath, Vec[] arr1, Vec[] arr2) throws IOException {
         File file = new File(filepath);
         BufferedReader fin;
         try {

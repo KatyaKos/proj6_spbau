@@ -1,22 +1,19 @@
 package word2vec;
 
-import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
+import com.expleague.commons.math.vectors.Vec;
+import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.vectors.SparseVec;
 import com.expleague.commons.util.ArrayTools;
-import gnu.trove.list.array.TDoubleArrayList;
 import word2vec.exceptions.*;
 import word2vec.models.AbstractModelFunction;
 import word2vec.models.ModelChooser;
 import word2vec.text_utils.Cooccurences;
 import word2vec.text_utils.Vocabulary;
-import word2vec.text_utils.ArrayVector;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-
-import static word2vec.text_utils.ArrayVector.countVecNorm;
 
 public class Word2Vec {
 
@@ -143,11 +140,12 @@ public class Word2Vec {
         }
 
         public List<String> wordsDifference(String word1, String word2) {
-            final ArrayVec v1 = model.getVectorByWord(word1);
-            final ArrayVec v2 = model.getVectorByWord(word2);
+            final Vec v1 = VecTools.copy(model.getVectorByWord(word1));
+            final Vec v2 = model.getVectorByWord(word2);
+            VecTools.incscale(v1, v2, -1);
             List<String> result;
             try {
-                result = getClosest(ArrayVector.vectorsDifference(v1, v2), "");
+                result = getClosest(v1, "");
             } catch (Word2VecUsageException e) {
                 throw new Word2VecUsageException("There is no word with the meaning close to " + word1 + " - " + word2);
             }
@@ -167,11 +165,11 @@ public class Word2Vec {
         }
 
         public List<String> addWord(String word1, String word2) {
-            ArrayVec v1 = model.getVectorByWord(word1);
-            ArrayVec v2 = model.getVectorByWord(word2);
+            Vec v1 = model.getVectorByWord(word1);
+            Vec v2 = model.getVectorByWord(word2);
             List<String> result;
             try {
-                result = getClosest(ArrayVector.sumVectors(v1, v2), "");
+                result = getClosest(VecTools.sum(v1, v2), "");
             } catch (Word2VecUsageException e) {
                 throw new Word2VecUsageException("There is no word with the meaning close to " + word1 + " + " + word2);
             }
@@ -182,7 +180,7 @@ public class Word2Vec {
             return getClosest(model.getVectorByWord(word), word);
         }
 
-        private List<String> getClosest(ArrayVec v1, String word) {
+        private List<String> getClosest(Vec v1, String word) {
             return model.getWordByVector(v1);
             /*double minNorm = Double.MAX_VALUE;
             String closest = null;
