@@ -17,8 +17,6 @@ import java.util.stream.IntStream;
 
 public class Word2Vec {
 
-    private final static String DEFAULT_MODEL = "GLOVE";
-
     private Vocabulary vocabulary = null;
     private int vocab_size = 0;
     private Cooccurences cooccurences = null;
@@ -205,58 +203,12 @@ public class Word2Vec {
             vocab_size = vocabulary.size();
         }
 
-        private void training(String modelName) {
+        public void trainModel(ModelParameters modelParameters) throws CooccurencesBuildingException {
+            if (cooccurences == null)
+                cooccurences = new Cooccurences(vocabulary, modelParameters);
             if (model == null)
-                model = ModelChooser.model(modelName, vocabulary, cooccurences);
+                model = ModelChooser.model(modelParameters.getModelName(), vocabulary, cooccurences);
             model.trainModel();
-        }
-
-        public void trainModel(String filepath) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, filepath);
-            training(DEFAULT_MODEL);
-        }
-
-        public void trainModel(String filepath, boolean windown_symmetry) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, filepath, windown_symmetry);
-            training(DEFAULT_MODEL);
-        }
-
-        public void trainModel(String filepath, int window_size) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, filepath, window_size);
-            training(DEFAULT_MODEL);
-        }
-
-        public void trainModel(String filepath, int window_size, boolean windown_symmetry) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, filepath, window_size, windown_symmetry);
-            training(DEFAULT_MODEL);
-        }
-
-        public void trainModel(String filepath, String modelName) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, filepath);
-            training(modelName);
-        }
-
-        public void trainModel(String filepath, boolean windown_symmetry, String modelName) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, filepath, windown_symmetry);
-            training(modelName);
-        }
-
-        public void trainModel(String filepath, int window_size, String modelName) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, filepath, window_size);
-            training(modelName);
-        }
-
-        public void trainModel(String filepath, int window_size, boolean windown_symmetry, String modelName) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, filepath, window_size, windown_symmetry);
-            training(modelName);
         }
     }
 }

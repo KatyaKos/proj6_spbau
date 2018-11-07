@@ -4,6 +4,7 @@ package word2vec.text_utils;
 import com.expleague.commons.math.vectors.impl.vectors.SparseVec;
 import gnu.trove.iterator.TIntIterator;
 import gnu.trove.list.linked.TIntLinkedList;
+import word2vec.ModelParameters;
 import word2vec.exceptions.CooccurencesBuildingException;
 
 import java.io.*;
@@ -26,21 +27,9 @@ public class Cooccurences {
         this.crcs = coocures;
     }
 
-    public Cooccurences(Vocabulary vocab, String filepath) throws CooccurencesBuildingException {
-        this(vocab, filepath, 1, true);
-    }
-
-    public Cooccurences(Vocabulary vocab, String filepath, int window) throws CooccurencesBuildingException {
-        this(vocab, filepath, window, true);
-    }
-
-    public Cooccurences(Vocabulary vocab, String filepath, boolean symmetr) throws CooccurencesBuildingException {
-        this(vocab, filepath, 5, symmetr);
-    }
-
-    public Cooccurences(Vocabulary vocab, String filepath, int window, boolean symmetr) throws CooccurencesBuildingException {
-        this.WINDOW_SIZE = window;
-        this.SYMMETRIC = symmetr;
+    public Cooccurences(Vocabulary vocab, ModelParameters modelParameters) throws CooccurencesBuildingException {
+        this.WINDOW_SIZE = modelParameters.getWindowSize();
+        this.SYMMETRIC = modelParameters.isWindowSymmetry();
         this.vocab_size = vocab.size();
 
         crcs = new SparseVec[vocab_size];
@@ -52,7 +41,7 @@ public class Cooccurences {
         }
 
         try {
-            count_cooccur(filepath, vocab);
+            count_cooccur(modelParameters.getFilepath(), vocab);
         } catch (RuntimeException e) {
             //e.printStackTrace();
             final String message = "Constructing coocurences table failed." + e.getMessage();
