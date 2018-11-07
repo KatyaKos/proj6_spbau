@@ -11,6 +11,7 @@ import word2vec.text_utils.Vocabulary;
 
 import java.io.*;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
 
@@ -101,9 +102,11 @@ public class GloveModelFunction extends AbstractModelFunction {
             Vec[] dLeftVecs = new ArrayVec[vocab_size];
             Vec[] dRightVecs = new ArrayVec[vocab_size];
             double norm = 0d;
-            for (int i = 0; i < vocab_size; i++) {
+            IntStream.range(0, vocab_size).parallel().forEach(i -> {
                 dLeftVecs[i] = countVecDerivative(i, true);
                 dRightVecs[i] = countVecDerivative(i, false);
+            });
+            for (int i = 0; i < vocab_size; i++) {
                 norm += VecTools.sum2(dLeftVecs[i]) + VecTools.sum2(dRightVecs[i]);
                 VecTools.scale(dLeftVecs[i], TRAINING_STEP_COEFF);
                 VecTools.scale(dRightVecs[i], TRAINING_STEP_COEFF);
