@@ -1,13 +1,15 @@
-package word2vec.models;
+package com.expleague.ml.embedding.models;
 
+import com.expleague.commons.math.MathTools;
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.VecIterator;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
-import word2vec.exceptions.LoadingModelException;
-import word2vec.text_utils.ArrayVector;
-import word2vec.text_utils.Vocabulary;
+import com.expleague.commons.util.logging.Interval;
+import com.expleague.ml.embedding.exceptions.LoadingModelException;
+import com.expleague.ml.embedding.text_utils.ArrayVector;
+import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
     final private static int TRAINING_ITERS = 20;
-    final private static double TRAINING_STEP_COEFF = -0.0000001;
+    final private static double TRAINING_STEP_COEFF = .1;
 
     private final static int VECTOR_SIZE = 25;
     private final static double WEIGHTING_X_MAX = 100;
@@ -67,16 +69,23 @@ public class GloveModelFunction extends AbstractModelFunction {
 
     @Override
     public double likelihood() {
-        return IntStream.range(0, crcLeft.rows()).parallel().mapToDouble(i -> {
+        long[] totalComponents = new long[]{0};
+        double total = IntStream.range(0, crcLeft.rows()).parallel().mapToDouble(i -> {
             final VecIterator nz = crcLeft.row(i).nonZeroes();
             double res = 0;
+            int counter = 0;
             while (nz.advance()) {
+                counter++;
                 final int j = nz.index();
                 final double X_ij = nz.value();
-                res += weightingFunc(X_ij) * (VecTools.multiply(leftVectors.row(i), rightVectors.row(j)) - Math.log(1d + X_ij));
+                res += weightingFunc(X_ij) * MathTools.sqr(VecTools.multiply(leftVectors.row(i), rightVectors.row(j)) - Math.log(1d + X_ij));
+            }
+            synchronized (totalComponents) {
+                totalComponents[0] += counter;
             }
             return res;
         }).sum();
+        return total / totalComponents[0];
     }
 
     @Override
@@ -128,19 +137,30 @@ public class GloveModelFunction extends AbstractModelFunction {
         Mx dLeft = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
         Mx dRight = new VecBasedMx(rightVectors.rows(), rightVectors.columns());
         for (int iter = 0; iter < TRAINING_ITERS; iter++) {
+            Interval.start();
             VecTools.fill(dLeft, 0);
             VecTools.fill(dRight, 0);
-
-            IntStream.range(0, crcLeft.rows()).parallel().forEach(i -> { // left part derivative
+            double[] counter = new double[]{0};
+            double score = IntStream.range(0, crcLeft.rows()).parallel().mapToDouble(i -> { // left part derivative
                 final VecIterator nz = crcLeft.row(i).nonZeroes();
                 final Vec dLeft_i = dLeft.row(i);
+                double totalScore = 0;
+                double totalWeight = 0;
                 while (nz.advance()) {
+                    final double X_ij = nz.value();
+                    final double weight = weightingFunc(X_ij);
+                    totalWeight += weight;
                     int j = nz.index();
                     double asum = VecTools.multiply(leftVectors.row(i), rightVectors.row(j));
-                    final double X_ij = nz.value();
-                    VecTools.incscale(dLeft_i, rightVectors.row(j), weightingFunc(X_ij) * (asum - Math.log(1d + X_ij)));
+                    double diff = asum - Math.log(1d + X_ij);
+                    totalScore += weight * MathTools.sqr(diff);
+                    VecTools.incscale(dLeft_i, rightVectors.row(j), weight * diff);
                 }
-            });
+                synchronized (counter) {
+                    counter[0] += totalWeight;
+                }
+                return totalScore;
+            }).sum();
             IntStream.range(0, crcRight.rows()).parallel().forEach(j -> { // right part derivative
                 final VecIterator nz = crcRight.row(j).nonZeroes();
                 final Vec dRight_j = dRight.row(j);
@@ -154,9 +174,9 @@ public class GloveModelFunction extends AbstractModelFunction {
                 }
             });
 
-            VecTools.incscale(leftVectors, dLeft, TRAINING_STEP_COEFF);
-            VecTools.incscale(rightVectors, dRight, TRAINING_STEP_COEFF);
-            System.out.println("Gradient norm: " + Math.sqrt(VecTools.sum2(dLeft) + VecTools.sum2(dRight)));
+            VecTools.incscale(leftVectors, dLeft, -TRAINING_STEP_COEFF / counter[0]);
+            VecTools.incscale(rightVectors, dRight, -TRAINING_STEP_COEFF / counter[0]);
+            Interval.stopAndPrint("Target function " + score / counter[0]);
         }
         //System.out.println("Likelihood: " + likelihood());
     }

@@ -1,4 +1,4 @@
-package word2vec.text_utils;
+package com.expleague.ml.embedding.text_utils;
 
 
 import com.expleague.commons.math.vectors.Mx;

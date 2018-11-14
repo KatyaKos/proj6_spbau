@@ -1,6 +1,6 @@
 package word2vec.quality_metrics;
 
-import word2vec.Word2Vec;
+import com.expleague.ml.embedding.Word2Vec;
 
 public abstract class QualityMetric {
 

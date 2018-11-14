@@ -1,30 +1,27 @@
-package word2vec.models;
+package com.expleague.ml.embedding.models;
 
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.VecIterator;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
-import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import com.expleague.commons.util.ArrayTools;
-import word2vec.exceptions.LoadingModelException;
-import word2vec.exceptions.Word2VecUsageException;
-import word2vec.text_utils.ArrayVector;
-import word2vec.text_utils.Vocabulary;
+import com.expleague.ml.embedding.exceptions.LoadingModelException;
+import com.expleague.ml.embedding.exceptions.Word2VecUsageException;
+import com.expleague.ml.embedding.text_utils.ArrayVector;
+import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static word2vec.text_utils.ArrayVector.*;
+import static com.expleague.ml.embedding.text_utils.ArrayVector.writeArrayVec;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
     final private static int TRAINING_ITERS = 10;
-    private static double TRAINING_STEP_COEFF = -0.001;
+    private static double TRAINING_STEP_COEFF = -0.0001;
 
     private final static int VECTOR_SIZE = 25;
     private final static double WEIGHTING_X_MAX = 100;
@@ -164,11 +161,13 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
             VecTools.fill(dSym, 0);
             VecTools.fill(dSkewsym, 0);
 
+            long[] counter = new long[]{0};
             IntStream.range(0, crcLeft.rows()).parallel().forEach(i -> { // left part derivative
                 final VecIterator nz = crcLeft.row(i).nonZeroes();
                 final Vec dSym_i = dSym.row(i);
                 final Vec dSkew_i = dSkewsym.row(i);
                 while (nz.advance()) {
+                    counter[0]++;
                     int j = nz.index();
                     double asum = VecTools.multiply(symDecomp.row(i), symDecomp.row(j));
                     double bsum = VecTools.multiply(skewsymDecomp.row(i), skewsymDecomp.row(j));
@@ -197,7 +196,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
             VecTools.incscale(symDecomp, dSym, TRAINING_STEP_COEFF);
             VecTools.incscale(skewsymDecomp, dSkewsym, TRAINING_STEP_COEFF);
-            System.out.println("Gradient norm: " + Math.sqrt(VecTools.sum2(dSym) + VecTools.sum2(dSkewsym)));
+            System.out.println("Gradient norm: " + Math.sqrt((VecTools.sum2(dSym) + VecTools.sum2(dSkewsym)) / counter[0]));
         }
         //System.out.println("Likelihood: " + likelihood());
     }

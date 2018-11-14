@@ -1,4 +1,4 @@
-package word2vec;
+package com.expleague.ml.embedding;
 
 public class ModelParameters {
     private final String filepath;

@@ -1,14 +1,13 @@
-package word2vec.quality_metrics.impl;
+package com.expleague.ml.embedding.quality_metrics.impl;
 
-import word2vec.Word2Vec;
-import word2vec.exceptions.MetricsIOException;
-import word2vec.quality_metrics.QualityMetric;
+import com.expleague.ml.embedding.Word2Vec;
+import com.expleague.ml.embedding.exceptions.MetricsIOException;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CloserFurtherMetric extends QualityMetric {
+public class CloserFurtherMetric extends word2vec.quality_metrics.QualityMetric {
 
     private int size = 0;
     private List<String> leadWords = new ArrayList<>();

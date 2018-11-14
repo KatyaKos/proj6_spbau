@@ -1,8 +1,7 @@
-package word2vec.models;
+package com.expleague.ml.embedding.models;
 
 import com.expleague.commons.math.vectors.Mx;
-import word2vec.text_utils.CooccurencesBuilder;
-import word2vec.text_utils.Vocabulary;
+import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 public class ModelChooser {
 

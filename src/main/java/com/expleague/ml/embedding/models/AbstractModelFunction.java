@@ -1,17 +1,17 @@
-package word2vec.models;
+package com.expleague.ml.embedding.models;
 
-import com.expleague.commons.math.FuncC1.Stub;
+import com.expleague.commons.math.FuncC1;
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.MxTools;
 import com.expleague.commons.math.vectors.Vec;
-import word2vec.text_utils.Vocabulary;
+import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.IOException;
 import java.util.List;
 
 // Model J = sum[ f(Xij) * (viT*uj - logXij)^2]
 //TODO stochastic gradient
-public abstract class AbstractModelFunction extends Stub {
+public abstract class AbstractModelFunction extends FuncC1.Stub {
     final Vocabulary vocab;
     final Mx crcLeft;
     final Mx crcRight;

@@ -1,4 +1,4 @@
-package word2vec.exceptions;
+package com.expleague.ml.embedding.exceptions;
 
 public class Word2VecUsageException extends RuntimeException {
     public Word2VecUsageException() {super();}

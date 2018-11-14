@@ -1,4 +1,4 @@
-package word2vec.exceptions;
+package com.expleague.ml.embedding.exceptions;
 
 public class MetricsIOException extends RuntimeException{
     public MetricsIOException() { super(); }

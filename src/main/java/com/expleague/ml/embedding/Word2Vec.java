@@ -1,15 +1,15 @@
-package word2vec;
+package com.expleague.ml.embedding;
 
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.SparseMx;
 import com.expleague.commons.util.ArrayTools;
-import word2vec.exceptions.*;
-import word2vec.models.AbstractModelFunction;
-import word2vec.models.ModelChooser;
-import word2vec.text_utils.CooccurencesBuilder;
-import word2vec.text_utils.Vocabulary;
+import com.expleague.ml.embedding.exceptions.*;
+import com.expleague.ml.embedding.models.AbstractModelFunction;
+import com.expleague.ml.embedding.models.ModelChooser;
+import com.expleague.ml.embedding.text_utils.CooccurencesBuilder;
+import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
 import java.nio.file.Files;

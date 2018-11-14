@@ -1,14 +1,13 @@
-package word2vec.text_utils;
+package com.expleague.ml.embedding.text_utils;
 
+import com.expleague.ml.embedding.exceptions.VocabularyBuildingException;
 import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
-import word2vec.exceptions.VocabularyBuildingException;
 
 import java.io.*;
 import java.text.BreakIterator;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 //Immutable vocabulary. Create new vocab if you want to change smth.

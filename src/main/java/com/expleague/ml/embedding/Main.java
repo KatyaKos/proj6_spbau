@@ -1,12 +1,12 @@
-import word2vec.ModelParameters;
-import word2vec.Word2Vec;
-import word2vec.exceptions.Word2VecUsageException;
+package com.expleague.ml.embedding;
+
+
+import com.expleague.ml.embedding.exceptions.Word2VecUsageException;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.util.Scanner;
 
 public class Main {
     
