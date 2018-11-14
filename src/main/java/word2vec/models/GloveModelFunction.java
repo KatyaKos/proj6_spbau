@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
     final private static int TRAINING_ITERS = 20;
-    final private static double TRAINING_STEP_COEFF = -0.000001;
+    final private static double TRAINING_STEP_COEFF = -0.0000001;
 
     private final static int VECTOR_SIZE = 25;
     private final static double WEIGHTING_X_MAX = 100;

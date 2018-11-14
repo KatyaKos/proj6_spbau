@@ -2,6 +2,7 @@ import word2vec.ModelParameters;
 import word2vec.Word2Vec;
 import word2vec.exceptions.Word2VecUsageException;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
@@ -9,31 +10,45 @@ import java.util.Scanner;
 
 public class Main {
     
-    private static String INPUT_DATA = "/Users/solar/tools/GloVe-1.2/text8";
-    private static String INPUT_MODEL = "data/models/hobbit/glove";
+    //private static String INPUT_DATA = "data/corpuses/text8";
+    //private static String INPUT_MODEL = "data/models/hobbit/glove";
 
     public static void main(String[] args) throws IOException {
         Word2Vec word2Vec = new Word2Vec();
         Word2Vec.ModelTrainer modelTrainer = word2Vec.createTrainer();
+        final int argsNumber = args.length;
+        for (int i = 0; i < argsNumber; i++) {
+            switch(args[i]) {
+                case "-c":
+                    if (i + 2 >= argsNumber)
+                        throw new RuntimeException("Please, provide path to input data" +
+                                "and directory where to save resulting model.");
+                    String inputData = args[i + 1];
+                    String modelPath = args[i + 2];
+                    i += 2;
+                    checkFile(inputData);
+                    checkDirectory(modelPath);
+                    prepareForTrain(word2Vec, modelTrainer, inputData);
+                    train(word2Vec, modelTrainer, inputData, modelPath);
+                    break;
+                case "-lt":
+                    if (i + 2 >= argsNumber)
+                        throw new RuntimeException("Please, provide path to input data" +
+                                "and directory where to save resulting model.");
+                    inputData = args[i + 1];
+                    modelPath = args[i + 2];
+                    i += 2;
+                    checkFile(inputData);
+                    checkDirectory(modelPath);
+                    loadModel(word2Vec);
+                    train(word2Vec, modelTrainer, inputData, modelPath);
+                    break;
+                case "-h":
+                case "--help":
+                    System.out.println("[-c input/data/path final/model/directory] to create a new model and train it\n" +
+                            "[-lt input/data/path existing/model/path] to load existing model and train it\n");
 
-        System.out.println("If you want to create new model, press 1.\n" +
-                "If you want to load model and continue training, press 2.\n" +
-                "If you want to load model and test it, press 3.");
-
-        final int task = (new Scanner(System.in)).nextInt();
-        switch (task){
-            case 1:
-                prepareForTrain(word2Vec, modelTrainer);
-                train(word2Vec, modelTrainer);
-                break;
-            case 2:
-                loadModel(word2Vec);
-                train(word2Vec, modelTrainer);
-                break;
-            case 3:
-                loadModel(word2Vec);
-                testModel(word2Vec);
-                break;
+            }
         }
 
         // Test with closer-further metrics
@@ -43,19 +58,36 @@ public class Main {
         metric.measure("data/tests/hobbit/hobbit_logic.txt","data/tests/hobbit/hobbit_logic_result.txt");*/
     }
 
-    private static void prepareForTrain(Word2Vec word2Vec, Word2Vec.ModelTrainer modelTrainer) {
-        modelTrainer.buildVocab(INPUT_DATA);
-        System.out.println(word2Vec.vocabSize());
+    private static void checkFile(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists())
+            throw new RuntimeException(filePath + " file doesn't exist.");
+        if (!file.isFile())
+            throw new RuntimeException(filePath + " is not a file.");
+    }
+
+    private static void checkDirectory(String dirPath) {
+        File file = new File(dirPath);
+        if (!file.exists())
+            throw new RuntimeException(dirPath + " directory doesn't exist.");
+        if (!file.isDirectory())
+            throw new RuntimeException(dirPath + " is not a directory.");
+    }
+
+    private static void prepareForTrain(Word2Vec word2Vec, Word2Vec.ModelTrainer modelTrainer, String inputData) {
+        modelTrainer.buildVocab(inputData);
+        System.out.println("Vocabulary size: " + word2Vec.vocabSize());
     }
 
     private static void loadModel(Word2Vec word2Vec) throws IOException {
         word2Vec.loadModel("data/models/hobbit/glove");
     }
 
-    private static void train(Word2Vec word2Vec, Word2Vec.ModelTrainer modelTrainer) throws IOException {
-        ModelParameters modelParameters = (new ModelParameters.Builder(INPUT_DATA)).setModelName("GLOVE").build();
+    private static void train(Word2Vec word2Vec, Word2Vec.ModelTrainer modelTrainer,
+                              String inputData, String modelPath) throws IOException {
+        ModelParameters modelParameters = (new ModelParameters.Builder(inputData)).setModelName("GLOVE").build();
         modelTrainer.trainModel(modelParameters);
-        word2Vec.saveModel(INPUT_MODEL);
+        word2Vec.saveModel(modelPath);
     }
 
     private static void testModel(Word2Vec word2Vec) throws IOException {
