@@ -1,16 +1,15 @@
 package word2vec;
 
 public class ModelParameters {
-
     private final String filepath;
-    private final int windowSize;
-    private final boolean windowSymmetry;
+    private final int leftWindow;
+    private final int rightWindow;
     private final String modelName;
 
-    private ModelParameters(String filepath, String modelName, int windowSize, boolean windowSymmetry) {
+    private ModelParameters(String filepath, String modelName, int leftWindow, int rightWindow) {
         this.filepath = filepath;
-        this.windowSize = windowSize;
-        this.windowSymmetry = windowSymmetry;
+        this.leftWindow = leftWindow;
+        this.rightWindow = rightWindow;
         this.modelName = modelName;
     }
 
@@ -18,12 +17,12 @@ public class ModelParameters {
         return filepath;
     }
 
-    public int getWindowSize() {
-        return windowSize;
+    public int getLeftWindow() {
+        return leftWindow;
     }
 
-    public boolean isWindowSymmetry() {
-        return windowSymmetry;
+    public int getRightWindow() {
+        return rightWindow;
     }
 
     public String getModelName() {
@@ -33,8 +32,8 @@ public class ModelParameters {
 
     public static class Builder {
         private String filepath = "";
-        private int windowSize = 1;
-        private boolean windowSymmetry = true;
+        private int leftWindow = 4;
+        private int rightWindow = 2;
         private String modelName = "GLOVE";
 
         public Builder(String filepath) {
@@ -46,18 +45,18 @@ public class ModelParameters {
             return this;
         }
 
-        public Builder setWindowSize(int window_size) {
-            this.windowSize = window_size;
+        public Builder setLeftWindow(int leftWindow) {
+            this.leftWindow = leftWindow;
             return this;
         }
 
-        public Builder setWindowSymmetry(boolean window_symmetry) {
-            this.windowSymmetry = window_symmetry;
+        public Builder setRightWindow(int rightWindow) {
+            this.rightWindow = rightWindow;
             return this;
         }
 
         public ModelParameters build() {
-            return new ModelParameters(filepath, modelName, windowSize, windowSymmetry);
+            return new ModelParameters(filepath, modelName, leftWindow, rightWindow);
         }
     }
 }

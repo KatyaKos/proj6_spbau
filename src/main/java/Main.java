@@ -1,18 +1,15 @@
-import com.expleague.commons.math.vectors.impl.vectors.SparseVec;
-import jdk.nashorn.internal.runtime.WithObject;
 import word2vec.ModelParameters;
 import word2vec.Word2Vec;
 import word2vec.exceptions.Word2VecUsageException;
-import word2vec.quality_metrics.QualityMetric;
-import word2vec.quality_metrics.impl.CloserFurtherMetric;
 
 import java.io.IOException;
-import java.io.*;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.util.Scanner;
 
 public class Main {
     
-    private static String INPUT_DATA = "data/corpuses/hobbit.txt";
+    private static String INPUT_DATA = "/Users/solar/tools/GloVe-1.2/text8";
     private static String INPUT_MODEL = "data/models/hobbit/glove";
 
     public static void main(String[] args) throws IOException {

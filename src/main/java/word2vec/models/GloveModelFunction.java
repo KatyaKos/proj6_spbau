@@ -1,12 +1,12 @@
 package word2vec.models;
 
+import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.Vec;
+import com.expleague.commons.math.vectors.VecIterator;
 import com.expleague.commons.math.vectors.VecTools;
-import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
-import com.expleague.commons.util.logging.Interval;
+import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
 import word2vec.exceptions.LoadingModelException;
 import word2vec.text_utils.ArrayVector;
-import word2vec.text_utils.Cooccurences;
 import word2vec.text_utils.Vocabulary;
 
 import java.io.*;
@@ -14,35 +14,35 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
-
     final private static int TRAINING_ITERS = 20;
     final private static double TRAINING_STEP_COEFF = -0.000001;
 
     private final static int VECTOR_SIZE = 25;
-    private final static double START_VECTOR_VALUE = 2d;
     private final static double WEIGHTING_X_MAX = 100;
     private final static double WEIGHTING_ALPHA = 0.75;
 
-    private Vec[] leftVectors;
-    private Vec[] rightVectors;
+    private Mx leftVectors;
+    private Mx rightVectors;
 
 
-    public GloveModelFunction(Vocabulary voc, Cooccurences coocc) {
-        super(voc, coocc, VECTOR_SIZE);
-        leftVectors = new Vec[vocab_size];
-        rightVectors = new Vec[vocab_size];
-        for (int i = 0; i < vocab_size; i++) {
-            leftVectors[i] = new ArrayVec(VECTOR_SIZE);
-            rightVectors[i] = new ArrayVec(VECTOR_SIZE);
-            for (int j = 0; j < VECTOR_SIZE; j++) {
-                leftVectors[i].set(j, 1d + Math.random());
-                rightVectors[i].set(j, 1d + Math.random());
+    public GloveModelFunction(Vocabulary voc, Mx coocc) {
+        this(voc, coocc, VECTOR_SIZE);
+    }
+
+    public GloveModelFunction(Vocabulary voc, Mx coocc, int vectorSize) {
+        super(voc, coocc);
+        leftVectors = new VecBasedMx(voc.size(), vectorSize);
+        rightVectors = new VecBasedMx(voc.size(), vectorSize);
+        for (int i = 0; i < voc.size(); i++) {
+            for (int j = 0; j < vectorSize; j++) {
+                leftVectors.set(i, j, 1d + Math.random());
+                rightVectors.set(i, j, 1d + Math.random());
             }
         }
     }
 
     @Override
-    public ArrayVec getVectorByWord(String word) {
+    public Vec getVectorByWord(String word) {
         return null;
     }
 
@@ -67,8 +67,16 @@ public class GloveModelFunction extends AbstractModelFunction {
 
     @Override
     public double likelihood() {
-        double res = 0d;
-        return res;
+        return IntStream.range(0, crcLeft.rows()).parallel().mapToDouble(i -> {
+            final VecIterator nz = crcLeft.row(i).nonZeroes();
+            double res = 0;
+            while (nz.advance()) {
+                final int j = nz.index();
+                final double X_ij = nz.value();
+                res += weightingFunc(X_ij) * (VecTools.multiply(leftVectors.row(i), rightVectors.row(j)) - Math.log(1d + X_ij));
+            }
+            return res;
+        }).sum();
     }
 
     @Override
@@ -78,16 +86,37 @@ public class GloveModelFunction extends AbstractModelFunction {
         fout.println("GLOVE");
         fout.println("!!! LEFT !!!");
         for (int i = 0; i < vocab_size; i++)
-            ArrayVector.writeArrayVec(leftVectors[i], fout);
+            ArrayVector.writeArrayVec(leftVectors.row(i), fout);
         fout.println("!!! RIGHT !!!");
         for (int i = 0; i < vocab_size; i++)
-            ArrayVector.writeArrayVec(rightVectors[i], fout);
+            ArrayVector.writeArrayVec(rightVectors.row(i), fout);
         fout.close();
     }
 
     @Override
     public void loadModel(String filepath) throws IOException {
-        loadModel(filepath, leftVectors, rightVectors);
+        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath)))){
+            fin.readLine();
+            fin.readLine();
+            //noinspection Duplicates
+            for (int i = 0; i < vocab_size; i++) {
+                final Vec vec = ArrayVector.readArrayVec(fin);
+                if (leftVectors == null)
+                    leftVectors = new VecBasedMx(vocab_size, vec.dim());
+                VecTools.assign(leftVectors.row(0), vec);
+            }
+
+            fin.readLine();
+            //noinspection Duplicates
+            for (int i = 0; i < vocab_size; i++) {
+                final Vec vec = ArrayVector.readArrayVec(fin);
+                if (rightVectors == null)
+                    rightVectors = new VecBasedMx(vocab_size, vec.dim());
+                VecTools.assign(rightVectors.row(0), vec);
+            }
+        } catch (FileNotFoundException e) {
+            throw new LoadingModelException("Couldn't find vocabulary file to load the model from.");
+        }
     }
 
     private double weightingFunc(double x) {
@@ -96,77 +125,45 @@ public class GloveModelFunction extends AbstractModelFunction {
 
     @Override
     public void trainModel() {
-        double norm2 = Double.MAX_VALUE;
+        Mx dLeft = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
+        Mx dRight = new VecBasedMx(rightVectors.rows(), rightVectors.columns());
         for (int iter = 0; iter < TRAINING_ITERS; iter++) {
-            Interval.start();
-            Vec[] dLeftVecs = new ArrayVec[vocab_size];
-            Vec[] dRightVecs = new ArrayVec[vocab_size];
-            double norm = 0d;
-            IntStream.range(0, vocab_size).parallel().forEach(i -> {
-                dLeftVecs[i] = countVecDerivative(i, true);
-                dRightVecs[i] = countVecDerivative(i, false);
+            VecTools.fill(dLeft, 0);
+            VecTools.fill(dRight, 0);
+
+            IntStream.range(0, crcLeft.rows()).parallel().forEach(i -> { // left part derivative
+                final VecIterator nz = crcLeft.row(i).nonZeroes();
+                final Vec dLeft_i = dLeft.row(i);
+                while (nz.advance()) {
+                    int j = nz.index();
+                    double asum = VecTools.multiply(leftVectors.row(i), rightVectors.row(j));
+                    final double X_ij = nz.value();
+                    VecTools.incscale(dLeft_i, rightVectors.row(j), weightingFunc(X_ij) * (asum - Math.log(1d + X_ij)));
+                }
             });
-            for (int i = 0; i < vocab_size; i++) {
-                norm += VecTools.sum2(dLeftVecs[i]) + VecTools.sum2(dRightVecs[i]);
-                VecTools.scale(dLeftVecs[i], TRAINING_STEP_COEFF);
-                VecTools.scale(dRightVecs[i], TRAINING_STEP_COEFF);
-            }
-            if (norm == Double.POSITIVE_INFINITY || Double.isNaN(norm) || norm > norm2) {
-                break;
-            }
-            norm2 = norm;;
-            for (int i = 0; i < vocab_size; i++) {
-                VecTools.append(leftVectors[i], dLeftVecs[i]);
-                VecTools.append(rightVectors[i], dRightVecs[i]);
-            }
-            Interval.stopAndPrint("Grad norm: " + Math.sqrt(norm));
-        }
-    }
+            IntStream.range(0, crcRight.rows()).parallel().forEach(j -> { // right part derivative
+                final VecIterator nz = crcRight.row(j).nonZeroes();
+                final Vec dRight_j = dRight.row(j);
+                while (nz.advance()) {
+                    int i = nz.index();
+                    if (i == j)
+                        continue;
+                    double asum = VecTools.multiply(leftVectors.row(i), rightVectors.row(j));
+                    final double X_ij = nz.value();
+                    VecTools.incscale(dRight_j, leftVectors.row(i), weightingFunc(X_ij) * (asum - Math.log(1d + X_ij)));
+                }
+            });
 
-    private Vec countVecDerivative(int i, boolean isLeft) {
-        Vec res = new ArrayVec(vector_size);
-        for (int k = 0; k < vector_size; k++) {
-            res.set(k, countVecDerivative(i, k, isLeft));
+            VecTools.incscale(leftVectors, dLeft, TRAINING_STEP_COEFF);
+            VecTools.incscale(rightVectors, dRight, TRAINING_STEP_COEFF);
+            System.out.println("Gradient norm: " + Math.sqrt(VecTools.sum2(dLeft) + VecTools.sum2(dRight)));
         }
-        return res;
-    }
-
-    private double countVecDerivative(int i, int k, boolean isLeft) {
-        double res = 0d;
-        double xij;
-        Vec u;
-        Vec v;
-        if (isLeft) v = leftVectors[i];
-        else v = rightVectors[i];
-        final int vocab_size = this.vocab_size;
-        for (int j = 0; j < vocab_size; j++) {
-            if (isLeft) {
-                xij = crcs.getValue(i, j);
-                u = rightVectors[j];
-            } else {
-                xij = crcs.getValue(j, i);
-                u = leftVectors[j];
-            }
-            double diff = VecTools.multiply(v, u) - Math.log(1d + xij);
-            res += weightingFunc(xij) * 2 * diff * u.get(k);
-        }
-        return res;
+        //System.out.println("Likelihood: " + likelihood());
     }
 
     @Override
     public double value(Vec vec) {
-        double res = 0d;
-        for (int i = 0; i < vocab_size; i++) {
-            for (int j = 0; j < vocab_size; j++) {
-                double diff = 0d;
-                Vec v = leftVectors[i];
-                Vec u = rightVectors[j];
-                double xij = crcs.getValue(i, j);
-                diff = VecTools.multiply(v, u) - Math.log(1d + xij);
-                res += weightingFunc(xij) * diff * diff;
-            }
-        }
-        return res;
+        return likelihood();
     }
 
     @Override

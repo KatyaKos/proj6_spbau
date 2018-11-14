@@ -1,26 +1,32 @@
 package word2vec;
 
+import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.VecTools;
-import com.expleague.commons.math.vectors.impl.vectors.SparseVec;
+import com.expleague.commons.math.vectors.impl.mx.SparseMx;
 import com.expleague.commons.util.ArrayTools;
 import word2vec.exceptions.*;
 import word2vec.models.AbstractModelFunction;
 import word2vec.models.ModelChooser;
-import word2vec.text_utils.Cooccurences;
+import word2vec.text_utils.CooccurencesBuilder;
 import word2vec.text_utils.Vocabulary;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class Word2Vec {
 
-    private Vocabulary vocabulary = null;
-    private int vocab_size = 0;
-    private Cooccurences cooccurences = null;
-    private AbstractModelFunction model = null;
+    private Vocabulary vocabulary;
+    private int vocab_size;
+    private Mx cooccurences;
+    private int leftWindow;
+    private int rightWindow;
+
+    private AbstractModelFunction model;
 
     public List<String> vocab() throws EmptyVocabularyException {
         if (vocabulary == null) {
@@ -51,16 +57,16 @@ public class Word2Vec {
         fout.close();
         file = new File(filepath + "/coocurences.txt");
         fout = new PrintStream(file);
-        fout.println(cooccurences.getWindowSize());
-        fout.println(String.valueOf(cooccurences.getSymmetric()));
+        fout.println(leftWindow);
+        fout.println(rightWindow);
         for (int i = 0; i < vocab_size; i++) {
             StringBuilder str = new StringBuilder();
             for (int j = 0; j < vocab_size; j++) {
-                double crc = cooccurences.getValue(i, j);
+                double crc = cooccurences.get(i, j);
                 if (crc > 0d) {
                     str.append(j);
                     str.append("\t");
-                    str.append(cooccurences.getValue(i, j));
+                    str.append(cooccurences.get(i, j));
                     str.append("\t");
                 }
             }
@@ -74,57 +80,39 @@ public class Word2Vec {
         if (model != null || vocabulary != null || cooccurences != null)
             throw new LoadingModelException("You've already started constructing this model. Please, create the new one for loading.");
 
-        File file = new File(filepath + "/vocabulary.txt");
-        BufferedReader fin;
-        try {
-            fin = new BufferedReader(new FileReader(file));
+        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/vocabulary.txt")))){
+            vocab_size = Integer.parseInt(fin.readLine());
+            List<String> words = new ArrayList<>();
+            for (int i = 0; i < vocab_size; i++)
+                words.add(fin.readLine());
+            vocabulary = new Vocabulary(words);
         } catch (FileNotFoundException e) {
             throw new LoadingModelException("Couldn't find vocabulary file to load the model from.");
         }
-        vocab_size = Integer.parseInt(fin.readLine());
-        List<String> words = new ArrayList<>();
-        for (int i = 0; i < vocab_size; i++)
-            words.add(fin.readLine());
-        vocabulary = new Vocabulary(words);
-        fin.close();
-        file = new File(filepath + "/coocurences.txt");
-        try {
-            fin = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            throw new LoadingModelException("Couldn't find coocurences file to load the model from.");
-        }
-        int window = Integer.parseInt(fin.readLine());
-        boolean symmetry = Boolean.parseBoolean(fin.readLine());
-        SparseVec[] crcs = new SparseVec[vocab_size];
-        for (int i = 0; i < vocab_size; i++) {
-            crcs[i] = new SparseVec(vocab_size);
-            for (int j = 0; j < vocab_size; j++) {
-                crcs[i].set(j, 0d);
+        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/coocurences.txt")))) {
+            leftWindow = Integer.parseInt(fin.readLine());
+            rightWindow = Integer.parseInt(fin.readLine());
+            Mx crcs = new SparseMx(vocab_size, vocab_size);
+            for (int i = 0; i < vocab_size; i++) {
+                String s = fin.readLine();
+                if (s.isEmpty()) continue;
+                String[] values = s.split("\t");
+                for (int k = 0; k < values.length; k += 2) {
+                    int j = Integer.parseInt(values[k]);
+                    crcs.set(i, j, Double.parseDouble(values[k + 1]));
+                }
             }
-            String s = fin.readLine();
-            if (s.isEmpty()) continue;
-            String[] values = s.split("\t");
-            for (int k = 0; k < values.length; k += 2) {
-                int j = Integer.parseInt(values[k]);
-                crcs[i].set(j, Double.parseDouble(values[k + 1]));
-            }
+            cooccurences = crcs;
         }
-        cooccurences = new Cooccurences(vocab_size, window, symmetry, crcs);
-        fin.close();
-        file = new File(filepath + "/model.txt");
-        try {
-            fin = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            throw new LoadingModelException("Couldn't find model file to load the model from.");
+        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/model.txt")))) {
+            String modelName = fin.readLine();
+            model = ModelChooser.model(modelName, vocabulary, cooccurences);
+            fin.close();
+            model.loadModel(filepath + "/model.txt");
         }
-        String modelName = fin.readLine();
-        model = ModelChooser.model(modelName, vocabulary, cooccurences);
-        fin.close();
-        model.loadModel(filepath + "/model.txt");
     }
 
     public class Model {
-
         public Model() {
             model.prepareReadyModel();
         }
@@ -204,11 +192,24 @@ public class Word2Vec {
         }
 
         public void trainModel(ModelParameters modelParameters) throws CooccurencesBuildingException {
-            if (cooccurences == null)
-                cooccurences = new Cooccurences(vocabulary, modelParameters);
-            if (model == null)
-                model = ModelChooser.model(modelParameters.getModelName(), vocabulary, cooccurences);
-            model.trainModel();
+            leftWindow = modelParameters.getLeftWindow();
+            rightWindow = modelParameters.getRightWindow();
+
+            if (cooccurences == null) {
+                try (final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(modelParameters.getFilepath()))) {
+                    cooccurences = new CooccurencesBuilder()
+                        .setLeftWindow(leftWindow)
+                        .setRightWindow(rightWindow)
+                        .setVocabulary(vocabulary)
+                        .build(bufferedReader);
+                }
+                catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                if (model == null)
+                    model = ModelChooser.model(modelParameters.getModelName(), vocabulary, cooccurences);
+                model.trainModel();
+            }
         }
     }
 }
