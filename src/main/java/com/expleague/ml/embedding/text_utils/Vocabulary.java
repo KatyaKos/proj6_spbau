@@ -4,6 +4,7 @@ import com.expleague.ml.embedding.exceptions.VocabularyBuildingException;
 import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.text.BreakIterator;
@@ -43,10 +44,16 @@ public class Vocabulary {
     }
 
     public int wordToIndex(String word) {
-        if (!wordsIndx.containsKey(word)) {
+        final String normalizedWord = normalize(word);
+        if (!wordsIndx.containsKey(normalizedWord)) {
             return NO_ENTRY_VALUE;
         }
-        return wordsIndx.get(word);
+        return wordsIndx.get(normalizedWord);
+    }
+
+    @NotNull
+    private String normalize(String word) {
+        return word.toLowerCase();
     }
 
     public String indexToWord(int i) {
@@ -79,7 +86,7 @@ public class Vocabulary {
                     int firstIndex = lastIndex;
                     lastIndex = breakIterator.next();
                     if (lastIndex != BreakIterator.DONE && Character.isLetterOrDigit(line.charAt(firstIndex))) {
-                        final String word = line.substring(firstIndex, lastIndex).toLowerCase();
+                        final String word = normalize(line.substring(firstIndex, lastIndex));
                         wordsCount.adjustOrPutValue(word, 1, 1);
                     }
                 }

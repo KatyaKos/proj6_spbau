@@ -39,7 +39,7 @@ public class CooccurencesBuilder {
         final Mx result = new SparseMx(vocSize, vocSize);
 
         Interval.start();
-        CharSeqTools.lines(reader).parallel().forEach(line -> {
+        CharSeqTools.lines(reader, true).forEach(line -> {
             BreakIterator breakIterator = BreakIterator.getWordInstance();
             breakIterator.setText(line.toString());
             int lastIndex = breakIterator.first();
@@ -58,30 +58,27 @@ public class CooccurencesBuilder {
                 }
             }
             final SparseMx temp = new SparseMx(vocSize, vocSize);
-            System.out.print("Colocation harvesting: passed 0 items");
             for (int i = 0; i < queue.size(); i++) {
                 final int indexedId = queue.get(i);
                 final int rightLimit = Math.min(queue.size(), i + rightWindow + 1);
                 final int leftLimit = Math.max(0, i - leftWindow);
                 for (int idx = leftLimit; idx < rightLimit; idx++) {
-                    if (idx == 0)
+                    if (idx == i)
                         continue;
                     temp.adjust(indexedId, queue.get(idx), 1);
                 }
                 if ((i + 1) % 1000000 == 0) {
-                    System.out.print("\rColocation harvesting: passed " + (i + 1) + " items");
                     synchronized (result) {
                         VecTools.append(result, temp);
                         temp.clear();
                     }
                 }
             }
-            System.out.println();
             synchronized (result) {
                 VecTools.append(result, temp);
             }
         });
-        Interval.stopAndPrint("Cooccurrences calculated for: ");
+        Interval.stopAndPrint("Cooccurrences calculated for");
         return result;
     }
 }

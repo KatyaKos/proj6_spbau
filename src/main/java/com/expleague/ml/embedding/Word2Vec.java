@@ -12,6 +12,7 @@ import com.expleague.ml.embedding.text_utils.CooccurencesBuilder;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -60,17 +61,16 @@ public class Word2Vec {
         fout.println(leftWindow);
         fout.println(rightWindow);
         for (int i = 0; i < vocab_size; i++) {
-            StringBuilder str = new StringBuilder();
             for (int j = 0; j < vocab_size; j++) {
                 double crc = cooccurences.get(i, j);
                 if (crc > 0d) {
-                    str.append(j);
-                    str.append("\t");
-                    str.append(cooccurences.get(i, j));
-                    str.append("\t");
+                    fout.print(j);
+                    fout.print("\t");
+                    fout.print(cooccurences.get(i, j));
+                    fout.print("\t");
                 }
             }
-            fout.println(str.toString());
+            fout.println();
         }
         fout.close();
         model.saveModel(filepath + "/model.txt");

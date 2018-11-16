@@ -32,6 +32,16 @@
             <version>1.4.4-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>com.expleague</groupId>
+            <artifactId>jmll</artifactId>
+            <version>1.4.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>LATEST</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>19.0</version>

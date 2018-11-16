@@ -85,7 +85,7 @@ public class Main {
 
     private static void train(Word2Vec word2Vec, Word2Vec.ModelTrainer modelTrainer,
                               String inputData, String modelPath) throws IOException {
-        ModelParameters modelParameters = (new ModelParameters.Builder(inputData)).setModelName("GLOVE").build();
+        ModelParameters modelParameters = (new ModelParameters.Builder(inputData)).build();
         modelTrainer.trainModel(modelParameters);
         word2Vec.saveModel(modelPath);
     }
