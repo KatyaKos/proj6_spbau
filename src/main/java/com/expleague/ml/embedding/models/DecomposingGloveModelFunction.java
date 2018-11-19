@@ -1,10 +1,12 @@
 package com.expleague.ml.embedding.models;
 
+import com.expleague.commons.math.MathTools;
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.VecIterator;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
+import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import com.expleague.commons.util.ArrayTools;
 import com.expleague.commons.util.logging.Interval;
 import com.expleague.ml.embedding.exceptions.LoadingModelException;
@@ -20,16 +22,16 @@ import java.util.stream.IntStream;
 import static com.expleague.ml.embedding.text_utils.ArrayVector.writeArrayVec;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction {
-  final private static int TRAINING_ITERS = 300;
-  private static final double LAMBDA = 0.0001;
-  private static double TRAINING_STEP_COEFF = 1e-2;
+  final private static int TRAINING_ITERS = 50;
+  private static final double LAMBDA = 1e-4;
+  private static double TRAINING_STEP_COEFF = 1e-1;
 
   private final static double WEIGHTING_X_MAX = 100;
   private final static double WEIGHTING_ALPHA = 0.75;
 
+
   private Mx symDecomp;
   private Mx skewsymDecomp;
-
 
   public DecomposingGloveModelFunction(Vocabulary voc, Mx coocc) {
     this(voc, coocc, 40, 10);
@@ -158,11 +160,16 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void trainModel() {
-    Mx softMaxSym = new VecBasedMx(symDecomp.rows(), symDecomp.columns());
-    Mx softMaxSkewsym = new VecBasedMx(skewsymDecomp.rows(), skewsymDecomp.columns());
-    VecTools.fill(softMaxSym, 1);
-    VecTools.fill(softMaxSkewsym, 1);
+    final Mx softMaxSym = new VecBasedMx(symDecomp.rows(), symDecomp.columns());
+    final Mx softMaxSkewsym = new VecBasedMx(skewsymDecomp.rows(), skewsymDecomp.columns());
+    final Vec bias = new ArrayVec(crcLeft.rows());
+    VecTools.fill(bias, 1);
+    final Vec softMaxBias = new ArrayVec(crcLeft.rows());
     for (int iter = 0; iter < TRAINING_ITERS; iter++) {
+      VecTools.fill(softMaxSym, 1);
+      VecTools.fill(softMaxSkewsym, 1);
+      VecTools.fill(softMaxBias, 1);
+
       Interval.start();
       final double[] counter = new double[]{0, 0};
       double score = IntStream.range(0, crcLeft.rows()).parallel().mapToDouble(i -> { // left part derivative
@@ -179,26 +186,49 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
           int j = nz.index();
           final Vec sym_j = symDecomp.row(j);
           final Vec skew_j = skewsymDecomp.row(j);
+          final Vec softMaxSym_j = softMaxSym.row(j);
+          final Vec softMaxSkew_j = softMaxSkewsym.row(j);
+
+          final double b_i = bias.get(i);
+          final double b_j = bias.get(j);
           double asum = VecTools.multiply(sym_i, sym_j);
           double bsum = VecTools.multiply(skew_i, skew_j);
           final double X_ij = nz.value();
           final int sign = i > j ? -1 : 1;
-          final double diff = asum + sign * bsum - Math.log(1d + X_ij);
+          final double minfo = Math.log(X_ij);
+          final double diff = MathTools.sqr(b_i) + MathTools.sqr(b_j) + asum + sign * bsum - minfo;
           final double weight = weightingFunc(X_ij);
           totalWeight += weight;
           totalCount ++;
           totalScore += weight * diff * diff;
           IntStream.range(0, sym_i.dim()).forEach(id -> {
-            final double d = TRAINING_STEP_COEFF * weight * diff * sym_j.get(id);
-            sym_i.adjust(id, -d / Math.sqrt(softMaxSym_i.get(id)));
-            softMaxSym_i.adjust(id, d * d);
+            final double d_i = TRAINING_STEP_COEFF * weight * diff * sym_j.get(id);
+            final double d_j = TRAINING_STEP_COEFF * weight * diff * sym_i.get(id);
+
+            sym_i.adjust(id, -d_i / Math.sqrt(softMaxSym_i.get(id)));
+            sym_j.adjust(id, -d_j / Math.sqrt(softMaxSym_j.get(id)));
+
+            softMaxSym_i.adjust(id, d_i * d_i);
+            softMaxSym_j.adjust(id, d_j * d_j);
           });
           IntStream.range(0, skew_i.dim()).forEach(id -> {
-            final double d = TRAINING_STEP_COEFF * sign * weight * diff * skew_j.get(id);
-            final double x_t = skew_i.get(id) - d / Math.sqrt(softMaxSkew_i.get(id));
-            skew_i.set(id, project(x_t));
-            softMaxSkew_i.adjust(id, d * d);
+            final double d_i = TRAINING_STEP_COEFF * sign * weight * diff * skew_j.get(id);
+            final double d_j = TRAINING_STEP_COEFF * sign * weight * diff * skew_i.get(id);
+            final double x_it = skew_i.get(id) - d_i / Math.sqrt(softMaxSkew_i.get(id));
+            final double x_jt = skew_j.get(id) - d_j / Math.sqrt(softMaxSkew_j.get(id));
+
+            skew_i.set(id, project(x_it));
+            skew_j.set(id, project(x_jt));
+
+            softMaxSkew_i.adjust(id, d_i * d_i);
+            softMaxSkew_j.adjust(id, d_j * d_j);
           });
+          final double biasStep = TRAINING_STEP_COEFF * weight * diff;
+
+          bias.adjust(i, -biasStep * b_i / Math.sqrt(softMaxBias.get(i)));
+          bias.adjust(j, -biasStep * b_j/ Math.sqrt(softMaxBias.get(j)));
+          softMaxBias.adjust(i, MathTools.sqr(biasStep * b_i));
+          softMaxBias.adjust(j, MathTools.sqr(biasStep * b_j));
         }
         synchronized (counter) {
           counter[0] += totalWeight;
@@ -206,39 +236,6 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
         }
         return totalScore;
       }).sum();
-      IntStream.range(0, crcRight.rows()).parallel().forEach(j -> { // right part derivative
-        final Vec sym_j = symDecomp.row(j);
-        final Vec skew_j = skewsymDecomp.row(j);
-        final Vec softMaxSym_j = softMaxSym.row(j);
-        final Vec softMaxSkew_j = softMaxSkewsym.row(j);
-
-        final VecIterator nz = crcRight.row(j).nonZeroes();
-        while (nz.advance()) {
-          int i = nz.index();
-          if (i == j)
-            continue;
-          final Vec sym_i = symDecomp.row(i);
-          final Vec skew_i = skewsymDecomp.row(i);
-          double asum = VecTools.multiply(symDecomp.row(i), symDecomp.row(j));
-          double bsum = VecTools.multiply(skewsymDecomp.row(i), skewsymDecomp.row(j));
-          final double X_ij = nz.value();
-          final int sign = i > j ? -1 : 1;
-          final double weight = weightingFunc(X_ij);
-          final double diff = asum + sign * bsum - Math.log(1d + X_ij);
-
-          IntStream.range(0, sym_j.dim()).forEach(id -> {
-            final double d = TRAINING_STEP_COEFF * weight * diff * sym_i.get(id);
-            sym_j.adjust(id, -d / Math.sqrt(softMaxSym_j.get(id)));
-            softMaxSym_j.adjust(id, d * d);
-          });
-          IntStream.range(0, skew_j.dim()).forEach(id -> {
-            final double d = TRAINING_STEP_COEFF * sign * weight * diff * skew_i.get(id);
-            final double x_t = skew_j.get(id) - d / Math.sqrt(softMaxSkew_j.get(id));
-            skew_j.set(id, project(x_t));
-            softMaxSkew_j.adjust(id, d * d);
-          });
-        }
-      });
 
       Interval.stopAndPrint("Score: " + (score / counter[1]));
     }

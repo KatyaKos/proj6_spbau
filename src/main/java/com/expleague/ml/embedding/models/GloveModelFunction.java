@@ -6,6 +6,7 @@ import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.VecIterator;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
+import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import com.expleague.commons.util.logging.Interval;
 import com.expleague.ml.embedding.exceptions.LoadingModelException;
 import com.expleague.ml.embedding.text_utils.ArrayVector;
@@ -17,7 +18,7 @@ import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
   final private static int TRAINING_ITERS = 100;
-  final private static double TRAINING_STEP_COEFF = 1e-2;
+  final private static double TRAINING_STEP_COEFF = 1e-1;
 
   private final static int VECTOR_SIZE = 25;
   private final static double WEIGHTING_X_MAX = 100;
@@ -135,10 +136,15 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void trainModel() {
-    Mx softMaxLeft = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
-    Mx softMaxRight = new VecBasedMx(rightVectors.rows(), rightVectors.columns());
+    final Vec bias = new ArrayVec(rightVectors.rows());
+
+    final Mx softMaxLeft = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
+    final Mx softMaxRight = new VecBasedMx(rightVectors.rows(), rightVectors.columns());
+    final Vec softMaxBias = new ArrayVec(rightVectors.rows());
+
     VecTools.fill(softMaxLeft, 1);
     VecTools.fill(softMaxRight, 1);
+    VecTools.fill(softMaxBias, 1);
     for (int iter = 0; iter < TRAINING_ITERS; iter++) {
       Interval.start();
       double[] counter = new double[]{0, 0};
@@ -154,7 +160,7 @@ public class GloveModelFunction extends AbstractModelFunction {
           final Vec right = rightVectors.row(j);
           final double X_ij = nz.value();
           final double asum = VecTools.multiply(left, right);
-          final double diff = asum - Math.log(1d + X_ij);
+          final double diff = bias.get(i) + bias.get(j) + asum - Math.log(1d + X_ij);
           final double weight = weightingFunc(X_ij);
 
           totalWeight += weight;
@@ -164,6 +170,10 @@ public class GloveModelFunction extends AbstractModelFunction {
             left.adjust(id, -d / Math.sqrt(softMax.get(id)));
             softMax.adjust(id, d * d);
           });
+          final double biasStep = TRAINING_STEP_COEFF * weight * diff;
+
+          bias.adjust(i, -biasStep / Math.sqrt(softMaxBias.get(i)));
+          softMaxBias.adjust(i, MathTools.sqr(biasStep));
           totalCount++;
         }
         synchronized (counter) {
@@ -184,13 +194,17 @@ public class GloveModelFunction extends AbstractModelFunction {
           final Vec left = leftVectors.row(i);
           final double X_ij = nz.value();
           final double asum = VecTools.multiply(left, rightVectors.row(j));
-          final double diff = asum - Math.log(1d + X_ij);
+          final double diff = bias.get(i) + bias.get(j) + asum - Math.log(1d + X_ij);
           final double weight = weightingFunc(X_ij);
           IntStream.range(0, left.dim()).forEach(id -> {
             final double d = TRAINING_STEP_COEFF * weight * diff * left.get(id);
             right.adjust(id, -d / Math.sqrt(softMax.get(id)));
             softMax.adjust(id, d * d);
           });
+
+          final double biasStep = TRAINING_STEP_COEFF * weight * diff;
+          bias.adjust(j, -biasStep / Math.sqrt(softMaxBias.get(j)));
+          softMaxBias.adjust(j, MathTools.sqr(biasStep));
         }
 //        VecTools.assign(rightVectors.row(j), right);
       });

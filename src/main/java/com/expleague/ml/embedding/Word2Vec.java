@@ -196,7 +196,7 @@ public class Word2Vec {
             rightWindow = modelParameters.getRightWindow();
 
             if (cooccurences == null) {
-                try (final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(modelParameters.getFilepath()))) {
+                try (final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(modelParameters.getFilepath()), StandardCharsets.ISO_8859_1)) {
                     cooccurences = new CooccurencesBuilder()
                         .setLeftWindow(leftWindow)
                         .setRightWindow(rightWindow)
