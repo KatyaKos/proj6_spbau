@@ -1,4 +1,4 @@
-package com.expleague.ml.embedding.models;
+package com.expleague.ml.embedding.model_functions;
 
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.ml.embedding.text_utils.Vocabulary;

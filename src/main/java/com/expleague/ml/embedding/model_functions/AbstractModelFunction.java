@@ -1,4 +1,4 @@
-package com.expleague.ml.embedding.models;
+package com.expleague.ml.embedding.model_functions;
 
 import com.expleague.commons.math.FuncC1;
 import com.expleague.commons.math.vectors.Mx;
@@ -24,7 +24,7 @@ public abstract class AbstractModelFunction extends FuncC1.Stub {
         this.vocab_size = vocab.size();
     }
 
-    public abstract void prepareReadyModel();
+    public abstract Mx getModelVectors();
 
     public abstract void trainModel();
 
@@ -32,13 +32,5 @@ public abstract class AbstractModelFunction extends FuncC1.Stub {
 
     public abstract void loadModel(String filepath) throws IOException;
 
-    public abstract Vec getVectorByWord(String word);
-
-    public abstract List<String> getWordByVector(Vec vector);
-
     public abstract double likelihood();
-
-    public abstract double getDistance(String from, String to);
-
-    public abstract double getSkewVector(String word);
 }

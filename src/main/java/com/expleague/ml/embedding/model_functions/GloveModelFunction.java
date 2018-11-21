@@ -1,4 +1,4 @@
-package com.expleague.ml.embedding.models;
+package com.expleague.ml.embedding.model_functions;
 
 import com.expleague.commons.math.MathTools;
 import com.expleague.commons.math.vectors.Mx;
@@ -7,13 +7,16 @@ import com.expleague.commons.math.vectors.VecIterator;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
+import com.expleague.commons.util.ArrayTools;
 import com.expleague.commons.util.logging.Interval;
 import com.expleague.ml.embedding.exceptions.LoadingModelException;
+import com.expleague.ml.embedding.exceptions.Word2VecUsageException;
 import com.expleague.ml.embedding.text_utils.ArrayVector;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
@@ -45,27 +48,8 @@ public class GloveModelFunction extends AbstractModelFunction {
   }
 
   @Override
-  public Vec getVectorByWord(String word) {
-    return null;
-  }
-
-  @Override
-  public List<String> getWordByVector(Vec vector) {
-    return null;
-  }
-
-  @Override
-  public void prepareReadyModel() {
-  }
-
-  @Override
-  public double getDistance(String from, String to) {
-    return 0d;
-  }
-
-  @Override
-  public double getSkewVector(String word) {
-    return 0;
+  public Mx getModelVectors() {
+    return leftVectors;
   }
 
   @Override

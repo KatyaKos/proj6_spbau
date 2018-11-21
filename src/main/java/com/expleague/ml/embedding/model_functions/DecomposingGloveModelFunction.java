@@ -1,4 +1,4 @@
-package com.expleague.ml.embedding.models;
+package com.expleague.ml.embedding.model_functions;
 
 import com.expleague.commons.math.MathTools;
 import com.expleague.commons.math.vectors.Mx;
@@ -52,44 +52,6 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
   }
 
   @Override
-  public Vec getVectorByWord(String word) {
-    int w = vocab.wordToIndex(word);
-    if (w == Vocabulary.NO_ENTRY_VALUE)
-      throw new Word2VecUsageException("There's no word " + word + " in the vocabulary.");
-    return symDecomp.row(w);
-  }
-
-  @Override
-  public List<String> getWordByVector(Vec vector) {
-    int[] order = ArrayTools.sequence(0, vocab_size);
-    double[] weights = IntStream.of(order).mapToDouble(idx -> -VecTools.cosine(symDecomp.row(idx), vector)).toArray();
-    ArrayTools.parallelSort(weights, order);
-    return IntStream.range(0, 5).mapToObj(idx -> vocab.indexToWord(order[idx])).collect(Collectors.toList());
-        /*int[] order = ArrayTools.sequence(0, vocab_size);
-        double[] weights = IntStream.of(order).mapToDouble(idx ->
-                countVecNorm(vectorsDifference(symDecomp[idx], vector))).toArray();
-        ArrayTools.parallelSort(weights, order);
-        return IntStream.range(0, 5).mapToObj(idx -> vocab.indexToWord(order[idx])).collect(Collectors.toList());*/
-  }
-
-  @Override
-  public double getSkewVector(String word) {
-    int w = vocab.wordToIndex(word);
-//        double result = 0;
-//        for (int i = 0; i < vocab_size; i++) {
-//            if (i == w)
-//                continue;
-//            result += VecTools.multiply(skewsymDecomp[i], skewsymDecomp[w]);
-//        }
-    return VecTools.norm(skewsymDecomp.row(w)); //result;
-  }
-
-  @Override
-  public double getDistance(String from, String to) {
-    return VecTools.cosine(getVectorByWord(from), getVectorByWord(to));
-  }
-
-  @Override
   public double likelihood() {
     double res = 0d;
     for (int i = 0; i < vocab_size; i++) {
@@ -110,7 +72,8 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
   }
 
   @Override
-  public void prepareReadyModel() {
+  public Mx getModelVectors() {
+    return symDecomp;
   }
 
   @Override
@@ -248,7 +211,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   @Override
   public double value(Vec vec) {
-    return 0;
+    return likelihood();
   }
 
   @Override
