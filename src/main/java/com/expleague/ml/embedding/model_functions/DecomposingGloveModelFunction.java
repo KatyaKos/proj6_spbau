@@ -22,7 +22,7 @@ import java.util.stream.IntStream;
 import static com.expleague.ml.embedding.text_utils.ArrayVector.writeArrayVec;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction {
-  final private static int TRAINING_ITERS = 50;
+  final private static int TRAINING_ITERS = 100;
   private static final double LAMBDA = 1e-4;
   private static double TRAINING_STEP_COEFF = 1e-1;
 
@@ -100,7 +100,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
         final Vec vec = ArrayVector.readArrayVec(fin);
         if (symDecomp == null)
           symDecomp = new VecBasedMx(vocab_size, vec.dim());
-        VecTools.assign(symDecomp.row(0), vec);
+        VecTools.assign(symDecomp.row(i), vec);
       }
 
       fin.readLine();
@@ -109,7 +109,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
         final Vec vec = ArrayVector.readArrayVec(fin);
         if (skewsymDecomp == null)
           skewsymDecomp = new VecBasedMx(vocab_size, vec.dim());
-        VecTools.assign(skewsymDecomp.row(0), vec);
+        VecTools.assign(skewsymDecomp.row(i), vec);
       }
     }
     catch (FileNotFoundException e) {

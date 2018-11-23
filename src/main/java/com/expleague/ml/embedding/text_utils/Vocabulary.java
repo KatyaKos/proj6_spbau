@@ -20,7 +20,7 @@ public class Vocabulary {
     private int size = 0;
 
     public static int NO_ENTRY_VALUE = -1;
-    public static final int MIN_COUNT = 2;
+    public static final int MIN_COUNT = 5;
 
     public Vocabulary(final String filepath) throws VocabularyBuildingException {
         try {
@@ -49,6 +49,15 @@ public class Vocabulary {
             return NO_ENTRY_VALUE;
         }
         return wordsIndx.get(normalizedWord);
+    }
+
+    public boolean containsWord(String word) { return wordsList.contains(word); }
+
+    public boolean containsAll(List<String> words) {
+        for (String word : words) {
+            if (!wordsList.contains(word)) return false;
+        }
+        return true;
     }
 
     @NotNull
@@ -93,14 +102,14 @@ public class Vocabulary {
             }
             for (TObjectIntIterator<String> it = wordsCount.iterator(); it.hasNext();) {
                 it.advance();
-                if (it.value() >= MIN_COUNT && it.key().length() > 2) {
+                if (it.value() >= MIN_COUNT) {
                     wordsList.add(it.key());
                     wordsIndx.put(it.key(), size);
                     size++;
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Couldn't read the vocabulary file.");
+            throw new RuntimeException("Couldn't readMetricsFile the vocabulary file.");
         }
     }
 }

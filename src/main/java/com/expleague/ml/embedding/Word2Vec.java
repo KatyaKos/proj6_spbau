@@ -71,6 +71,7 @@ public class Word2Vec {
         if (model != null || vocabulary != null || cooccurences != null)
             throw new LoadingModelException("You've already started constructing this model. Please, create the new one for loading.");
 
+        System.out.println("Loading vocabulary.");
         try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/vocabulary.txt")))){
             vocab_size = Integer.parseInt(fin.readLine());
             List<String> words = new ArrayList<>();
@@ -80,6 +81,8 @@ public class Word2Vec {
         } catch (FileNotFoundException e) {
             throw new LoadingModelException("Couldn't find vocabulary file to load the model from.");
         }
+
+        System.out.println("Vocabulary loaded. Loading coocurences.");
         try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/coocurences.txt")))) {
             leftWindow = Integer.parseInt(fin.readLine());
             rightWindow = Integer.parseInt(fin.readLine());
@@ -95,12 +98,15 @@ public class Word2Vec {
             }
             cooccurences = crcs;
         }
+
+        System.out.println("Coocurences loaded. Loading model.");
         try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/model.txt")))) {
             String modelName = fin.readLine();
             model = ModelChooser.model(modelName, vocabulary, cooccurences);
             fin.close();
             model.loadModel(filepath + "/model.txt");
         }
+        System.out.println("Model loaded.");
     }
 
     public class ModelTrainer {
@@ -110,10 +116,9 @@ public class Word2Vec {
         }
 
         public void trainModel(ModelParameters modelParameters) throws CooccurencesBuildingException {
-            leftWindow = modelParameters.getLeftWindow();
-            rightWindow = modelParameters.getRightWindow();
-
             if (cooccurences == null) {
+                leftWindow = modelParameters.getLeftWindow();
+                rightWindow = modelParameters.getRightWindow();
                 try (final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(modelParameters.getFilepath()), StandardCharsets.ISO_8859_1)) {
                     cooccurences = new CooccurencesBuilder()
                         .setLeftWindow(leftWindow)

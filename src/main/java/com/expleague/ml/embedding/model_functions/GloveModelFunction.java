@@ -23,7 +23,7 @@ public class GloveModelFunction extends AbstractModelFunction {
   final private static int TRAINING_ITERS = 100;
   final private static double TRAINING_STEP_COEFF = 1e-1;
 
-  private final static int VECTOR_SIZE = 25;
+  private final static int VECTOR_SIZE = 50;
   private final static double WEIGHTING_X_MAX = 100;
   private final static double WEIGHTING_ALPHA = 0.75;
 
@@ -49,7 +49,17 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   @Override
   public Mx getModelVectors() {
-    return leftVectors;
+    Mx result = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
+    IntStream.range(0, vocab_size).parallel().forEach(i -> {
+      Vec l = leftVectors.row(i);
+      Vec r = rightVectors.row(i);
+      IntStream.range(0, VECTOR_SIZE).forEach(j -> {
+        result.set(i, j, l.get(j));
+        result.adjust(i, j, r.get(j));
+      });
+    });
+    return result;
+    //return leftVectors;
   }
 
   @Override
@@ -97,7 +107,7 @@ public class GloveModelFunction extends AbstractModelFunction {
         final Vec vec = ArrayVector.readArrayVec(fin);
         if (leftVectors == null)
           leftVectors = new VecBasedMx(vocab_size, vec.dim());
-        VecTools.assign(leftVectors.row(0), vec);
+        VecTools.assign(leftVectors.row(i), vec);
       }
 
       fin.readLine();
@@ -106,7 +116,7 @@ public class GloveModelFunction extends AbstractModelFunction {
         final Vec vec = ArrayVector.readArrayVec(fin);
         if (rightVectors == null)
           rightVectors = new VecBasedMx(vocab_size, vec.dim());
-        VecTools.assign(rightVectors.row(0), vec);
+        VecTools.assign(rightVectors.row(i), vec);
       }
     }
     catch (FileNotFoundException e) {

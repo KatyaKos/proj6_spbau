@@ -21,14 +21,14 @@ public class CloserFurtherMetric extends QualityMetric {
     }
 
     @Override
-    protected void check(String[] wordsLine, int lineNumber) {
-        if (wordsLine.length != 3) throw new MetricsIOException("There should be three words in each line." +
+    protected void check(List<String> wordsLine, int lineNumber) {
+        if (wordsLine.size() != 3) throw new MetricsIOException("There should be three words in each line." +
                 String.format(" Error occurred in line number %d.", lineNumber + 1));
     }
 
     @Override
     public void measure(String input, String output) {
-        read(input);
+        readMetricsFile(input);
         boolean[] result = new boolean[size];
         int success = 0;
         for (int i = 0; i < size; i++) {
