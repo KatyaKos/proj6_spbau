@@ -20,7 +20,10 @@ public abstract class AbstractModelFunction extends FuncC1.Stub {
     public AbstractModelFunction(Vocabulary vocab, Mx cooc) {
         this.vocab = vocab;
         this.crcLeft = cooc;
-        this.crcRight = MxTools.transpose(crcLeft);
+        if (cooc != null)
+            this.crcRight = MxTools.transpose(crcLeft);
+        else
+            this.crcRight = null;
         this.vocab_size = vocab.size();
     }
 
@@ -30,7 +33,7 @@ public abstract class AbstractModelFunction extends FuncC1.Stub {
 
     public abstract void saveModel(String filepath) throws IOException;
 
-    public abstract void loadModel(String filepath) throws IOException;
+    public abstract void loadModel(String filepath, int mode) throws IOException;
 
     public abstract double likelihood();
 }

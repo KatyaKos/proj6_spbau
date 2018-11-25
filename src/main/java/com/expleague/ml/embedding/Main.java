@@ -1,9 +1,5 @@
 package com.expleague.ml.embedding;
 
-
-import com.expleague.commons.math.vectors.Mx;
-import com.expleague.commons.math.vectors.MxTools;
-import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
 import com.expleague.ml.embedding.exceptions.Word2VecUsageException;
 import com.expleague.ml.embedding.quality_metrics.impl.ArithmeticMetric;
 
@@ -12,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Main {
 
@@ -24,7 +19,7 @@ public class Main {
             switch(args[i]) {
                 case "-c":
                     if (i + 3 >= argsNumber)
-                        throw new RuntimeException("Please, provide path to input data " +
+                        throw new RuntimeException("Please, provide mode (-g|-d), path to input data " +
                                 "and directory where to save resulting model.");
                     String inputData = args[i + 2];
                     String modelPath = args[i + 3];
@@ -44,7 +39,7 @@ public class Main {
                     i += 2;
                     checkFile(inputData);
                     checkDirectory(modelPath);
-                    loadModel(word2Vec, modelPath);
+                    loadModel(word2Vec, modelPath, 0);
                     train(word2Vec, modelTrainer, inputData, modelPath, null);
                     break;
                 case "--test":
@@ -53,7 +48,7 @@ public class Main {
                     modelPath = args[i + 1];
                     checkDirectory(modelPath);
                     System.out.println("Loading started");
-                    loadModel(word2Vec, modelPath);
+                    loadModel(word2Vec, modelPath, 1);
                     System.out.println("Loading finished");
                     mode = args[i + 2];
                     if (mode.equals("-a")) {
@@ -104,8 +99,8 @@ public class Main {
         System.out.println("Vocabulary words_size: " + word2Vec.vocabSize());
     }
 
-    private static void loadModel(Word2Vec word2Vec, String modelPath) throws IOException {
-        word2Vec.loadModel(modelPath);
+    private static void loadModel(Word2Vec word2Vec, String modelPath, int mode) throws IOException {
+        word2Vec.loadModel(modelPath, mode);
     }
 
     private static void train(Word2Vec word2Vec, Word2Vec.ModelTrainer modelTrainer,
@@ -117,18 +112,18 @@ public class Main {
 
     private static void testArithmetic(Word2Vec word2Vec, String metricNames, String resultDir) {
         Model model = word2Vec.getModel();
-        System.out.println("Model likelihood = " + model.countLikelihood());
         ArithmeticMetric metric = new ArithmeticMetric(model);
         metric.measure(metricNames, resultDir);
     }
 
     private static void testClosest(Word2Vec word2Vec) throws IOException {
         Model model = word2Vec.getModel();
-        System.out.println("Model likelihood = " + model.countLikelihood());
         String input;
         LineNumberReader lnr = new LineNumberReader(new InputStreamReader(System.in));
+        System.out.println("Enter your word.");
         while ((input = lnr.readLine()) != null) {
             try {
+                System.out.println(model.getIndexByWord(input));
                 List<String> result = model.getClosestWords(input, 5);
                 System.out.println(model.getVectorByWord(input));
                 for (String word : result)

@@ -40,7 +40,7 @@ public class Word2Vec {
     }
 
     public void saveModel(String filepath) throws IOException {
-        File file = new File(filepath + "/vocabulary.txt");
+        File file = new File(filepath + "/vocab.txt");
         PrintStream fout = new PrintStream(file);
         fout.println(vocab_size);
         for (String word : vocabulary.getEntries()) {
@@ -64,15 +64,19 @@ public class Word2Vec {
             fout.println();
         }
         fout.close();
-        model.saveModel(filepath + "/model.txt");
+        model.saveModel(filepath);
     }
 
-    public void loadModel(String filepath) throws IOException {
+    /**
+     * Mode 0 = load vocab + cooccurences + all vectors
+     * Mode 1 = load vocab + vectors for evaluation
+     */
+    public void loadModel(String filepath, int mode) throws IOException {
         if (model != null || vocabulary != null || cooccurences != null)
             throw new LoadingModelException("You've already started constructing this model. Please, create the new one for loading.");
 
         System.out.println("Loading vocabulary.");
-        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/vocabulary.txt")))){
+        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/vocab.txt")))){
             vocab_size = Integer.parseInt(fin.readLine());
             List<String> words = new ArrayList<>();
             for (int i = 0; i < vocab_size; i++)
@@ -81,32 +85,36 @@ public class Word2Vec {
         } catch (FileNotFoundException e) {
             throw new LoadingModelException("Couldn't find vocabulary file to load the model from.");
         }
+        System.out.println("Vocabulary loaded.");
 
-        System.out.println("Vocabulary loaded. Loading coocurences.");
-        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/coocurences.txt")))) {
-            leftWindow = Integer.parseInt(fin.readLine());
-            rightWindow = Integer.parseInt(fin.readLine());
-            Mx crcs = new SparseMx(vocab_size, vocab_size);
-            for (int i = 0; i < vocab_size; i++) {
-                String s = fin.readLine();
-                if (s.isEmpty()) continue;
-                String[] values = s.split("\t");
-                for (int k = 0; k < values.length; k += 2) {
-                    int j = Integer.parseInt(values[k]);
-                    crcs.set(i, j, Double.parseDouble(values[k + 1]));
+        if (mode == 0) {
+            System.out.println("Loading cooccurences.");
+            try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/coocurences.txt")))) {
+                leftWindow = Integer.parseInt(fin.readLine());
+                rightWindow = Integer.parseInt(fin.readLine());
+                Mx crcs = new SparseMx(vocab_size, vocab_size);
+                for (int i = 0; i < vocab_size; i++) {
+                    String s = fin.readLine();
+                    if (s.isEmpty()) continue;
+                    String[] values = s.split("\t");
+                    for (int k = 0; k < values.length; k += 2) {
+                        int j = Integer.parseInt(values[k]);
+                        crcs.set(i, j, Double.parseDouble(values[k + 1]));
+                    }
                 }
+                cooccurences = crcs;
             }
-            cooccurences = crcs;
+            System.out.println("Cooccurences loaded.");
         }
 
-        System.out.println("Coocurences loaded. Loading model.");
-        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/model.txt")))) {
+        System.out.println("Loading vectors.");
+        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/vectors.txt")))) {
             String modelName = fin.readLine();
             model = ModelChooser.model(modelName, vocabulary, cooccurences);
             fin.close();
-            model.loadModel(filepath + "/model.txt");
+            model.loadModel(filepath, mode);
         }
-        System.out.println("Model loaded.");
+        System.out.println("Vectors loaded.");
     }
 
     public class ModelTrainer {

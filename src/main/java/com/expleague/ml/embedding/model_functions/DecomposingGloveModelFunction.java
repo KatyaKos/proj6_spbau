@@ -7,19 +7,13 @@ import com.expleague.commons.math.vectors.VecIterator;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
-import com.expleague.commons.util.ArrayTools;
 import com.expleague.commons.util.logging.Interval;
 import com.expleague.ml.embedding.exceptions.LoadingModelException;
-import com.expleague.ml.embedding.exceptions.Word2VecUsageException;
-import com.expleague.ml.embedding.text_utils.ArrayVector;
+import com.expleague.ml.embedding.text_utils.VecIO;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static com.expleague.ml.embedding.text_utils.ArrayVector.writeArrayVec;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction {
   final private static int TRAINING_ITERS = 100;
@@ -28,19 +22,20 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   private final static double WEIGHTING_X_MAX = 100;
   private final static double WEIGHTING_ALPHA = 0.75;
+  private final static int SYM_DIM = 40;
+  private final static int SKEWSYM_DIM = 10;
 
 
-  private Mx symDecomp;
-  private Mx skewsymDecomp;
+  private Mx symDecomp = null;
+  private Mx skewsymDecomp = null;
 
   public DecomposingGloveModelFunction(Vocabulary voc, Mx coocc) {
-    this(voc, coocc, 40, 10);
+    super(voc, coocc);
   }
 
-  public DecomposingGloveModelFunction(Vocabulary voc, Mx coocc, int symDim, int asymDim) {
-    super(voc, coocc);
-    symDecomp = new VecBasedMx(vocab_size, symDim);
-    skewsymDecomp = new VecBasedMx(vocab_size, asymDim);
+  private void initialize() {
+    symDecomp = new VecBasedMx(vocab_size, SYM_DIM);
+    skewsymDecomp = new VecBasedMx(vocab_size, SKEWSYM_DIM);
     for (int i = 0; i < vocab_size; i++) {
       for (int j = 0; j < symDecomp.columns(); j++) {
         symDecomp.set(i, j, Math.random());
@@ -78,38 +73,32 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void saveModel(String filepath) throws IOException {
-    File file = new File(filepath);
+    File file_sym = new File(filepath + "/sym_vectors.txt");
+    File file = new File(filepath + "/vectors.txt");
+    PrintStream fout_sym = new PrintStream(file_sym);
     PrintStream fout = new PrintStream(file);
-    fout.println("DECOMP");
-    fout.println("!!! SYMMETRIC !!!");
-    for (int i = 0; i < vocab_size; i++)
-      writeArrayVec(symDecomp.row(i), fout);
-    fout.println("!!! SKEWSYMMETRIC !!!");
-    for (int i = 0; i < vocab_size; i++)
-      writeArrayVec(skewsymDecomp.row(i), fout);
+    fout_sym.println("DECOMP");
+    for (int i = 0; i < vocab_size; i++) {
+      VecIO.writeVec(fout_sym, symDecomp.row(i));
+      VecIO.writeVec(fout, symDecomp.row(i));
+    }
+    for (int i = 0; i < vocab_size; i++) {
+      VecIO.writeVec(fout, skewsymDecomp.row(i));
+    }
+    fout_sym.close();
     fout.close();
   }
 
   @Override
-  public void loadModel(String filepath) throws IOException {
+  public void loadModel(String filepath, int mode) throws IOException {
+    if (mode == 0) filepath += "/vectors.txt";
+    else if (mode == 1) filepath += "/sym_vectors.txt";
+
     try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath)))) {
       fin.readLine();
-      fin.readLine();
-      //noinspection Duplicates
-      for (int i = 0; i < vocab_size; i++) {
-        final Vec vec = ArrayVector.readArrayVec(fin);
-        if (symDecomp == null)
-          symDecomp = new VecBasedMx(vocab_size, vec.dim());
-        VecTools.assign(symDecomp.row(i), vec);
-      }
-
-      fin.readLine();
-      //noinspection Duplicates
-      for (int i = 0; i < vocab_size; i++) {
-        final Vec vec = ArrayVector.readArrayVec(fin);
-        if (skewsymDecomp == null)
-          skewsymDecomp = new VecBasedMx(vocab_size, vec.dim());
-        VecTools.assign(skewsymDecomp.row(i), vec);
+      symDecomp = VecIO.readMx(fin, vocab_size);
+      if (mode == 0) {
+        skewsymDecomp = VecIO.readMx(fin, vocab_size);
       }
     }
     catch (FileNotFoundException e) {
@@ -123,6 +112,9 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void trainModel() {
+    if (symDecomp == null) {
+      initialize();
+    }
     final Mx softMaxSym = new VecBasedMx(symDecomp.rows(), symDecomp.columns());
     final Mx softMaxSkewsym = new VecBasedMx(skewsymDecomp.rows(), skewsymDecomp.columns());
     final Vec bias = new ArrayVec(crcLeft.rows());

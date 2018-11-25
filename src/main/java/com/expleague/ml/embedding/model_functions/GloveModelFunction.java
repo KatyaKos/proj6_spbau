@@ -7,40 +7,35 @@ import com.expleague.commons.math.vectors.VecIterator;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
 import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
-import com.expleague.commons.util.ArrayTools;
 import com.expleague.commons.util.logging.Interval;
 import com.expleague.ml.embedding.exceptions.LoadingModelException;
-import com.expleague.ml.embedding.exceptions.Word2VecUsageException;
-import com.expleague.ml.embedding.text_utils.ArrayVector;
+import com.expleague.ml.embedding.text_utils.VecIO;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
   final private static int TRAINING_ITERS = 100;
-  final private static double TRAINING_STEP_COEFF = 1e-1;
+  final private static double TRAINING_STEP_COEFF = 0.1;
 
-  private final static int VECTOR_SIZE = 50;
   private final static double WEIGHTING_X_MAX = 100;
   private final static double WEIGHTING_ALPHA = 0.75;
+  private final static int VECTOR_SIZE = 50;
 
   private Mx leftVectors;
   private Mx rightVectors;
 
 
   public GloveModelFunction(Vocabulary voc, Mx coocc) {
-    this(voc, coocc, VECTOR_SIZE);
+      super(voc, coocc);
   }
 
-  public GloveModelFunction(Vocabulary voc, Mx coocc, int vectorSize) {
-    super(voc, coocc);
-    leftVectors = new VecBasedMx(voc.size(), vectorSize);
-    rightVectors = new VecBasedMx(voc.size(), vectorSize);
-    for (int i = 0; i < voc.size(); i++) {
-      for (int j = 0; j < vectorSize; j++) {
+  private void initialize() {
+    leftVectors = new VecBasedMx(vocab_size, VECTOR_SIZE);
+    rightVectors = new VecBasedMx(vocab_size, VECTOR_SIZE);
+    for (int i = 0; i < vocab_size; i++) {
+      for (int j = 0; j < VECTOR_SIZE; j++) {
         leftVectors.set(i, j, Math.random());
         rightVectors.set(i, j, Math.random());
       }
@@ -49,17 +44,7 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   @Override
   public Mx getModelVectors() {
-    Mx result = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
-    IntStream.range(0, vocab_size).parallel().forEach(i -> {
-      Vec l = leftVectors.row(i);
-      Vec r = rightVectors.row(i);
-      IntStream.range(0, VECTOR_SIZE).forEach(j -> {
-        result.set(i, j, l.get(j));
-        result.adjust(i, j, r.get(j));
-      });
-    });
-    return result;
-    //return leftVectors;
+    return leftVectors;
   }
 
   @Override
@@ -85,42 +70,37 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void saveModel(String filepath) throws IOException {
-    File file = new File(filepath);
+    File file = new File(filepath + "/vectors.txt");
+    File file_sum = new File(filepath + "/left+right.txt");
     PrintStream fout = new PrintStream(file);
+    PrintStream fout_sum = new PrintStream(file_sum);
     fout.println("GLOVE");
-    fout.println("!!! LEFT !!!");
-    for (int i = 0; i < vocab_size; i++)
-      ArrayVector.writeArrayVec(leftVectors.row(i), fout);
-    fout.println("!!! RIGHT !!!");
-    for (int i = 0; i < vocab_size; i++)
-      ArrayVector.writeArrayVec(rightVectors.row(i), fout);
+    for (int i = 0; i < vocab_size; i++) {
+      VecIO.writeVec(fout, leftVectors.row(i));
+      VecIO.writeVec(fout_sum, VecTools.sum(leftVectors.row(i), rightVectors.row(i)));
+    }
+    for (int i = 0; i < vocab_size; i++) {
+      VecIO.writeVec(fout, rightVectors.row(i));
+    }
     fout.close();
+    fout_sum.close();
   }
 
   @Override
-  public void loadModel(String filepath) throws IOException {
+  public void loadModel(String filepath, int mode) throws IOException {
+    if (mode == 0) filepath += "/vectors.txt";
+    else if (mode == 1) filepath += "/left+right.txt";
     try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath)))) {
-      fin.readLine();
-      fin.readLine();
-      //noinspection Duplicates
-      for (int i = 0; i < vocab_size; i++) {
-        final Vec vec = ArrayVector.readArrayVec(fin);
-        if (leftVectors == null)
-          leftVectors = new VecBasedMx(vocab_size, vec.dim());
-        VecTools.assign(leftVectors.row(i), vec);
-      }
-
-      fin.readLine();
-      //noinspection Duplicates
-      for (int i = 0; i < vocab_size; i++) {
-        final Vec vec = ArrayVector.readArrayVec(fin);
-        if (rightVectors == null)
-          rightVectors = new VecBasedMx(vocab_size, vec.dim());
-        VecTools.assign(rightVectors.row(i), vec);
+      if (mode == 0) {
+        fin.readLine();
+        leftVectors = VecIO.readMx(fin, vocab_size);
+        rightVectors = VecIO.readMx(fin, vocab_size);
+      } else if (mode == 1){
+        leftVectors = VecIO.readMx(fin, vocab_size);
       }
     }
     catch (FileNotFoundException e) {
-      throw new LoadingModelException("Couldn't find vocabulary file to load the model from.");
+      throw new LoadingModelException("Couldn't find vectors file to load the model from.");
     }
   }
 
@@ -130,6 +110,9 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void trainModel() {
+    if (leftVectors == null) {
+        initialize();
+    }
     final Vec bias = new ArrayVec(rightVectors.rows());
 
     final Mx softMaxLeft = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
@@ -203,7 +186,7 @@ public class GloveModelFunction extends AbstractModelFunction {
 //        VecTools.assign(rightVectors.row(j), right);
       });
 
-      Interval.stopAndPrint("Score " + score / counter[1]);
+      Interval.stopAndPrint("Iteration " + iter + ", Score " + score / counter[1]);
     }
   }
 
