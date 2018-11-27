@@ -152,6 +152,15 @@ public class GloveModelFunction extends AbstractModelFunction {
           bias.adjust(i, -biasStep / Math.sqrt(softMaxBias.get(i)));
           softMaxBias.adjust(i, MathTools.sqr(biasStep));
           totalCount++;
+
+          IntStream.range(0, left.dim()).forEach(id -> {
+            final double d = TRAINING_STEP_COEFF * weight * diff * left.get(id);
+            right.adjust(id, -d / Math.sqrt(softMax.get(id)));
+            softMax.adjust(id, d * d);
+          });
+
+          bias.adjust(j, -biasStep / Math.sqrt(softMaxBias.get(j)));
+          softMaxBias.adjust(j, MathTools.sqr(biasStep));
         }
         synchronized (counter) {
           counter[0] += totalWeight;
@@ -160,31 +169,6 @@ public class GloveModelFunction extends AbstractModelFunction {
 //        VecTools.assign(leftVectors.row(i), left);
         return totalScore;
       }).sum();
-      IntStream.range(0, crcRight.rows()).parallel().forEach(j -> { // right part derivative
-        final VecIterator nz = crcRight.row(j).nonZeroes();
-        final Vec right = rightVectors.row(j);
-        final Vec softMax = softMaxRight.row(j);
-        while (nz.advance()) {
-          int i = nz.index();
-          if (i == j)
-            continue;
-          final Vec left = leftVectors.row(i);
-          final double X_ij = nz.value();
-          final double asum = VecTools.multiply(left, rightVectors.row(j));
-          final double diff = bias.get(i) + bias.get(j) + asum - Math.log(1d + X_ij);
-          final double weight = weightingFunc(X_ij);
-          IntStream.range(0, left.dim()).forEach(id -> {
-            final double d = TRAINING_STEP_COEFF * weight * diff * left.get(id);
-            right.adjust(id, -d / Math.sqrt(softMax.get(id)));
-            softMax.adjust(id, d * d);
-          });
-
-          final double biasStep = TRAINING_STEP_COEFF * weight * diff;
-          bias.adjust(j, -biasStep / Math.sqrt(softMaxBias.get(j)));
-          softMaxBias.adjust(j, MathTools.sqr(biasStep));
-        }
-//        VecTools.assign(rightVectors.row(j), right);
-      });
 
       Interval.stopAndPrint("Iteration " + iter + ", Score " + score / counter[1]);
     }

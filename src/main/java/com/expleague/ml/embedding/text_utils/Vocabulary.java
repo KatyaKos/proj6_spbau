@@ -14,7 +14,6 @@ import java.util.List;
 //Immutable vocabulary. Create new vocab if you want to change smth.
 //TODO слова с большой буквы то же самое, что с маленькой? А капслок? Просто изменения размера.
 public class Vocabulary {
-
     private List<String> wordsList = new ArrayList<>();
     private TObjectIntMap<String> wordsIndx = new TObjectIntHashMap<>();
     private int size = 0;
