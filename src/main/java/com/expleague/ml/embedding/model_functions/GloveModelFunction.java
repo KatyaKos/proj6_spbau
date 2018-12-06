@@ -16,10 +16,10 @@ import java.io.*;
 import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
-  final private static int TRAINING_ITERS = 100;
-  final private static double TRAINING_STEP_COEFF = 0.1;
+  final private static int TRAINING_ITERS = 25;
+  final private static double TRAINING_STEP_COEFF = 0.05;
 
-  private final static double WEIGHTING_X_MAX = 100;
+  private final static double WEIGHTING_X_MAX = 10;
   private final static double WEIGHTING_ALPHA = 0.75;
   private final static int VECTOR_SIZE = 50;
 
@@ -32,14 +32,18 @@ public class GloveModelFunction extends AbstractModelFunction {
   }
 
   private void initialize() {
-    leftVectors = new VecBasedMx(vocab_size, VECTOR_SIZE);
-    rightVectors = new VecBasedMx(vocab_size, VECTOR_SIZE);
+    leftVectors = new VecBasedMx(vocab_size, VECTOR_SIZE + 1);
+    rightVectors = new VecBasedMx(vocab_size, VECTOR_SIZE + 1);
     for (int i = 0; i < vocab_size; i++) {
-      for (int j = 0; j < VECTOR_SIZE; j++) {
-        leftVectors.set(i, j, Math.random());
-        rightVectors.set(i, j, Math.random());
+      for (int j = 0; j <= VECTOR_SIZE; j++) {
+        leftVectors.set(i, j, initializeValue());
+        rightVectors.set(i, j, initializeValue());
       }
     }
+  }
+
+  private double initializeValue() {
+    return (Math.random() - 0.5) / VECTOR_SIZE;
   }
 
   @Override
@@ -76,8 +80,12 @@ public class GloveModelFunction extends AbstractModelFunction {
     PrintStream fout_sum = new PrintStream(file_sum);
     fout.println("GLOVE");
     for (int i = 0; i < vocab_size; i++) {
-      VecIO.writeVec(fout, leftVectors.row(i));
-      VecIO.writeVec(fout_sum, VecTools.sum(leftVectors.row(i), rightVectors.row(i)));
+      final Vec left = leftVectors.row(i);
+      final Vec right = rightVectors.row(i);
+      Vec res = new ArrayVec(leftVectors.columns() - 1);
+      for (int j = 0; j < leftVectors.columns() - 1; j++) res.set(j, left.get(j) + right.get(j));
+      VecIO.writeVec(fout_sum, res);
+      VecIO.writeVec(fout, left);
     }
     for (int i = 0; i < vocab_size; i++) {
       VecIO.writeVec(fout, rightVectors.row(i));
@@ -113,64 +121,58 @@ public class GloveModelFunction extends AbstractModelFunction {
     if (leftVectors == null) {
         initialize();
     }
-    final Vec bias = new ArrayVec(rightVectors.rows());
 
     final Mx softMaxLeft = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
     final Mx softMaxRight = new VecBasedMx(rightVectors.rows(), rightVectors.columns());
-    final Vec softMaxBias = new ArrayVec(rightVectors.rows());
+    VecTools.fill(softMaxLeft, 1.);
+    VecTools.fill(softMaxRight, 1.);
 
-    VecTools.fill(softMaxLeft, 1);
-    VecTools.fill(softMaxRight, 1);
-    VecTools.fill(softMaxBias, 1);
     for (int iter = 0; iter < TRAINING_ITERS; iter++) {
       Interval.start();
       double[] counter = new double[]{0, 0};
-      double score = IntStream.range(0, crcLeft.rows()).parallel().mapToDouble(i -> { // left part derivative
+      double score = IntStream.range(0, vocab_size).parallel().mapToDouble(i -> {
         final VecIterator nz = crcLeft.row(i).nonZeroes();
         final Vec left = leftVectors.row(i);
-        final Vec softMax = softMaxLeft.row(i);
+        final Vec softMaxL = softMaxLeft.row(i);
         double totalScore = 0;
         double totalCount = 0;
         double totalWeight = 0;
         while (nz.advance()) {
           final int j = nz.index();
           final Vec right = rightVectors.row(j);
+          final Vec softMaxR = softMaxRight.row(j);
           final double X_ij = nz.value();
-          final double asum = VecTools.multiply(left, right);
-          final double diff = bias.get(i) + bias.get(j) + asum - Math.log(1d + X_ij);
+          final double asum = VecTools.multiply(left, right) - left.get(VECTOR_SIZE) * right.get(VECTOR_SIZE);
+          final double diff = left.get(VECTOR_SIZE) + right.get(VECTOR_SIZE) + asum - Math.log(1d + X_ij);
           final double weight = weightingFunc(X_ij);
+          final double fdiff = TRAINING_STEP_COEFF * diff * weight;
 
           totalWeight += weight;
-          totalScore += weight * MathTools.sqr(diff);
-          IntStream.range(0, right.dim()).forEach(id -> {
-            final double d = TRAINING_STEP_COEFF * weight * diff * right.get(id);
-            left.adjust(id, -d / Math.sqrt(softMax.get(id)));
-            softMax.adjust(id, d * d);
-          });
-          final double biasStep = TRAINING_STEP_COEFF * weight * diff;
+          totalScore += 0.5 * weight * MathTools.sqr(diff);
 
-          bias.adjust(i, -biasStep / Math.sqrt(softMaxBias.get(i)));
-          softMaxBias.adjust(i, MathTools.sqr(biasStep));
+          IntStream.range(0, VECTOR_SIZE).forEach(id -> {
+            final double dL = fdiff * right.get(id);
+            final double dR = fdiff * left.get(id);
+            left.adjust(id, -dL / Math.sqrt(softMaxL.get(id)));
+            right.adjust(id, -dR / Math.sqrt(softMaxR.get(id)));
+            softMaxL.adjust(id, dL * dL);
+            softMaxR.adjust(id, dR * dR);
+          });
+
+          left.adjust(VECTOR_SIZE, -fdiff / Math.sqrt(softMaxL.get(VECTOR_SIZE)));
+          right.adjust(VECTOR_SIZE, -fdiff / Math.sqrt(softMaxR.get(VECTOR_SIZE)));
+          softMaxL.adjust(VECTOR_SIZE, MathTools.sqr(fdiff));
+          softMaxR.adjust(VECTOR_SIZE, MathTools.sqr(fdiff));
           totalCount++;
-
-          IntStream.range(0, left.dim()).forEach(id -> {
-            final double d = TRAINING_STEP_COEFF * weight * diff * left.get(id);
-            right.adjust(id, -d / Math.sqrt(softMax.get(id)));
-            softMax.adjust(id, d * d);
-          });
-
-          bias.adjust(j, -biasStep / Math.sqrt(softMaxBias.get(j)));
-          softMaxBias.adjust(j, MathTools.sqr(biasStep));
         }
         synchronized (counter) {
           counter[0] += totalWeight;
           counter[1] += totalCount;
         }
-//        VecTools.assign(leftVectors.row(i), left);
         return totalScore;
       }).sum();
 
-      Interval.stopAndPrint("Iteration " + iter + ", Score " + score / counter[1]);
+      Interval.stopAndPrint("Iteration " + iter + ", Score " + score / counter[1] + ", Total Score " + score + ", Count " + counter[1]);
     }
   }
 

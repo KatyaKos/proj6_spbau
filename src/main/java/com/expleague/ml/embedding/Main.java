@@ -19,7 +19,7 @@ public class Main {
             switch(args[i]) {
                 case "-c":
                     if (i + 3 >= argsNumber)
-                        throw new RuntimeException("Please, provide mode (-g|-d), path to input data " +
+                        throw new RuntimeException("Please, provide mode (GLOVE|DECOMP), path to input data " +
                                 "and directory where to save resulting model.");
                     String inputData = args[i + 2];
                     String modelPath = args[i + 3];
@@ -67,7 +67,7 @@ public class Main {
                     break;
                 case "-h":
                 case "--help":
-                    System.out.println("[-c [-g | -d] input/data/path final/model/directory] to create a new model and train it\n" +
+                    System.out.println("[-c [GLOVE | DECOMP] input/data/path final/model/directory] to create a new model and train it\n" +
                             "\t-g for GLOVE\n\t-d for DECOMPOSITION\n" +
                             "[-lt input/data/path existing/model/path] to load existing model and train it\n" +
                             "[--test existing/model/path [-c | -a metrics_names/file/path metrics/result/dir] to load existing model and test it\n" +
@@ -96,7 +96,7 @@ public class Main {
 
     private static void prepareForTrain(Word2Vec word2Vec, Word2Vec.ModelTrainer modelTrainer, String inputData) {
         modelTrainer.buildVocab(inputData);
-        System.out.println("Vocabulary words_size: " + word2Vec.vocabSize());
+        System.out.println("Vocabulary size: " + word2Vec.vocabSize());
     }
 
     private static void loadModel(Word2Vec word2Vec, String modelPath, int mode) throws IOException {

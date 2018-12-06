@@ -16,13 +16,13 @@ import java.io.*;
 import java.util.stream.IntStream;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction {
-  final private static int TRAINING_ITERS = 100;
+  final private static int TRAINING_ITERS = 20;
   private static final double LAMBDA = 1e-4;
-  private static double TRAINING_STEP_COEFF = 1e-1;
+  private static double TRAINING_STEP_COEFF = 0.01;
 
-  private final static double WEIGHTING_X_MAX = 100;
+  private final static double WEIGHTING_X_MAX = 10;
   private final static double WEIGHTING_ALPHA = 0.75;
-  private final static int SYM_DIM = 40;
+  private final static int SYM_DIM = 50;
   private final static int SKEWSYM_DIM = 10;
 
 
@@ -35,15 +35,19 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   private void initialize() {
     symDecomp = new VecBasedMx(vocab_size, SYM_DIM);
-    skewsymDecomp = new VecBasedMx(vocab_size, SKEWSYM_DIM);
+    skewsymDecomp = new VecBasedMx(vocab_size, SKEWSYM_DIM + 1);
     for (int i = 0; i < vocab_size; i++) {
-      for (int j = 0; j < symDecomp.columns(); j++) {
-        symDecomp.set(i, j, Math.random());
+      for (int j = 0; j < SYM_DIM; j++) {
+        symDecomp.set(i, j, initializeValue(SYM_DIM));
       }
-      for (int j = 0; j < skewsymDecomp.columns(); j++) {
-        skewsymDecomp.set(i, j, Math.random());
+      for (int j = 0; j <= SKEWSYM_DIM; j++) {
+        skewsymDecomp.set(i, j, initializeValue(SKEWSYM_DIM));
       }
     }
+  }
+
+  private double initializeValue(int vec_size) {
+    return (Math.random() - 0.5) / vec_size;
   }
 
   @Override
@@ -78,6 +82,7 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
     PrintStream fout_sym = new PrintStream(file_sym);
     PrintStream fout = new PrintStream(file);
     fout_sym.println("DECOMP");
+    fout.println("DECOMP");
     for (int i = 0; i < vocab_size; i++) {
       VecIO.writeVec(fout_sym, symDecomp.row(i));
       VecIO.writeVec(fout, symDecomp.row(i));
@@ -117,45 +122,41 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
     }
     final Mx softMaxSym = new VecBasedMx(symDecomp.rows(), symDecomp.columns());
     final Mx softMaxSkewsym = new VecBasedMx(skewsymDecomp.rows(), skewsymDecomp.columns());
-    final Vec bias = new ArrayVec(crcLeft.rows());
-    VecTools.fill(bias, 1);
-    final Vec softMaxBias = new ArrayVec(crcLeft.rows());
     for (int iter = 0; iter < TRAINING_ITERS; iter++) {
-      VecTools.fill(softMaxSym, 1);
-      VecTools.fill(softMaxSkewsym, 1);
-      VecTools.fill(softMaxBias, 1);
+      VecTools.fill(softMaxSym, 1.);
+      VecTools.fill(softMaxSkewsym, 1.);
 
       Interval.start();
       final double[] counter = new double[]{0, 0};
-      double score = IntStream.range(0, crcLeft.rows()).parallel().mapToDouble(i -> { // left part derivative
+      double score = IntStream.range(0, crcLeft.rows()).parallel().mapToDouble(i -> {
         final VecIterator nz = crcLeft.row(i).nonZeroes();
         final Vec sym_i = symDecomp.row(i);
         final Vec skew_i = skewsymDecomp.row(i);
         final Vec softMaxSym_i = softMaxSym.row(i);
         final Vec softMaxSkew_i = softMaxSkewsym.row(i);
-
         double totalScore = 0;
         double totalWeight = 0;
         double totalCount = 0;
+
         while (nz.advance()) {
           int j = nz.index();
           final Vec sym_j = symDecomp.row(j);
           final Vec skew_j = skewsymDecomp.row(j);
           final Vec softMaxSym_j = softMaxSym.row(j);
           final Vec softMaxSkew_j = softMaxSkewsym.row(j);
+          final double b_i = skew_i.get(SKEWSYM_DIM);
+          final double b_j = skew_j.get(SKEWSYM_DIM);
 
-          final double b_i = bias.get(i);
-          final double b_j = bias.get(j);
           double asum = VecTools.multiply(sym_i, sym_j);
-          double bsum = VecTools.multiply(skew_i, skew_j);
+          double bsum = VecTools.multiply(skew_i, skew_j) - b_i * b_j;
           final double X_ij = nz.value();
           final int sign = i > j ? -1 : 1;
           final double minfo = Math.log(X_ij);
-          final double diff = MathTools.sqr(b_i) + MathTools.sqr(b_j) + asum + sign * bsum - minfo;
+          final double diff = b_i + b_j + asum + sign * bsum - minfo;
           final double weight = weightingFunc(X_ij);
           totalWeight += weight;
           totalCount ++;
-          totalScore += weight * diff * diff;
+          totalScore += 0.5 * weight * diff * diff;
           IntStream.range(0, sym_i.dim()).forEach(id -> {
             final double d_i = TRAINING_STEP_COEFF * weight * diff * sym_j.get(id);
             final double d_j = TRAINING_STEP_COEFF * weight * diff * sym_i.get(id);
@@ -180,10 +181,10 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
           });
           final double biasStep = TRAINING_STEP_COEFF * weight * diff;
 
-          bias.adjust(i, -biasStep * b_i / Math.sqrt(softMaxBias.get(i)));
-          bias.adjust(j, -biasStep * b_j/ Math.sqrt(softMaxBias.get(j)));
-          softMaxBias.adjust(i, MathTools.sqr(biasStep * b_i));
-          softMaxBias.adjust(j, MathTools.sqr(biasStep * b_j));
+          skew_i.adjust(SKEWSYM_DIM, -biasStep / Math.sqrt(softMaxSkew_i.get(SKEWSYM_DIM)));
+          skew_j.adjust(SKEWSYM_DIM, -biasStep / Math.sqrt(softMaxSkew_j.get(SKEWSYM_DIM)));
+          softMaxSkew_i.adjust(SKEWSYM_DIM, MathTools.sqr(biasStep));
+          softMaxSkew_j.adjust(SKEWSYM_DIM, MathTools.sqr(biasStep));
         }
         synchronized (counter) {
           counter[0] += totalWeight;
@@ -192,13 +193,12 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
         return totalScore;
       }).sum();
 
-      Interval.stopAndPrint("Score: " + (score / counter[1]));
+      Interval.stopAndPrint("Iteration: " + iter + " Score: " + (score / counter[1]));
     }
-    //System.out.println("Likelihood: " + likelihood());
   }
 
   private double project(double x_t) {
-    return x_t > LAMBDA ? x_t - LAMBDA : (x_t < -LAMBDA ? x_t + LAMBDA : 0);
+    return x_t;//x_t > LAMBDA ? x_t - LAMBDA : (x_t < -LAMBDA ? x_t + LAMBDA : 0);
   }
 
   @Override

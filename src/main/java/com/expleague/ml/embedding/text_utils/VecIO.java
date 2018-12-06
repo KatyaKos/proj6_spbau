@@ -15,8 +15,7 @@ public class VecIO {
     public static void writeVec(PrintStream fout, Vec vec) {
         String str = vec.toString();
         String pref = String.valueOf(vec.dim());
-        fout.println(str.substring(pref.length() + 1));
-        fout.flush();
+        fout.print(str.substring(pref.length() + 1) + "\n");
     }
 
     public static void readVecTo(BufferedReader fin, Vec to) throws IOException {
