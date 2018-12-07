@@ -65,7 +65,7 @@ public class CooccurencesBuilder {
                 for (int idx = leftLimit; idx < rightLimit; idx++) {
                     if (idx == i)
                         continue;
-                    temp.adjust(indexedId, queue.get(idx), 1);
+                    temp.adjust(indexedId, queue.get(idx), 1./Math.abs(i - idx));
                 }
                 if ((i + 1) % 1000000 == 0) {
                     synchronized (result) {

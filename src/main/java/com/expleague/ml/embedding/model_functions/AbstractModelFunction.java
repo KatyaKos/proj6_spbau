@@ -3,11 +3,9 @@ package com.expleague.ml.embedding.model_functions;
 import com.expleague.commons.math.FuncC1;
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.MxTools;
-import com.expleague.commons.math.vectors.Vec;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.IOException;
-import java.util.List;
 
 // Model J = sum[ f(Xij) * (viT*uj - logXij)^2]
 //TODO stochastic gradient

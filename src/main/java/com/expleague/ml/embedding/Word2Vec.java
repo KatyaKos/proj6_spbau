@@ -1,5 +1,6 @@
 package com.expleague.ml.embedding;
 
+import com.expleague.commons.math.MathTools;
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.VecTools;
@@ -40,30 +41,28 @@ public class Word2Vec {
     }
 
     public void saveModel(String filepath) throws IOException {
-        File file = new File(filepath + "/vocab.txt");
-        PrintStream fout = new PrintStream(file);
-        fout.println(vocab_size);
-        for (String word : vocabulary.getEntries()) {
-            fout.println(word);
-        }
-        fout.close();
-        file = new File(filepath + "/coocurences.txt");
-        fout = new PrintStream(file);
-        fout.println(leftWindow);
-        fout.println(rightWindow);
-        for (int i = 0; i < vocab_size; i++) {
-            for (int j = 0; j < vocab_size; j++) {
-                double crc = cooccurences.get(i, j);
-                if (crc > 0d) {
-                    fout.print(j);
-                    fout.print("\t");
-                    fout.print(cooccurences.get(i, j));
-                    fout.print("\t");
-                }
+        try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/vocab.txt"))) {
+            fout.append(Integer.toString(vocab_size)).append('\n');
+            for (String word : vocabulary.getEntries()) {
+                fout.append(word).append('\n');
             }
-            fout.println();
         }
-        fout.close();
+        try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/coocurences.txt"))) {
+            fout.append(Integer.toString(leftWindow)).append("\n");
+            fout.append(Integer.toString(rightWindow)).append("\n");
+            for (int i = 0; i < vocab_size; i++) {
+                for (int j = 0; j < vocab_size; j++) {
+                    double crc = cooccurences.get(i, j);
+                    if (crc > 0d) {
+                        fout.append(Integer.toString(j))
+                            .append('\t')
+                            .append(Double.toString(cooccurences.get(i, j)))
+                            .append('\t');
+                    }
+                }
+                fout.append('\n');
+            }
+        }
         model.saveModel(filepath);
     }
 

@@ -13,6 +13,8 @@ import com.expleague.ml.embedding.text_utils.VecIO;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
@@ -74,24 +76,24 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void saveModel(String filepath) throws IOException {
-    File file = new File(filepath + "/vectors.txt");
-    File file_sum = new File(filepath + "/left+right.txt");
-    PrintStream fout = new PrintStream(file);
-    PrintStream fout_sum = new PrintStream(file_sum);
-    fout.println("GLOVE");
-    for (int i = 0; i < vocab_size; i++) {
-      final Vec left = leftVectors.row(i);
-      final Vec right = rightVectors.row(i);
-      Vec res = new ArrayVec(leftVectors.columns() - 1);
-      for (int j = 0; j < leftVectors.columns() - 1; j++) res.set(j, left.get(j) + right.get(j));
-      VecIO.writeVec(fout_sum, res);
-      VecIO.writeVec(fout, left);
+    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/vectors.txt"))) {
+      fout.append("GLOVE\n");
+      for (int i = 0; i < vocab_size; i++) {
+        VecIO.writeVec(fout, leftVectors.row(i));
+        fout.append('\n');
+      }
+      for (int i = 0; i < vocab_size; i++) {
+        VecIO.writeVec(fout, rightVectors.row(i));
+        fout.append('\n');
+      }
     }
-    for (int i = 0; i < vocab_size; i++) {
-      VecIO.writeVec(fout, rightVectors.row(i));
+
+    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/left+right.txt"))) {
+      for (int i = 0; i < vocab_size; i++) {
+        VecIO.writeVec(fout, VecTools.sum(leftVectors.row(i), rightVectors.row(i)));
+        fout.append('\n');
+      }
     }
-    fout.close();
-    fout_sum.close();
   }
 
   @Override

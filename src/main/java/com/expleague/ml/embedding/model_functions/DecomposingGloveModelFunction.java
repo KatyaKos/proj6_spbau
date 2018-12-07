@@ -13,12 +13,14 @@ import com.expleague.ml.embedding.text_utils.VecIO;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction {
-  final private static int TRAINING_ITERS = 20;
+  final private static int TRAINING_ITERS = 25;
   private static final double LAMBDA = 1e-4;
-  private static double TRAINING_STEP_COEFF = 0.01;
+  private static double TRAINING_STEP_COEFF = 0.02;
 
   private final static double WEIGHTING_X_MAX = 10;
   private final static double WEIGHTING_ALPHA = 0.75;
@@ -77,21 +79,23 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void saveModel(String filepath) throws IOException {
-    File file_sym = new File(filepath + "/sym_vectors.txt");
-    File file = new File(filepath + "/vectors.txt");
-    PrintStream fout_sym = new PrintStream(file_sym);
-    PrintStream fout = new PrintStream(file);
-    fout_sym.println("DECOMP");
-    fout.println("DECOMP");
-    for (int i = 0; i < vocab_size; i++) {
-      VecIO.writeVec(fout_sym, symDecomp.row(i));
-      VecIO.writeVec(fout, symDecomp.row(i));
+    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/sym_vectors.txt"))){
+      for (int i = 0; i < vocab_size; i++) {
+        VecIO.writeVec(fout, symDecomp.row(i));
+        fout.append('\n');
+      }
     }
-    for (int i = 0; i < vocab_size; i++) {
-      VecIO.writeVec(fout, skewsymDecomp.row(i));
+    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/vectors.txt"))) {
+      fout.append("DECOMP\n");
+      for (int i = 0; i < vocab_size; i++) {
+        VecIO.writeVec(fout, symDecomp.row(i));
+        fout.append('\n');
+      }
+      for (int i = 0; i < vocab_size; i++) {
+        VecIO.writeVec(fout, skewsymDecomp.row(i));
+        fout.append('\n');
+      }
     }
-    fout_sym.close();
-    fout.close();
   }
 
   @Override
@@ -100,7 +104,8 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
     else if (mode == 1) filepath += "/sym_vectors.txt";
 
     try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath)))) {
-      fin.readLine();
+      if (mode == 0)
+        fin.readLine();
       symDecomp = VecIO.readMx(fin, vocab_size);
       if (mode == 0) {
         skewsymDecomp = VecIO.readMx(fin, vocab_size);

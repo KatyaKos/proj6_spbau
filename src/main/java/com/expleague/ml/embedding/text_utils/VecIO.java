@@ -9,13 +9,13 @@ import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.Writer;
 
 public class VecIO {
-
-    public static void writeVec(PrintStream fout, Vec vec) {
+    public static void writeVec(Writer fout, Vec vec) throws IOException {
         String str = vec.toString();
         String pref = String.valueOf(vec.dim());
-        fout.print(str.substring(pref.length() + 1) + "\n");
+        fout.append(str.substring(pref.length() + 1));
     }
 
     public static void readVecTo(BufferedReader fin, Vec to) throws IOException {

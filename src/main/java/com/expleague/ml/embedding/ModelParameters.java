@@ -32,8 +32,8 @@ public class ModelParameters {
 
     public static class Builder {
         private String filepath = "";
-        private int leftWindow = 7;
-        private int rightWindow = 7;
+        private int leftWindow = 15;
+        private int rightWindow = 15;
 //        private String modelName = "DECOMP";
         private String modelName = "GLOVE";
 
