@@ -9,6 +9,7 @@ import com.expleague.ml.embedding.text_utils.CooccurencesBuilder;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -51,9 +52,9 @@ public class Word2Vec {
                     double crc = cooccurences.get(i, j);
                     if (crc > 0d) {
                         fout.append(Integer.toString(j))
-                            .append('\t')
+                            .append(' ')
                             .append(Double.toString(cooccurences.get(i, j)))
-                            .append('\t');
+                            .append(' ');
                     }
                 }
                 fout.append('\n');
@@ -63,7 +64,7 @@ public class Word2Vec {
     }
 
     /**
-     * Mode 0 = load vocab + cooccurences + all vectors
+     * Mode 0 = load vocab + cooccurences + train vectors
      * Mode 1 = load vocab + vectors for evaluation
      */
     public void loadModel(String filepath, int mode) throws IOException {
@@ -91,7 +92,7 @@ public class Word2Vec {
                 for (int i = 0; i < vocab_size; i++) {
                     String s = fin.readLine();
                     if (s.isEmpty()) continue;
-                    String[] values = s.split("\t");
+                    String[] values = s.split(" ");
                     for (int k = 0; k < values.length; k += 2) {
                         int j = Integer.parseInt(values[k]);
                         crcs.set(i, j, Double.parseDouble(values[k + 1]));
@@ -122,12 +123,14 @@ public class Word2Vec {
             if (cooccurences == null) {
                 leftWindow = modelParameters.getLeftWindow();
                 rightWindow = modelParameters.getRightWindow();
-                {//(final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(modelParameters.getFilepath()), StandardCharsets.UTF_8)) {
+                try (final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(modelParameters.getFilepath()), StandardCharsets.UTF_8)) {
                     cooccurences = new CooccurencesBuilder()
                         .setLeftWindow(leftWindow)
                         .setRightWindow(rightWindow)
                         .setVocabulary(vocabulary)
-                        .build(modelParameters.getFilepath());
+                        .build(bufferedReader);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
             if (model == null)

@@ -65,12 +65,6 @@ public class Model {
     }
 
     public List<String> getClosestWords(Vec vector, int top) {
-        /*int[] order = ArrayTools.sequence(0, vocab_size);
-        double[] weights = IntStream.of(order).mapToDouble(idx ->
-                -VecTools.multiply(modelVectors.row(idx), vector)).toArray();
-        ArrayTools.parallelSort(weights, order);
-        return IntStream.range(0, top).mapToObj(idx ->
-                vocabulary.indexToWord(order[idx])).collect(Collectors.toList());*/
         return getClosestWordsExcept(vector, top, new ArrayList<>());
     }
 
@@ -90,10 +84,6 @@ public class Model {
 
     public double getDistance(Vec vec1, Vec vec2) {
         return VecTools.multiply(vec1, vec2);
-    }
-
-    public double countLikelihood() {
-        return modelFunction.likelihood();
     }
 
     public int getVectorSize() {

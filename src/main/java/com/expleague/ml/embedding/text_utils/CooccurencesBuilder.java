@@ -4,12 +4,9 @@ package com.expleague.ml.embedding.text_utils;
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.SparseMx;
-import com.expleague.commons.seq.CharSeq;
 import com.expleague.commons.seq.CharSeqTools;
 import com.expleague.commons.util.logging.Interval;
 import gnu.trove.list.array.TIntArrayList;
-import gnu.trove.map.TObjectIntMap;
-import gnu.trove.map.hash.TObjectIntHashMap;
 
 import java.io.*;
 import java.text.BreakIterator;
@@ -36,63 +33,49 @@ public class CooccurencesBuilder {
         return this;
     }
 
-    public Mx build(String filepath) throws RuntimeException {
+    public Mx build(Reader reader) throws RuntimeException {
         final int vocSize = this.voc.size();
         final Mx result = new SparseMx(vocSize, vocSize);
         Interval.start();
-        File file = new File(filepath);
-        BufferedReader fin;
-        try {
-            fin = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Couldn't find the file to construct vocabulary from.");
-        }
-        String line;
-        int lni = 0;
-        try {
-            while ((line = fin.readLine()) != null) {
-                BreakIterator breakIterator = BreakIterator.getWordInstance();
-                breakIterator.setText(line);
-                int lastIndex = breakIterator.first();
-                final TIntArrayList queue = new TIntArrayList(1000);
+        CharSeqTools.lines(reader, true).forEach(line -> {
+            BreakIterator breakIterator = BreakIterator.getWordInstance();
+            breakIterator.setText(line.toString());
+            int lastIndex = breakIterator.first();
+            final TIntArrayList queue = new TIntArrayList(1000);
 
-                while (BreakIterator.DONE != lastIndex) {
-                    int firstIndex = lastIndex;
-                    lastIndex = breakIterator.next();
-                    if (lastIndex != BreakIterator.DONE && Character.isLetterOrDigit(line.charAt(firstIndex))) {
-                        final String word = line.substring(firstIndex, lastIndex);
-                        int wordId = voc.wordToIndex(word);
-                        if (wordId == Vocabulary.NO_ENTRY_VALUE) {
-                            continue;
-                        }
-                        queue.add(wordId);
+            while (BreakIterator.DONE != lastIndex) {
+                int firstIndex = lastIndex;
+                lastIndex = breakIterator.next();
+                if (lastIndex != BreakIterator.DONE && Character.isLetterOrDigit(line.charAt(firstIndex))) {
+                    final String word = line.toString().substring(firstIndex, lastIndex);
+                    int wordId = voc.wordToIndex(word);
+                    if (wordId == Vocabulary.NO_ENTRY_VALUE) {
+                        continue;
                     }
+                    queue.add(wordId);
                 }
-                //final SparseMx temp = new SparseMx(vocSize, vocSize);
-                for (int i = 0; i < queue.size(); i++) {
-                    final int indexedId = queue.get(i);
-                    final int rightLimit = Math.min(queue.size(), i + rightWindow + 1);
-                    final int leftLimit = Math.max(0, i - leftWindow);
-                    for (int idx = leftLimit; idx < rightLimit; idx++) {
-                        if (idx == i)
-                            continue;
-                        result.adjust(indexedId, queue.get(idx), 1./Math.abs(i - idx));
-                    }
-                    /*if ((i + 1) % 1000000 == 0) {
-                        synchronized (result) {
-                            VecTools.append(result, temp);
-                            temp.clear();
-                        }
-                    }*/
-                }
-                /*synchronized (result) {
-                    VecTools.append(result, temp);
-                }*/
-                lni += 1;
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            final SparseMx temp = new SparseMx(vocSize, vocSize);
+            for (int i = 0; i < queue.size(); i++) {
+                final int indexedId = queue.get(i);
+                final int rightLimit = Math.min(queue.size(), i + rightWindow + 1);
+                final int leftLimit = Math.max(0, i - leftWindow);
+                for (int idx = leftLimit; idx < rightLimit; idx++) {
+                    if (idx == i)
+                        continue;
+                    temp.adjust(indexedId, queue.get(idx), 1./Math.abs(i - idx));
+                }
+                if ((i + 1) % 1000000 == 0) {
+                    synchronized (result) {
+                        VecTools.append(result, temp);
+                        temp.clear();
+                    }
+                }
+            }
+            synchronized (result) {
+                VecTools.append(result, temp);
+            }
+        });
         Interval.stopAndPrint("Cooccurrences calculated for");
         return result;
     }
