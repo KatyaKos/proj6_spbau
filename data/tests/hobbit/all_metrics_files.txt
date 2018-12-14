@@ -1,0 +1,3 @@
+2
+data/tests/hobbit/hobbit_logic.txt
+data/tests/hobbit/usual_logic.txt

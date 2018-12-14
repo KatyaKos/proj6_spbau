@@ -1,0 +1,41 @@
+28 successes out of 39
+
+TRUE: 	Word 'dwarvish' is closer to 'dwarf' than to word 'dragon'.
+TRUE: 	Word 'gold' is closer to 'dragon' than to word 'sword'.
+TRUE: 	Word 'gold' is closer to 'dwarf' than to word 'wolf'.
+TRUE: 	Word 'hobbit' is closer to 'bilbo' than to word 'gandalf'.
+TRUE: 	Word 'bilbo' is closer to 'baggins' than to word 'oakenshield'.
+TRUE: 	Word 'thorin' is closer to 'oakenshield' than to word 'baggins'.
+TRUE: 	Word 'hobbit-hole' is closer to 'hobbit' than to word 'dwarf'.
+TRUE: 	Word 'dwarf' is closer to 'thorin' than to word 'hobbit'.
+TRUE: 	Word 'dwarf' is closer to 'kili' than to word 'bilbo'.
+TRUE: 	Word 'dwarf' is closer to 'dori' than to word 'gandalf'.
+FALSE:	Word 'thorin' is closer to 'bard' than to word 'dori'.
+FALSE:	Word 'dwarf' is closer to 'sword' than to word 'gloin'.
+WORDS guest ARE NOT IN VOCABULARY!
+TRUE: 	Word 'dwarf' is closer to 'fili' than to word 'present'.
+TRUE: 	Word 'dwarf' is closer to 'bombur' than to word 'smell'.
+TRUE: 	Word 'fili' is closer to 'kili' than to word 'dwalin'.
+TRUE: 	Word 'elf' is closer to 'elvenking' than to word 'gandalf'.
+TRUE: 	Word 'elf' is closer to 'elrond' than to word 'smaug'.
+TRUE: 	Word 'dragon' is closer to 'smaug' than to word 'thorin'.
+TRUE: 	Word 'dragon' is closer to 'smaug' than to word 'bilbo'.
+FALSE:	Word 'friend' is closer to 'smaug' than to word 'bilbo'.
+TRUE: 	Word 'friend' is closer to 'gandalf' than to word 'goblin'.
+FALSE:	Word 'ring' is closer to 'elvenking' than to word 'gollum'.
+TRUE: 	Word 'ring' is closer to 'bilbo' than to word 'goblin'.
+TRUE: 	Word 'precious' is closer to 'ring' than to word 'dagger'.
+TRUE: 	Word 'arkenstone' is closer to 'thorin' than to word 'gandalf'.
+FALSE:	Word 'arkenstone' is closer to 'kili' than to word 'bilbo'.
+TRUE: 	Word 'sting' is closer to 'blade' than to word 'stone'.
+TRUE: 	Word 'man' is closer to 'bard' than to word 'elrond'.
+WORDS bowman ARE NOT IN VOCABULARY!
+TRUE: 	Word 'lake-town' is closer to 'bard' than to word 'elvenking'.
+WORDS spear, bowman ARE NOT IN VOCABULARY!
+TRUE: 	Word 'small' is closer to 'dwarf' than to word 'dragon'.
+FALSE:	Word 'bear' is closer to 'gollum' than to word 'beorn'.
+TRUE: 	Word 'mirkwood' is closer to 'spiders' than to word 'hobbits'.
+TRUE: 	Word 'mirkwood' is closer to 'wood-elves' than to word 'trolls'.
+WORDS rivendell ARE NOT IN VOCABULARY!
+FALSE:	Word 'burglar' is closer to 'thorin' than to word 'bilbo'.
+TRUE: 	Word 'ring' is closer to 'invisible' than to word 'wisdom'.
