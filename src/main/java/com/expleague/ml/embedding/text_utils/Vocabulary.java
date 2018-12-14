@@ -95,7 +95,9 @@ public class Vocabulary {
                     lastIndex = breakIterator.next();
                     if (lastIndex != BreakIterator.DONE && Character.isLetterOrDigit(line.charAt(firstIndex))) {
                         final String word = normalize(line.substring(firstIndex, lastIndex));
-                        wordsCount.adjustOrPutValue(word, 1, 1);
+                        if (word.length() != 1 && !word.replaceAll("[*0-9]", "").isEmpty()) {
+                            wordsCount.adjustOrPutValue(word, 1, 1);
+                        }
                     }
                 }
             }

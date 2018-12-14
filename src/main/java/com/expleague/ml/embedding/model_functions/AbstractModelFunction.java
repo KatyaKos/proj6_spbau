@@ -19,7 +19,7 @@ public abstract class AbstractModelFunction extends FuncC1.Stub {
         this.vocab = vocab;
         this.crcLeft = cooc;
         if (cooc != null)
-            this.crcRight = MxTools.transpose(crcLeft);
+            this.crcRight = null;//MxTools.transpose(crcLeft);
         else
             this.crcRight = null;
         this.vocab_size = vocab.size();

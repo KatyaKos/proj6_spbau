@@ -24,12 +24,12 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   private final static double WEIGHTING_X_MAX = 10;
   private final static double WEIGHTING_ALPHA = 0.75;
-  private final static int SYM_DIM = 50;
-  private final static int SKEWSYM_DIM = 10;
-
+  private int SYM_DIM = 50;
+  private int SKEWSYM_DIM = 10;
 
   private Mx symDecomp = null;
   private Mx skewsymDecomp = null;
+  private Vec bias = null;
 
   public DecomposingGloveModelFunction(Vocabulary voc, Mx coocc) {
     super(voc, coocc);
@@ -38,11 +38,13 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
   private void initialize() {
     symDecomp = new VecBasedMx(vocab_size, SYM_DIM);
     skewsymDecomp = new VecBasedMx(vocab_size, SKEWSYM_DIM + 1);
+    bias = new ArrayVec(vocab_size);
     for (int i = 0; i < vocab_size; i++) {
+      bias.set(i, initializeValue(SYM_DIM));
       for (int j = 0; j < SYM_DIM; j++) {
         symDecomp.set(i, j, initializeValue(SYM_DIM));
       }
-      for (int j = 0; j <= SKEWSYM_DIM; j++) {
+      for (int j = 0; j < SKEWSYM_DIM; j++) {
         skewsymDecomp.set(i, j, initializeValue(SKEWSYM_DIM));
       }
     }
@@ -79,14 +81,16 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void saveModel(String filepath) throws IOException {
-    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/sym_vectors.txt"))){
+    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/eval_vectors.txt"))){
       for (int i = 0; i < vocab_size; i++) {
         VecIO.writeVec(fout, symDecomp.row(i));
         fout.append('\n');
       }
     }
-    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/vectors.txt"))) {
+    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/train_vectors.txt"))) {
       fout.append("DECOMP\n");
+      VecIO.writeVec(fout, bias);
+      fout.append('\n');
       for (int i = 0; i < vocab_size; i++) {
         VecIO.writeVec(fout, symDecomp.row(i));
         fout.append('\n');
@@ -100,15 +104,21 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void loadModel(String filepath, int mode) throws IOException {
-    if (mode == 0) filepath += "/vectors.txt";
-    else if (mode == 1) filepath += "/sym_vectors.txt";
+    if (mode == 0) filepath += "/train_vectors.txt";
+    else if (mode == 1) filepath += "/eval_vectors.txt";
 
     try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath)))) {
-      if (mode == 0)
-        fin.readLine();
-      symDecomp = VecIO.readMx(fin, vocab_size);
       if (mode == 0) {
+        fin.readLine();
+        bias = VecIO.readVec(fin);
+        symDecomp = VecIO.readMx(fin, vocab_size);
+        SYM_DIM = symDecomp.row(0).dim();
         skewsymDecomp = VecIO.readMx(fin, vocab_size);
+        skewsymDecomp.row(0).dim();
+        SKEWSYM_DIM = skewsymDecomp.dim();
+      } else if (mode == 1) {
+        symDecomp = VecIO.readMx(fin, vocab_size);
+        SYM_DIM = symDecomp.row(0).dim();
       }
     }
     catch (FileNotFoundException e) {
@@ -127,9 +137,11 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
     }
     final Mx softMaxSym = new VecBasedMx(symDecomp.rows(), symDecomp.columns());
     final Mx softMaxSkewsym = new VecBasedMx(skewsymDecomp.rows(), skewsymDecomp.columns());
+    final Vec softBias = new ArrayVec(bias.dim());
     for (int iter = 0; iter < TRAINING_ITERS; iter++) {
       VecTools.fill(softMaxSym, 1.);
       VecTools.fill(softMaxSkewsym, 1.);
+      VecTools.fill(softBias, 1.);
 
       Interval.start();
       final double[] counter = new double[]{0, 0};
@@ -149,15 +161,13 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
           final Vec skew_j = skewsymDecomp.row(j);
           final Vec softMaxSym_j = softMaxSym.row(j);
           final Vec softMaxSkew_j = softMaxSkewsym.row(j);
-          final double b_i = skew_i.get(SKEWSYM_DIM);
-          final double b_j = skew_j.get(SKEWSYM_DIM);
 
           double asum = VecTools.multiply(sym_i, sym_j);
-          double bsum = VecTools.multiply(skew_i, skew_j) - b_i * b_j;
+          double bsum = VecTools.multiply(skew_i, skew_j);
           final double X_ij = nz.value();
           final int sign = i > j ? -1 : 1;
           final double minfo = Math.log(X_ij);
-          final double diff = b_i + b_j + asum + sign * bsum - minfo;
+          final double diff = bias.get(i) + bias.get(j) + asum + sign * bsum - minfo;
           final double weight = weightingFunc(X_ij);
           totalWeight += weight;
           totalCount ++;
@@ -186,10 +196,10 @@ public class DecomposingGloveModelFunction extends AbstractModelFunction {
           });
           final double biasStep = TRAINING_STEP_COEFF * weight * diff;
 
-          skew_i.adjust(SKEWSYM_DIM, -biasStep / Math.sqrt(softMaxSkew_i.get(SKEWSYM_DIM)));
-          skew_j.adjust(SKEWSYM_DIM, -biasStep / Math.sqrt(softMaxSkew_j.get(SKEWSYM_DIM)));
-          softMaxSkew_i.adjust(SKEWSYM_DIM, MathTools.sqr(biasStep));
-          softMaxSkew_j.adjust(SKEWSYM_DIM, MathTools.sqr(biasStep));
+          bias.adjust(i, -biasStep / Math.sqrt(softBias.get(i)));
+          bias.adjust(j, -biasStep / Math.sqrt(softBias.get(j)));
+          softBias.adjust(i, MathTools.sqr(biasStep));
+          softBias.adjust(j, MathTools.sqr(biasStep));
         }
         synchronized (counter) {
           counter[0] += totalWeight;

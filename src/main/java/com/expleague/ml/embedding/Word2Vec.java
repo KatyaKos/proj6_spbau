@@ -1,9 +1,6 @@
 package com.expleague.ml.embedding;
 
-import com.expleague.commons.math.MathTools;
 import com.expleague.commons.math.vectors.Mx;
-import com.expleague.commons.math.vectors.Vec;
-import com.expleague.commons.math.vectors.VecTools;
 import com.expleague.commons.math.vectors.impl.mx.SparseMx;
 import com.expleague.ml.embedding.exceptions.*;
 import com.expleague.ml.embedding.model_functions.AbstractModelFunction;
@@ -12,7 +9,6 @@ import com.expleague.ml.embedding.text_utils.CooccurencesBuilder;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -107,7 +103,7 @@ public class Word2Vec {
         }
 
         System.out.println("Loading vectors.");
-        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/vectors.txt")))) {
+        try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/train_vectors.txt")))) {
             String modelName = fin.readLine();
             model = ModelChooser.model(modelName, vocabulary, cooccurences);
             fin.close();
@@ -126,15 +122,12 @@ public class Word2Vec {
             if (cooccurences == null) {
                 leftWindow = modelParameters.getLeftWindow();
                 rightWindow = modelParameters.getRightWindow();
-                try (final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(modelParameters.getFilepath()), StandardCharsets.ISO_8859_1)) {
+                {//(final BufferedReader bufferedReader = Files.newBufferedReader(Paths.get(modelParameters.getFilepath()), StandardCharsets.UTF_8)) {
                     cooccurences = new CooccurencesBuilder()
                         .setLeftWindow(leftWindow)
                         .setRightWindow(rightWindow)
                         .setVocabulary(vocabulary)
-                        .build(bufferedReader);
-                }
-                catch (IOException e) {
-                    throw new RuntimeException(e);
+                        .build(modelParameters.getFilepath());
                 }
             }
             if (model == null)

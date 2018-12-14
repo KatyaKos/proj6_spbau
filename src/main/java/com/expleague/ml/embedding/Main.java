@@ -2,6 +2,7 @@ package com.expleague.ml.embedding;
 
 import com.expleague.ml.embedding.exceptions.Word2VecUsageException;
 import com.expleague.ml.embedding.quality_metrics.impl.ArithmeticMetric;
+import com.expleague.ml.embedding.quality_metrics.impl.CloserFurtherMetric;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +52,7 @@ public class Main {
                     loadModel(word2Vec, modelPath, 1);
                     System.out.println("Loading finished");
                     mode = args[i + 2];
-                    if (mode.equals("-a")) {
+                    if (mode.equals("-a") | mode.equals("-cf")) {
                         if (i + 4 >= argsNumber)
                             throw new RuntimeException("Please, provide path to the file with metrics and to filename where to store results.");
                         String metricsNames = args[i + 3];
@@ -59,7 +60,10 @@ public class Main {
                         i += 4;
                         checkFile(metricsNames);
                         checkDirectory(resultDir);
-                        testArithmetic(word2Vec, metricsNames, resultDir);
+                        if (mode.equals("-a"))
+                            testArithmetic(word2Vec, metricsNames, resultDir);
+                        else if (mode.equals("-cf"))
+                            testCloserFurter(word2Vec, metricsNames, resultDir);
                     } else if (mode.equals("-c")){
                         i += 2;
                         testClosest(word2Vec);
@@ -70,7 +74,9 @@ public class Main {
                     System.out.println("[-c [GLOVE | DECOMP] input/data/path final/model/directory] to create a new model and train it\n" +
                             "\t-g for GLOVE\n\t-d for DECOMPOSITION\n" +
                             "[-lt input/data/path existing/model/path] to load existing model and train it\n" +
-                            "[--test existing/model/path [-c | -a metrics_names/file/path metrics/result/dir] to load existing model and test it\n" +
+                            "[--test existing/model/path -c to load existing model and see top5 closes words\n" +
+                            "[--test existing/model/path -cf metrics_names/file/path metrics/result/dir] to load existing model and test it on closer-further metrics\n" +
+                            "[--test existing/model/path -a metrics_names/file/path metrics/result/dir] to load existing model and test it on arithmetic metrics\n" +
                             "\t-a <FILE> <DIR> for arithmetics, names of all_metrics_files.txt files with 4-word metrics in file, " +
                             "all_metrics_files.txt results will be stored in directory\n\t-c for top 5 closest\n");
 
@@ -113,6 +119,12 @@ public class Main {
     private static void testArithmetic(Word2Vec word2Vec, String metricNames, String resultDir) {
         Model model = word2Vec.getModel();
         ArithmeticMetric metric = new ArithmeticMetric(model);
+        metric.measure(metricNames, resultDir);
+    }
+
+    private static void testCloserFurter(Word2Vec word2Vec, String metricNames, String resultDir) {
+        Model model = word2Vec.getModel();
+        CloserFurtherMetric metric = new CloserFurtherMetric(model);
         metric.measure(metricNames, resultDir);
     }
 

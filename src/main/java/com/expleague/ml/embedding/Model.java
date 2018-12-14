@@ -1,18 +1,14 @@
 package com.expleague.ml.embedding;
 
-import com.expleague.commons.math.vectors.MxTools;
 import com.expleague.commons.math.vectors.Vec;
 import com.expleague.commons.math.vectors.Mx;
 import com.expleague.commons.math.vectors.VecTools;
-import com.expleague.commons.math.vectors.impl.mx.VecBasedMx;
-import com.expleague.commons.math.vectors.impl.vectors.ArrayVec;
 import com.expleague.commons.util.ArrayTools;
 import com.expleague.ml.embedding.exceptions.Word2VecUsageException;
 import com.expleague.ml.embedding.model_functions.AbstractModelFunction;
 import com.expleague.ml.embedding.text_utils.Vocabulary;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -85,11 +81,15 @@ public class Model {
         double[] weights = IntStream.of(order).mapToDouble(idx -> {
             if (exceptIds.contains(idx))
                 return Double.MAX_VALUE;
-            return -VecTools.multiply(modelVectors.row(idx), vector);
+            return -getDistance(modelVectors.row(idx), vector);
         }).toArray();
         ArrayTools.parallelSort(weights, order);
         return IntStream.range(0, top).mapToObj(idx ->
                 vocabulary.indexToWord(order[idx])).collect(Collectors.toList());
+    }
+
+    public double getDistance(Vec vec1, Vec vec2) {
+        return VecTools.multiply(vec1, vec2);
     }
 
     public double countLikelihood() {

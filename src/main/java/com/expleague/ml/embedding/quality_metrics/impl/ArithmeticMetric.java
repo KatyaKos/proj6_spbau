@@ -62,9 +62,9 @@ public class ArithmeticMetric extends QualityMetric {
         IntStream.range(0, words_size).forEach(i -> {
             Vec predicted = new ArrayVec(vector_size);
             if (model.isWordsListInVocab(words.get(i))) {
-                Vec v1 = model.getVectorByWord(words.get(i).get(0));
-                Vec v2 = model.getVectorByWord(words.get(i).get(1));
-                Vec v3 = model.getVectorByWord(words.get(i).get(2));
+                final Vec v1 = model.getVectorByWord(words.get(i).get(0));
+                final Vec v2 = model.getVectorByWord(words.get(i).get(1));
+                final Vec v3 = model.getVectorByWord(words.get(i).get(2));
                 IntStream.range(0, vector_size).forEach(j -> {
                     predicted.set(j, v2.get(j));
                     predicted.adjust(j, -v1.get(j));

@@ -23,10 +23,12 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   private final static double WEIGHTING_X_MAX = 10;
   private final static double WEIGHTING_ALPHA = 0.75;
-  private final static int VECTOR_SIZE = 50;
+  private int VECTOR_SIZE = 50;
 
   private Mx leftVectors;
   private Mx rightVectors;
+  private Vec biasLeft;
+  private Vec biasRight;
 
 
   public GloveModelFunction(Vocabulary voc, Mx coocc) {
@@ -36,8 +38,12 @@ public class GloveModelFunction extends AbstractModelFunction {
   private void initialize() {
     leftVectors = new VecBasedMx(vocab_size, VECTOR_SIZE + 1);
     rightVectors = new VecBasedMx(vocab_size, VECTOR_SIZE + 1);
+    biasLeft = new ArrayVec(vocab_size);
+    biasRight = new ArrayVec(vocab_size);
     for (int i = 0; i < vocab_size; i++) {
-      for (int j = 0; j <= VECTOR_SIZE; j++) {
+      biasRight.set(i, initializeValue());
+      biasLeft.set(i, initializeValue());
+      for (int j = 0; j < VECTOR_SIZE; j++) {
         leftVectors.set(i, j, initializeValue());
         rightVectors.set(i, j, initializeValue());
       }
@@ -76,19 +82,27 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void saveModel(String filepath) throws IOException {
-    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/vectors.txt"))) {
+    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/train_vectors.txt"))) {
       fout.append("GLOVE\n");
+      //write bias
+      VecIO.writeVec(fout, biasLeft);
+      fout.append("\n");
+      //write vectors
       for (int i = 0; i < vocab_size; i++) {
         VecIO.writeVec(fout, leftVectors.row(i));
         fout.append('\n');
       }
+      //write bias
+      VecIO.writeVec(fout, biasRight);
+      fout.append("\n");
+      //write vectors
       for (int i = 0; i < vocab_size; i++) {
         VecIO.writeVec(fout, rightVectors.row(i));
         fout.append('\n');
       }
     }
 
-    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/left+right.txt"))) {
+    try (Writer fout = Files.newBufferedWriter(Paths.get(filepath + "/eval_vectors.txt"))) {
       for (int i = 0; i < vocab_size; i++) {
         VecIO.writeVec(fout, VecTools.sum(leftVectors.row(i), rightVectors.row(i)));
         fout.append('\n');
@@ -98,16 +112,19 @@ public class GloveModelFunction extends AbstractModelFunction {
 
   @Override
   public void loadModel(String filepath, int mode) throws IOException {
-    if (mode == 0) filepath += "/vectors.txt";
-    else if (mode == 1) filepath += "/left+right.txt";
+    if (mode == 0) filepath += "/train_vectors.txt";
+    else if (mode == 1) filepath += "/eval_vectors.txt";
     try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath)))) {
       if (mode == 0) {
         fin.readLine();
+        biasLeft = VecIO.readVec(fin);
         leftVectors = VecIO.readMx(fin, vocab_size);
+        biasRight = VecIO.readVec(fin);
         rightVectors = VecIO.readMx(fin, vocab_size);
       } else if (mode == 1){
         leftVectors = VecIO.readMx(fin, vocab_size);
       }
+      VECTOR_SIZE = leftVectors.row(0).dim();
     }
     catch (FileNotFoundException e) {
       throw new LoadingModelException("Couldn't find vectors file to load the model from.");
@@ -126,8 +143,12 @@ public class GloveModelFunction extends AbstractModelFunction {
 
     final Mx softMaxLeft = new VecBasedMx(leftVectors.rows(), leftVectors.columns());
     final Mx softMaxRight = new VecBasedMx(rightVectors.rows(), rightVectors.columns());
+    final Vec softBiasLeft = new ArrayVec(biasLeft.dim());
+    final Vec softBiasRight = new ArrayVec(biasRight.dim());
     VecTools.fill(softMaxLeft, 1.);
     VecTools.fill(softMaxRight, 1.);
+    VecTools.fill(softBiasLeft, 1.);
+    VecTools.fill(softBiasRight, 1.);
 
     for (int iter = 0; iter < TRAINING_ITERS; iter++) {
       Interval.start();
@@ -144,8 +165,8 @@ public class GloveModelFunction extends AbstractModelFunction {
           final Vec right = rightVectors.row(j);
           final Vec softMaxR = softMaxRight.row(j);
           final double X_ij = nz.value();
-          final double asum = VecTools.multiply(left, right) - left.get(VECTOR_SIZE) * right.get(VECTOR_SIZE);
-          final double diff = left.get(VECTOR_SIZE) + right.get(VECTOR_SIZE) + asum - Math.log(1d + X_ij);
+          final double asum = VecTools.multiply(left, right);
+          final double diff = biasLeft.get(i) + biasRight.get(j) + asum - Math.log(X_ij);
           final double weight = weightingFunc(X_ij);
           final double fdiff = TRAINING_STEP_COEFF * diff * weight;
 
@@ -161,10 +182,10 @@ public class GloveModelFunction extends AbstractModelFunction {
             softMaxR.adjust(id, dR * dR);
           });
 
-          left.adjust(VECTOR_SIZE, -fdiff / Math.sqrt(softMaxL.get(VECTOR_SIZE)));
-          right.adjust(VECTOR_SIZE, -fdiff / Math.sqrt(softMaxR.get(VECTOR_SIZE)));
-          softMaxL.adjust(VECTOR_SIZE, MathTools.sqr(fdiff));
-          softMaxR.adjust(VECTOR_SIZE, MathTools.sqr(fdiff));
+          biasLeft.adjust(i, -fdiff / Math.sqrt(softBiasLeft.get(i)));
+          biasRight.adjust(j, -fdiff / Math.sqrt(softBiasRight.get(j)));
+          softBiasLeft.adjust(i, MathTools.sqr(fdiff));
+          softBiasRight.adjust(j, MathTools.sqr(fdiff));
           totalCount++;
         }
         synchronized (counter) {
