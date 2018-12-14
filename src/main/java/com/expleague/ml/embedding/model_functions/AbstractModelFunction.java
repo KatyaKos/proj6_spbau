@@ -12,16 +12,11 @@ import java.io.IOException;
 public abstract class AbstractModelFunction extends FuncC1.Stub {
     final Vocabulary vocab;
     final Mx crcLeft;
-    final Mx crcRight;
     final int vocab_size;
 
     public AbstractModelFunction(Vocabulary vocab, Mx cooc) {
         this.vocab = vocab;
         this.crcLeft = cooc;
-        if (cooc != null)
-            this.crcRight = null;//MxTools.transpose(crcLeft);
-        else
-            this.crcRight = null;
         this.vocab_size = vocab.size();
     }
 
