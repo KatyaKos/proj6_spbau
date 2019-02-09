@@ -18,12 +18,12 @@ import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
 public class GloveModelFunction extends AbstractModelFunction {
-  final private static int TRAINING_ITERS = 25;
-  final private static double TRAINING_STEP_COEFF = 0.05;
+  private final int TRAINING_ITERS;
+  final private static double TRAINING_STEP_COEFF = 0.1;
 
   private final static double WEIGHTING_X_MAX = 10;
   private final static double WEIGHTING_ALPHA = 0.75;
-  private int VECTOR_SIZE = 50;
+  private int VECTOR_SIZE;
 
   private Mx leftVectors;
   private Mx rightVectors;
@@ -31,8 +31,10 @@ public class GloveModelFunction extends AbstractModelFunction {
   private Vec biasRight;
 
 
-  public GloveModelFunction(Vocabulary voc, Mx coocc) {
+  public GloveModelFunction(Vocabulary voc, Mx coocc, int size, int iters) {
       super(voc, coocc);
+      this.VECTOR_SIZE = size;
+      this.TRAINING_ITERS = iters;
   }
 
   private void initialize() {

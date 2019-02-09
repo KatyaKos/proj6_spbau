@@ -20,23 +20,26 @@ import java.nio.file.Paths;
 import java.util.stream.IntStream;
 
 public class DecomposingGloveModelFunction extends AbstractModelFunction {
-  final private static int TRAINING_ITERS = 25;
+  private final int TRAINING_ITERS;
   private static final double LAMBDA = 1e-4;
   private static final double G_DISCOUNT = 1;// - 1e-5;
   private static double TRAINING_STEP_COEFF = 0.1;
 
   private final static double WEIGHTING_X_MAX = 10;
   private final static double WEIGHTING_ALPHA = 0.75;
-  private int SYM_DIM = 25;
-  private int SKEWSYM_DIM = 5;
+  private int SYM_DIM;
+  private int SKEWSYM_DIM;
 
   private Mx symDecomp;
   private Mx skewsymDecomp;
   private Vec bias;
   private FastRandom rng = new FastRandom(100500);
 
-  public DecomposingGloveModelFunction(Vocabulary voc, Mx coocc) {
+  public DecomposingGloveModelFunction(Vocabulary voc, Mx coocc, int sym, int skew, int iters) {
     super(voc, coocc);
+    this.SYM_DIM = sym;
+    this.SKEWSYM_DIM = skew;
+    this.TRAINING_ITERS = iters;
   }
 
   private void initialize() {

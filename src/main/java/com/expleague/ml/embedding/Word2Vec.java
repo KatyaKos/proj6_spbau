@@ -106,7 +106,8 @@ public class Word2Vec {
         System.out.println("Loading vectors.");
         try (BufferedReader fin = new BufferedReader(new FileReader(new File(filepath + "/train_vectors.txt")))) {
             String modelName = fin.readLine();
-            model = ModelChooser.model(modelName, vocabulary, cooccurences);
+            ModelParameters modelParameters = (new ModelParameters.Builder(filepath)).setModelName(modelName).build();
+            model = ModelChooser.model(modelParameters, vocabulary, cooccurences);
             fin.close();
             model.loadModel(filepath, mode);
         }
@@ -133,8 +134,8 @@ public class Word2Vec {
                     throw new RuntimeException(e);
                 }
             }
-            if (model == null)
-                model = ModelChooser.model(modelParameters.getModelName(), vocabulary, cooccurences);
+            //if (model == null)
+                model = ModelChooser.model(modelParameters, vocabulary, cooccurences);
             model.trainModel();
         }
     }

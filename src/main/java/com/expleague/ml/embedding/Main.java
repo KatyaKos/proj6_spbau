@@ -10,9 +10,59 @@ import java.util.List;
 public class Main {
 
   public static void main(String[] args) throws IOException {
-    Word2Vec word2Vec = new Word2Vec();
-    Word2Vec.ModelTrainer modelTrainer = word2Vec.createTrainer();
-    final int argsNumber = args.length;
+    String input = "data/corpuses/text8";
+    String res = "data/models/text8/shrinking/";
+    String metricNames = "data/tests/text8/all_metrics_files.txt";
+    String resultDec = "data/tests/text8/results_decomp/shrinking/";
+    String resultGl = "data/tests/text8/results_glove/shrinking/";
+    int[] glove = {150};
+    int[] sym = {120};
+    int[] skew = {10, 20};
+    int[] iters = {25};
+
+    for (int gl : glove) {
+      for (int it : iters) {
+        Word2Vec word2Vec = new Word2Vec();
+        System.out.println(String.format("GLOVE-%d_it-%d started", gl, it));
+        /*word2Vec.loadModel(res + String.format("GLOVE-%d_it-%d", gl, it), 1);
+        Model model = word2Vec.getModel();
+        ArithmeticMetric metric = new ArithmeticMetric(model);
+        metric.measure(metricNames, resultGl + String.format("sz-%d_it-%d", gl, it));*/
+
+        Word2Vec.ModelTrainer modelTrainer = word2Vec.createTrainer();
+        modelTrainer.buildVocab(input);
+        ModelParameters modelParameters = (new ModelParameters.Builder(input)).setModelName("GLOVE").
+                setGloveVecSize(gl).setTrainingIters(it).build();
+        modelTrainer.trainModel(modelParameters);
+        word2Vec.saveModel(res + String.format("GLOVE-%d_it-%d", gl, it));
+        System.out.println("\n\n");
+      }
+    }
+
+    for (int sy : sym) {
+      for (int sk : skew) {
+        for (int it : iters) {
+          Word2Vec word2Vec = new Word2Vec();
+          System.out.println(String.format("DECOMP-%d-%d_it-%d", sy, sk, it));
+          /*Word2Vec word2Vec = new Word2Vec();
+          word2Vec.loadModel(res + String.format("DECOMP-%d-%d_it-%d", sy, sk, it), 1);
+          Model model = word2Vec.getModel();
+          ArithmeticMetric metric = new ArithmeticMetric(model);
+          metric.measure(metricNames, resultDec + String.format("sz-%d-%d_it-%d", sy, sk, it));*/
+
+          Word2Vec.ModelTrainer modelTrainer = word2Vec.createTrainer();
+          modelTrainer.buildVocab(input);
+          ModelParameters modelParameters = (new ModelParameters.Builder(input)).setModelName("DECOMP").
+                  setSkewSize(sk).setSymSize(sy).setTrainingIters(it).build();
+          modelTrainer.trainModel(modelParameters);
+          word2Vec.saveModel(res + String.format("DECOMP-%d-%d_it-%d", sy, sk, it));
+          System.out.println("\n\n");
+        }
+      }
+    }
+
+
+    /*final int argsNumber = args.length;
     for (int i = 0; i < argsNumber; i++) {
       switch(args[i]) {
         case "-c":
@@ -76,7 +126,7 @@ public class Main {
                   "all_metrics_files.txt results will be stored in directory\n\t-c for top 5 closest\n");
 
       }
-    }
+    }*/
   }
 
   private static void checkFile(String filePath) {
