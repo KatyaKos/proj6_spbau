@@ -1,0 +1,508 @@
+Number of top1 is 181 out of 420 (43%)
+Number of top5 is 283 out of 420 (67%)
+sister	->	wife, whom, elder, married, son
+sisters	->	sisters, allman, parents, girls, sigma
+mom	->	neighbor, mom, my, phoebe, vineyard
+mother	->	mother, wife, whom, her, son
+grandmother	->	grandmother, paternal, uncle, father, maternal
+grandma	->	griff, norah, reiter, lana, mackaye
+granddaughter	->	nephew, son, granddaughter, consort, prince
+bride	->	beneath, swims, bed, throat, harbour
+she	->	she, him, her, afterwards, his
+her	->	her, he, him, she, friend
+wife	->	wife, married, couples, woman, daughter
+queen	->	prince, queen, solomon, reign, edward
+woman	->	woman, beautiful, love, my, men
+niece	->	granddaughter, daughter, grandson, niece, catherine
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	crown, consort, queen, princess, elizabeth
+daughter	->	wife, daughter, father, mother, whom
+daughters	->	daughters, elder, whom, married, daughter
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	stepdaughter, stammer, handmaid, spacesuit, perfectionism
+stepdaughter	->	stepfather, stepdaughter, handmaid, spacesuit, proteg
+aunt	->	wife, elder, father, her, consort
+sisters	->	sisters, warner, daughters, parents, chromosomes
+mom	->	mom, joey, neighbor, phoebe, aunt
+mother	->	mother, wife, daughter, parents, her
+grandmother	->	grandmother, paternal, maternal, inherited, niece
+grandma	->	pressburger, lucilla, lana, angie, geldof
+granddaughter	->	nephew, niece, daughter, grandmother, granddaughter
+bride	->	diner, harbour, throat, aurora, tiberias
+she	->	she, admitted, which, it, sees
+her	->	her, own, he, their, parents
+wife	->	wife, daughter, married, mother, parent
+queen	->	queen, scotland, denmark, city, jerusalem
+woman	->	woman, beautiful, has, she, men
+niece	->	niece, daughter, granddaughter, eleanor, grandson
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	queen, daughter, princess, elizabeth, crown
+daughter	->	daughter, mother, wife, eldest, daughters
+daughters	->	daughters, daughter, sisters, chromosomes, parents
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	perfectionism, whereabouts, habilitation, handmaid, aides
+stepdaughter	->	stepfather, moustache, perfectionism, dictum, fascination
+aunt	->	grandmother, aunt, daughter, maternal, mother
+girl	->	calf, baby, breed, gba, logo
+mom	->	mom, neighbor, wit, manners, saliva
+mother	->	mother, daughter, wife, eldest, son
+grandmother	->	paternal, maternal, grandmother, niece, nephew
+grandma	->	griff, tauranac, porpoises, stengel, angie
+granddaughter	->	nephew, niece, eldest, antonia, granddaughter
+bride	->	tiberias, tamar, agha, erebus, delos
+she	->	finds, his, her, she, him
+her	->	her, favourite, superiors, appointment, honors
+wife	->	wife, daughter, householder, married, eldest
+queen	->	queen, kings, marries, consort, prince
+woman	->	beautiful, woman, cow, noble, ladies
+niece	->	antonia, niece, ariadne, grandson, granddaughter
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	consort, daughter, camilla, princess, boleyn
+daughter	->	eldest, daughter, wife, elder, nephew
+daughters	->	daughters, eldest, elder, daughter, teresa
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	habilitation, gravesite, schoolmates, spacesuit, retinue
+stepdaughter	->	stepfather, habilitation, uncles, etchings, retinue
+aunt	->	nephew, niece, maternal, grandmother, consort
+girl	->	babe, bore, batting, household, mandolin
+sister	->	eldest, elder, daughter, sister, wife
+mother	->	mother, brother, wife, catherine, son
+grandmother	->	uncle, grandmother, nephew, grandson, dickens
+grandma	->	gouverneur, snoop, griff, dogg, geldof
+granddaughter	->	nephew, romanus, eldest, viii, catherine
+bride	->	hilton, deptford, atop, fawlty, fenway
+she	->	she, appeared, visited, his, meanwhile
+her	->	her, entitled, debut, career, he
+wife	->	wife, married, anne, elizabeth, catherine
+queen	->	iii, vii, crowned, iv, ii
+woman	->	woman, featured, entitled, story, wonder
+niece	->	catherine, grandson, gregory, viii, romanus
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	queen, crowned, albert, catherine, elizabeth
+daughter	->	eldest, brother, catherine, daughter, wife
+daughters	->	daughters, sisters, eldest, brothers, elder
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	gravestone, stepson, handmaid, spacesuit, fiancee
+stepdaughter	->	sidekick, uncles, griswold, stepfather, masterpieces
+aunt	->	basil, nephew, catherine, scrooge, coronation
+girl	->	consoles, playstation, game, astro, gba
+sister	->	younger, sister, eldest, catherine, wife
+sisters	->	coen, parker, warner, sisters, artists
+grandmother	->	grandmother, paternal, maternal, niece, aunt
+grandma	->	geldof, pressburger, griff, angie, casale
+granddaughter	->	niece, eldest, nephew, granddaughter, daughter
+bride	->	beneath, tiberias, throat, tamar, harbour
+she	->	she, her, met, but, had
+her	->	her, he, she, him, own
+wife	->	wife, married, daughter, marry, pregnant
+queen	->	queen, scotland, elizabeth, throne, prince
+woman	->	woman, beautiful, girl, child, my
+niece	->	niece, grandson, daughter, granddaughter, catherine
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	queen, princess, elizabeth, daughter, consort
+daughter	->	daughter, wife, eldest, husband, sister
+daughters	->	daughters, daughter, sister, wife, married
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	handmaid, stepdaughter, fiancee, huike, philandering
+stepdaughter	->	stepfather, handmaid, moustache, fiancee, uncles
+aunt	->	grandmother, aunt, wife, daughter, maternal
+girl	->	baby, girl, gba, calf, nintendo
+sister	->	wife, sister, daughter, younger, husband
+sisters	->	warner, sisters, sister, allman, younger
+mom	->	mom, neighbor, phoebe, saliva, tears
+grandma	->	geldof, newhart, meusel, angie, pressburger
+granddaughter	->	niece, granddaughter, eldest, nephew, son
+bride	->	beneath, tiberias, umbra, tamar, fenway
+she	->	she, her, him, his, told
+her	->	her, him, own, revealing, he
+wife	->	wife, mother, married, child, daughter
+queen	->	queen, son, throne, save, mother
+woman	->	woman, girl, beautiful, your, my
+niece	->	niece, granddaughter, grandson, uncle, daughter
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	queen, daughter, princess, crown, throne
+daughter	->	mother, daughter, wife, father, eldest
+daughters	->	daughters, daughter, parents, sister, wife
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	huike, handmaid, fiancee, stepson, retinue
+stepdaughter	->	stepfather, kinsman, fiancee, mocking, huike
+aunt	->	aunt, maternal, niece, scrooge, her
+girl	->	girl, baby, gba, game, advance
+sister	->	wife, mother, sister, daughter, father
+sisters	->	warner, sisters, julia, parker, parents
+mom	->	mom, saliva, neighbor, bless, phoebe
+mother	->	mother, wife, her, parents, children
+granddaughter	->	augustus, feast, vesta, beauties, temptation
+bride	->	vostok, commemorates, lune, agha, jovian
+she	->	day, honor, declares, feast, commemorates
+her	->	honor, feast, holiday, nisan, proclamation
+wife	->	wife, daughter, marriage, mother, chromosome
+queen	->	vesta, matrimony, emperor, proclaimed, tentacle
+woman	->	tentacle, day, woman, literally, goddess
+niece	->	theresa, balzac, jahangir, sopra, vesta
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	vesta, fushimi, sainte, dmitry, minerva
+daughter	->	vesta, matrimony, emperor, daughter, biog
+daughters	->	vesta, stefano, daughter, biog, honor
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	stepdaughter, mishearing, missa, fick, tendered
+stepdaughter	->	stepdaughter, ule, beorhtnoth, jahangir, frock
+aunt	->	minerva, goose, honor, augustus, vesta
+girl	->	tentacle, nintendo, vesta, flag, thanksgiving
+sister	->	vesta, groundhog, daughter, goose, wife
+sisters	->	stefano, festival, vesta, honor, celebrating
+mom	->	pygmalion, tentacle, valentine, doris, tatiana
+mother	->	mother, groundhog, honor, day, feast
+grandmother	->	paternal, grandmother, feast, vesta, jahangir
+bride	->	tiberias, jab, spree, tamar, gallop
+she	->	she, her, told, sees, him
+her	->	her, troubled, passionate, stead, he
+wife	->	wife, boyfriend, householder, her, married
+queen	->	queen, elizabeth, solomon, mary, reign
+woman	->	beautiful, woman, girl, love, eyes
+niece	->	niece, stepfather, stepson, eleazar, confronts
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	princess, queen, consort, elizabeth, cinderella
+daughter	->	mother, wife, daughter, father, niece
+daughters	->	daughters, sisters, martha, sister, daughter
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	huike, handmaid, stepdaughter, fiancee, stammer
+stepdaughter	->	stepfather, handmaid, huike, fiancee, stepdaughter
+aunt	->	niece, scrooge, grandmother, aunt, nephews
+girl	->	girl, baby, scouts, lovely, puppy
+sister	->	sister, wife, mother, kissed, her
+sisters	->	allman, warner, teen, coen, sisters
+mom	->	mom, neighbor, vineyard, moneypenny, saliva
+mother	->	mother, her, wife, she, friend
+grandmother	->	grandmother, niece, paternal, maternal, admirer
+grandma	->	bub, pressburger, griff, geldof, gaff
+she	->	his, she, father, saw, who
+her	->	her, predecessors, visionary, father, he
+wife	->	daughter, fujiwara, married, wife, princess
+queen	->	son, prince, emperor, deposed, reign
+woman	->	woman, love, girl, young, warrior
+niece	->	grandson, son, granddaughter, uncle, visionary
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	princess, ruler, fujiwara, son, emperor
+daughter	->	daughter, father, eldest, husband, sons
+daughters	->	daughters, son, daughter, mothers, brothers
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	stepson, visionary, protege, layman, moustache
+stepdaughter	->	visionary, protege, stravinsky, stepfather, grandsons
+aunt	->	grandson, son, visionary, concubine, grandfather
+girl	->	baby, girl, sonny, benevolent, frankenstein
+sister	->	son, daughter, father, husband, younger
+sisters	->	teen, warner, allman, mothers, toys
+mom	->	stravinsky, jo, mom, reckless, intentions
+mother	->	son, mother, daughter, wife, husband
+grandmother	->	concubine, grandson, fujiwara, uncle, clan
+grandma	->	moser, wozniak, bashevis, schlesinger, glamour
+granddaughter	->	son, nephew, concubine, eldest, visionary
+her	->	her, mother, father, wife, him
+wife	->	wife, married, daughter, mother, householder
+queen	->	queen, son, elizabeth, prince, iii
+woman	->	woman, girl, child, men, love
+niece	->	daughter, grandson, niece, granddaughter, wife
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	queen, princess, elizabeth, daughter, married
+daughter	->	daughter, wife, mother, brother, father
+daughters	->	daughters, daughter, wife, married, sister
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	handmaid, spacesuit, stepdaughter, stammer, philandering
+stepdaughter	->	stepfather, handmaid, spacesuit, stepdaughter, olwen
+aunt	->	wife, daughter, father, mother, brother
+girl	->	baby, girl, man, gba, woman
+sister	->	wife, sister, daughter, mother, son
+sisters	->	warner, parker, allman, sister, younger
+mom	->	mom, neighbor, phoebe, my, dougal
+mother	->	mother, wife, daughter, son, her
+grandmother	->	grandmother, maternal, paternal, uncle, mother
+grandma	->	gouverneur, meusel, hoskins, stoppard, griff
+granddaughter	->	son, daughter, nephew, eldest, granddaughter
+bride	->	tiberias, tamar, vostok, umbra, lake
+wife	->	wife, married, daughter, householder, mother
+queen	->	queen, elizabeth, prince, iii, son
+woman	->	woman, child, she, girl, love
+niece	->	daughter, niece, grandson, granddaughter, wife
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	queen, elizabeth, princess, daughter, consort
+daughter	->	wife, daughter, mother, brother, husband
+daughters	->	daughters, daughter, wife, married, sister
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	stepdaughter, stammer, handmaid, spacesuit, philandering
+stepdaughter	->	stepfather, telekinesis, handmaid, stepdaughter, spacesuit
+aunt	->	wife, daughter, elizabeth, mother, brother
+girl	->	baby, girl, man, woman, child
+sister	->	wife, daughter, sister, mother, married
+sisters	->	warner, sister, children, younger, child
+mom	->	mom, neighbor, phoebe, my, abram
+mother	->	mother, wife, daughter, son, married
+grandmother	->	grandmother, maternal, mother, uncle, paternal
+grandma	->	gouverneur, hoskins, frankston, meusel, garagiola
+granddaughter	->	daughter, son, granddaughter, niece, eldest
+bride	->	tamar, tiberias, lake, beneath, delos
+she	->	she, him, herself, met, mother
+queen	->	alexander, iii, son, ii, iv
+woman	->	woman, beautiful, father, girl, love
+niece	->	grandson, niece, uncle, herod, granddaughter
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	king, son, queen, daughter, emperor
+daughter	->	father, brother, daughter, mother, eldest
+daughters	->	daughters, son, daughter, brother, father
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	spacesuit, fiancee, handmaid, stepson, archenemy
+stepdaughter	->	stepfather, fiancee, protege, spacesuit, uncles
+aunt	->	nephew, grandfather, father, grandmother, grandson
+girl	->	baby, girl, scouts, ruth, game
+sister	->	father, son, sister, daughter, mother
+sisters	->	parker, sisters, warner, sister, brother
+mom	->	mom, abram, mama, neighbor, wit
+mother	->	mother, son, brother, daughter, whom
+grandmother	->	grandmother, uncle, paternal, maternal, nephew
+grandma	->	ozzie, griff, gouverneur, clampett, dugan
+granddaughter	->	nephew, niece, uncle, grandfather, herod
+bride	->	lake, tiberias, harbour, tamar, erie
+she	->	she, him, his, was, had
+her	->	he, her, father, him, gave
+woman	->	woman, lady, beautiful, love, girl
+niece	->	niece, granddaughter, daughter, consort, grandson
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	consort, princess, elizabeth, lady, crown
+daughter	->	daughter, wife, lady, mother, elizabeth
+daughters	->	daughters, daughter, lady, elizabeth, sister
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	handmaid, fiancee, habilitation, stepdaughter, spacesuit
+stepdaughter	->	stepfather, granddaughter, handmaid, fiancee, sidekick
+aunt	->	lady, elizabeth, aunt, consort, martha
+girl	->	baby, girl, lady, handheld, calf
+sister	->	wife, lady, sister, daughter, elizabeth
+sisters	->	sisters, warner, daughters, sister, alpha
+mom	->	mom, neighbor, doll, phoebe, vineyard
+mother	->	mother, wife, lady, daughter, her
+grandmother	->	grandmother, maternal, paternal, niece, aunt
+grandma	->	angie, masud, stoppard, geldof, casale
+granddaughter	->	granddaughter, niece, lady, consort, elizabeth
+bride	->	beneath, tiberias, diner, finishes, gallop
+she	->	she, her, met, lady, mother
+her	->	her, lady, she, mother, wife
+wife	->	wife, lady, elizabeth, married, daughter
+niece	->	niece, antonia, grandson, eldest, daughter
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	daughter, elizabeth, crown, married, consort
+daughter	->	daughter, wife, eldest, younger, mother
+daughters	->	daughters, younger, daughter, eldest, elder
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	stepdaughter, stammer, spacesuit, fiancee, handmaid
+stepdaughter	->	stepfather, moustache, livia, fiancee, archenemy
+aunt	->	wife, grandmother, daughter, nephew, elder
+girl	->	girl, baby, sonny, sickly, child
+sister	->	younger, wife, sister, daughter, eldest
+sisters	->	sisters, younger, siblings, daughters, parker
+mom	->	mom, joey, phoebe, siegfried, agnes
+mother	->	mother, wife, daughter, parents, married
+grandmother	->	grandmother, maternal, paternal, niece, livia
+grandma	->	ornette, mcclory, bleda, griff, tauranac
+granddaughter	->	eldest, nephew, niece, daughter, heir
+bride	->	tamar, swims, tiberias, diner, aurora
+she	->	she, met, her, remarried, afterwards
+her	->	her, he, parents, wife, mother
+wife	->	wife, married, daughter, pregnant, marry
+queen	->	queen, prince, son, elizabeth, throne
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	queen, princess, victoria, elizabeth, crown
+daughter	->	mother, wife, daughter, father, eldest
+daughters	->	daughters, daughter, sarah, parents, wife
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	handmaid, thighs, huike, erudition, retinue
+stepdaughter	->	stepfather, erudition, handmaid, retinue, huike
+aunt	->	grandmother, aunt, lady, grandfather, maternal
+girl	->	scouts, baby, girl, astro, horse
+sister	->	wife, mother, father, sister, daughter
+sisters	->	allman, warner, children, parents, lived
+mom	->	mom, neighbor, aunt, saliva, vineyard
+mother	->	mother, her, wife, parents, grandmother
+grandmother	->	grandmother, paternal, maternal, aunt, grandchildren
+grandma	->	pressburger, starsky, odie, delson, pertwee
+granddaughter	->	granddaughter, grandmother, eleanor, grandfather, eldest
+bride	->	beneath, delos, tiberias, icy, deptford
+she	->	she, her, lived, stayed, his
+her	->	her, gave, he, mother, life
+wife	->	wife, mother, married, her, marry
+queen	->	queen, scotland, kingdom, victoria, england
+woman	->	woman, beautiful, living, my, our
+princess	->	WORDS policewoman ARE NOT IN VOCABULARY!
+daughter	->	WORDS policewoman ARE NOT IN VOCABULARY!
+daughters	->	WORDS policewoman ARE NOT IN VOCABULARY!
+stepsister	->	WORDS policewoman, stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	WORDS policewoman ARE NOT IN VOCABULARY!
+stepdaughter	->	WORDS policewoman ARE NOT IN VOCABULARY!
+aunt	->	WORDS policewoman ARE NOT IN VOCABULARY!
+girl	->	WORDS policewoman ARE NOT IN VOCABULARY!
+sister	->	WORDS policewoman ARE NOT IN VOCABULARY!
+sisters	->	WORDS policewoman ARE NOT IN VOCABULARY!
+mom	->	WORDS policewoman ARE NOT IN VOCABULARY!
+mother	->	WORDS policewoman ARE NOT IN VOCABULARY!
+grandmother	->	WORDS policewoman ARE NOT IN VOCABULARY!
+grandma	->	WORDS policewoman ARE NOT IN VOCABULARY!
+granddaughter	->	WORDS policewoman ARE NOT IN VOCABULARY!
+bride	->	WORDS policewoman ARE NOT IN VOCABULARY!
+she	->	WORDS policewoman ARE NOT IN VOCABULARY!
+her	->	WORDS policewoman ARE NOT IN VOCABULARY!
+wife	->	WORDS policewoman ARE NOT IN VOCABULARY!
+queen	->	WORDS policewoman ARE NOT IN VOCABULARY!
+woman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+niece	->	WORDS policewoman ARE NOT IN VOCABULARY!
+daughter	->	mother, daughter, wife, child, father
+daughters	->	daughters, divorced, siblings, sarah, julia
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	handmaid, habilitation, spacesuit, stepson, stepdaughter
+stepdaughter	->	stepfather, uncles, handmaid, moustache, etchings
+aunt	->	aunt, bride, grandmother, laura, diana
+girl	->	baby, bride, sickly, sonny, prodigy
+sister	->	child, wife, mother, sister, daughter
+sisters	->	warner, julia, siblings, sisters, coen
+mom	->	mom, aunt, agony, bride, neighbor
+mother	->	mother, child, her, wife, children
+grandmother	->	grandmother, paternal, bride, aunt, maternal
+grandma	->	pressburger, orser, hannity, angie, whealey
+granddaughter	->	granddaughter, bride, niece, eleanor, eldest
+bride	->	gallop, beneath, umbra, icy, tiberias
+she	->	she, remarried, her, learned, never
+her	->	her, bride, she, retirement, lifetime
+wife	->	married, child, wife, laura, pregnant
+queen	->	queen, mary, elizabeth, anne, throne
+woman	->	woman, spider, child, love, mysterious
+niece	->	granddaughter, niece, bride, countess, tsvetaeva
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+daughters	->	daughters, sister, married, wife, sisters
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	habilitation, fiancee, handmaid, moustache, stepdaughter
+stepdaughter	->	stepfather, moustache, uncles, fiancee, handmaid
+aunt	->	aunt, grandmother, sister, niece, wife
+girl	->	baby, girl, astro, scouts, big
+sister	->	sister, wife, married, mother, husband
+sisters	->	sisters, warner, sister, daughters, allman
+mom	->	mom, phoebe, aunt, tears, neighbor
+mother	->	mother, wife, married, sister, her
+grandmother	->	grandmother, maternal, paternal, niece, uncle
+grandma	->	tauranac, mcclory, griff, huggins, pressburger
+granddaughter	->	niece, nephew, eldest, cousin, granddaughter
+bride	->	tiberias, tamar, beneath, finishes, hilton
+she	->	she, met, her, worked, his
+her	->	her, he, she, wife, met
+wife	->	wife, married, marry, couples, sister
+queen	->	queen, prince, elizabeth, married, iii
+woman	->	woman, beautiful, girl, she, child
+niece	->	niece, grandson, granddaughter, eleanor, cousin
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	princess, queen, elizabeth, crown, married
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	stepson, handmaid, aides, perfectionism, stammer
+stepdaughter	->	stepfather, uncles, moustache, etchings, taciturn
+aunt	->	wife, her, daughter, cousin, lover
+girl	->	baby, scouts, astro, girl, scout
+sister	->	wife, sister, daughter, mother, younger
+sisters	->	sisters, warner, siblings, toys, allman
+mom	->	mom, neighbor, phoebe, joey, manners
+mother	->	mother, wife, her, daughter, parents
+grandmother	->	grandmother, maternal, paternal, niece, grandson
+grandma	->	pressburger, griff, geldof, casale, woolfson
+granddaughter	->	nephew, eldest, niece, tiberius, cousin
+bride	->	tiberias, tamar, beneath, lungs, touches
+she	->	she, her, thereafter, his, worked
+her	->	her, he, career, she, him
+wife	->	wife, married, daughter, pregnant, mother
+queen	->	queen, ii, iii, denmark, scotland
+woman	->	woman, she, child, love, girl
+niece	->	grandson, niece, daughter, agnes, eldest
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	princess, consort, daughter, queen, elizabeth
+daughter	->	daughter, wife, eldest, mother, father
+stepmother	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepdaughter	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+aunt	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+girl	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+sister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+sisters	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+mom	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+mother	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+grandmother	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+grandma	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+granddaughter	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+bride	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+she	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+her	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+wife	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+queen	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+woman	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+niece	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+policewoman	->	WORDS stepbrother, stepsister, policewoman ARE NOT IN VOCABULARY!
+princess	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+daughter	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+daughters	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepdaughter	->	uncles, grandsons, lieutenants, aunt, grandchildren
+aunt	->	father, sons, daughter, bonnie, matilda
+girl	->	boys, baby, night, girl, harvest
+sister	->	married, wife, father, son, daughter
+sisters	->	parker, boys, parents, sisters, daughters
+mom	->	mom, mama, vines, manners, joey
+mother	->	mother, parents, married, wife, son
+grandmother	->	grandmother, uncle, maternal, father, paternal
+grandma	->	norah, laughlin, wynne, frantz, kantonen
+granddaughter	->	son, eldest, daughter, uncle, iv
+bride	->	bed, near, harbour, harbor, buried
+she	->	they, she, went, again, afterwards
+her	->	parents, their, her, he, father
+wife	->	married, wife, daughter, parents, mother
+queen	->	iii, iv, kings, queen, vii
+woman	->	boys, woman, men, love, night
+niece	->	catherine, uncle, daughter, son, grandson
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	queen, king, elizabeth, married, crown
+daughter	->	daughter, father, married, wife, mother
+daughters	->	daughters, married, parents, daughter, son
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+aunt	->	lena, abijah, karim, mychal, vanya
+girl	->	booji, williamson, girl, scouts, astro
+sister	->	lena, chromatid, wife, arcas, daughter
+sisters	->	coen, allman, smothers, karamazov, epsilon
+mom	->	maw, pococurante, boatswain, lai, delia
+mother	->	mother, mychal, wife, son, daughter
+grandmother	->	paternal, grandmother, lena, lycaon, fateh
+grandma	->	northrup, lasi, hsien, jarl, hsueh
+granddaughter	->	dundas, nephew, herod, kimmei, jogaila
+bride	->	vostok, agha, guantanamo, tiberias, waltham
+she	->	she, remarried, entered, resided, met
+her	->	her, cid, she, he, mother
+wife	->	householder, wife, married, daughter, chromatid
+queen	->	ghidorah, farouk, aleksandar, fahd, faisal
+woman	->	girl, woman, dog, kzin, lindow
+niece	->	jogaila, aga, friar, dundas, lycaon
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	hrh, obito, cassiopeia, cond, karim
+daughter	->	daughter, bidatsu, mychal, filius, wife
+daughters	->	chromatids, scribner, daughter, daughters, eileen
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	pavane, gulia, spacesuit, nobi, stammer
+girl	->	keeps, baby, touch, patch, shine
+sister	->	mother, sarah, wife, sister, husband
+sisters	->	allman, warner, debuted, julia, coen
+mom	->	mom, neighbor, haggard, mabel, vineyard
+mother	->	mother, sarah, parents, her, wife
+grandmother	->	grandmother, paternal, maternal, stepmother, nieces
+grandma	->	pressburger, woolfson, hannity, trapper, glanville
+granddaughter	->	diderot, grandmother, niece, namesake, sarah
+bride	->	beneath, deptford, umbra, pentagon, isthmus
+she	->	she, stayed, keeps, noticed, feels
+her	->	forehead, her, neighbours, insistence, intention
+wife	->	marry, jane, wife, mother, relatives
+queen	->	queen, neutrality, throne, denmark, manson
+woman	->	eyes, loving, eye, my, laugh
+niece	->	diderot, niece, agnes, beggar, emily
+policewoman	->	WORDS policewoman ARE NOT IN VOCABULARY!
+princess	->	princess, crown, diana, queen, christina
+daughter	->	mother, sarah, wife, daughter, husband
+daughters	->	daughters, sarah, parents, divorced, julia
+stepsister	->	WORDS stepbrother, stepsister ARE NOT IN VOCABULARY!
+stepmother	->	fiancee, handmaid, habilitation, huike, thighs
+stepdaughter	->	stepfather, frankness, fiancee, kinsman, moustache

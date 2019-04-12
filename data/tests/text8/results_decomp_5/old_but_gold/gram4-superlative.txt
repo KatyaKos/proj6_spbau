@@ -1,0 +1,1124 @@
+Number of top1 is 114 out of 992 (11%)
+Number of top5 is 209 out of 992 (21%)
+biggest	->	biggest, brightest, notable, hits, hit
+brightest	->	brightest, spangled, stars, brightness, star
+coldest	->	atmospheric, explosions, nuclear, continental, geological
+coolest	->	atmospheric, winters, summers, cooler, flight
+darkest	->	brightest, star, motion, nebula, magnitude
+easiest	->	exception, target, option, enabling, locate
+fastest	->	supersonic, airplane, ascent, bomber, firing
+best	->	best, supporting, exception, ever, greatest
+greatest	->	magnitude, greatest, purge, victory, outpost
+highest	->	highest, concentrations, higher, levels, peak
+hottest	->	earthquakes, polar, helium, hydrogen, observatory
+largest	->	largest, larger, smallest, small, smaller
+longest	->	longest, minutes, decades, fifty, short
+lowest	->	concentrations, high, highest, higher, levels
+luckiest	->	razzie, nominee, misses, harold, cal
+oldest	->	oldest, surviving, royal, british, first
+quickest	->	ascent, replacement, crushing, partial, option
+sharpest	->	focal, supersonic, planes, mutation, axis
+simplest	->	simplest, multiple, partial, exception, ascent
+shortest	->	longest, novels, bond, award, outpost
+slowest	->	motion, onset, ascent, rapid, firing
+smallest	->	large, largest, smaller, larger, smallest
+smartest	->	aboard, airplane, escort, twa, serial
+strangest	->	earthquakes, alien, immortal, mysterious, razzie
+strongest	->	presence, supporting, investor, strongest, leading
+sweetest	->	jewel, burton, travis, soap, burns
+tallest	->	arch, suspension, stirling, inches, meters
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	atmospheric, oceanic, sacs, continental, anterior
+weakest	->	subordinate, strongest, investor, planes, hydrogen
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	range, peak, span, rating, miles
+youngest	->	actors, youngest, fellow, actor, female
+brightest	->	distant, faint, distinguishing, contributor, destination
+coldest	->	frequent, defenses, politically, damaging, affecting
+coolest	->	warm, humid, warmer, parachute, dry
+darkest	->	finest, depiction, contribution, predominant, metropolis
+easiest	->	accessible, difficult, economically, contribution, exploit
+fastest	->	fastest, competitors, accessible, economically, parachute
+best	->	vital, contribution, concern, excellent, obvious
+greatest	->	contribution, greatest, importance, remarkable, significant
+highest	->	ranking, highest, overall, higher, primary
+hottest	->	frequent, tropics, humid, abundant, tournaments
+largest	->	largest, significant, substantial, massive, sizable
+longest	->	longest, lasting, concern, least, decades
+lowest	->	lowest, rate, concentrations, highest, rated
+luckiest	->	economically, instantly, contributor, arguably, profitable
+oldest	->	oldest, surviving, greek, extant, remains
+quickest	->	definitive, convincing, contribution, reliable, noticeable
+sharpest	->	contributing, noticeable, contributor, outward, crucial
+simplest	->	component, economically, meaningful, components, defining
+shortest	->	contribution, longest, surviving, feature, major
+slowest	->	fastest, economically, efforts, accelerating, welcoming
+smallest	->	largest, large, significant, larger, smaller
+smartest	->	fastest, hosting, prized, homes, luxury
+strangest	->	curious, arguably, mysterious, revealing, richest
+strongest	->	attraction, strongest, presence, dominant, concern
+sweetest	->	tastes, populous, bitter, detached, tissues
+tallest	->	suspension, weaknesses, totalling, cm, feet
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	humid, frequent, temperate, warmer, climates
+weakest	->	subordinate, strongest, economically, vital, maintaining
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	accessible, goals, goal, coastline, weakest
+youngest	->	youngest, female, talented, surviving, younger
+worst	->	intentions, earnings, evident, fastest, prized
+coldest	->	biathlon, occurring, solstice, balkan, hemisphere
+coolest	->	coldest, hottest, cooler, southernmost, countdown
+darkest	->	star, nebula, universe, centauri, biathlon
+easiest	->	specify, score, fastest, aspect, accessible
+fastest	->	fastest, escalator, ninth, eighth, inning
+best	->	highest, harmonic, defining, aspect, fifth
+greatest	->	greatest, empire, sixth, seventh, fifth
+highest	->	highest, rated, peak, level, higher
+hottest	->	helium, biathlon, coldest, occurring, centauri
+largest	->	largest, smallest, comprising, parts, number
+longest	->	longest, fifth, decade, peak, period
+lowest	->	highest, rated, lowest, grossing, peak
+luckiest	->	rated, hardest, kanchenjunga, tes, dev
+oldest	->	oldest, fifth, sixth, fourth, third
+quickest	->	installment, ascent, console, stanza, shortest
+sharpest	->	southernmost, focal, chord, axis, deepest
+simplest	->	intermediate, simplest, harmonic, sequence, continuous
+shortest	->	longest, fifth, series, score, sequence
+slowest	->	fastest, progresses, slowest, escalator, subjunctive
+smallest	->	largest, smallest, parts, comprising, smaller
+smartest	->	expo, hearts, teen, guild, cis
+strangest	->	moods, wherein, shrugged, ducks, episode
+strongest	->	dominant, covalent, role, southernmost, strongest
+sweetest	->	arbor, poirot, hearts, edmonton, dessert
+tallest	->	tallest, pentagram, longest, deepest, meters
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	biathlon, solstice, westeros, hemisphere, sahel
+weakest	->	smallest, factorization, constitutive, component, axis
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	peak, highest, southeast, level, longest
+youngest	->	youngest, actors, kabuki, adult, junior
+worst	->	worst, poorest, episode, mtv, fastest
+biggest	->	biggest, hits, centauri, eurovision, videogame
+coolest	->	hottest, warmest, peach, synodic, kelvins
+darkest	->	hottest, brightest, wettest, fibonacci, danorum
+easiest	->	optimum, res, predetermined, specify, approximate
+fastest	->	candela, hottest, inning, predetermined, chant
+best	->	hottest, commemoration, cardinality, highest, value
+greatest	->	seventh, benedict, viscount, lusitania, honor
+highest	->	highest, diameters, hottest, octave, lowest
+hottest	->	hottest, tes, bo, equinox, vernal
+largest	->	numbers, number, size, fraction, ordinal
+longest	->	hottest, length, wettest, fifth, year
+lowest	->	hottest, highest, lowest, diameters, temperature
+luckiest	->	tes, norma, hottest, hundredth, diddley
+oldest	->	hottest, wettest, trafford, dates, median
+quickest	->	predetermined, benedict, ste, staggered, hottest
+sharpest	->	chord, aleph, sqrt, focal, standings
+simplest	->	predetermined, string, identifiers, tuning, hottest
+shortest	->	hottest, fibonacci, length, fifth, consecutive
+slowest	->	hottest, indefinitely, chant, candela, koyaanisqatsi
+smallest	->	numbers, hex, fixed, number, fraction
+smartest	->	aleph, xxxx, ste, mandelbrot, rx
+strangest	->	hundredth, madeleine, boxed, ste, smiley
+strongest	->	cardinality, highest, holds, sqrt, position
+sweetest	->	hundredth, abergavenny, aron, christina, diddley
+tallest	->	ls, centimeter, bpm, metrical, wingspan
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	hottest, warmest, itch, synodic, gregorian
+weakest	->	sqrt, ordo, string, fixed, converse
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	median, rpm, hottest, breadth, batting
+youngest	->	youngest, eldest, younger, median, ste
+worst	->	luck, slim, hottest, eve, koyaanisqatsi
+biggest	->	hottest, hex, installment, lebowski, rx
+brightest	->	hottest, brightest, vinyl, wettest, chrono
+darkest	->	cebus, mangaverse, purview, wettest, adoptionism
+easiest	->	obfuscation, endorsing, dinosauria, asterales, internationalized
+fastest	->	incipit, keypress, installment, saddest, fitna
+best	->	saddest, adoptionism, lono, achimelech, privates
+greatest	->	mufti, missal, pala, holies, hoysala
+highest	->	coed, gadol, cps, keypress, nuclides
+hottest	->	warmest, draconic, wettest, anomalistic, tevet
+largest	->	supercluster, iterations, rossby, dicotyledons, purview
+longest	->	privates, gestational, incubation, wettest, draconic
+lowest	->	coed, keypress, gadol, baryon, magistracies
+luckiest	->	aktion, tage, mila, titanomachy, biathlete
+oldest	->	etonians, missal, heralding, gutnish, lfheim
+quickest	->	gnaeus, haikai, timetable, cruciform, keepers
+sharpest	->	porosity, mazarin, abscissa, flukes, combinator
+simplest	->	pseudocode, dicotyledons, parametric, piecewise, mishnayot
+shortest	->	missal, amarna, wettest, yage, novelizations
+slowest	->	exilic, permian, dawning, silurian, kanishka
+smallest	->	supercluster, rossby, tetranacci, dicotyledons, straining
+smartest	->	superfamily, albeck, stateless, beckhams, rug
+strangest	->	jataka, perceval, fantasmagoriana, sefirot, postponement
+strongest	->	uniate, nativist, dicotyledons, barbadian, proconsular
+sweetest	->	salvator, oddities, yage, filius, tevet
+tallest	->	olympians, cedars, abipones, praetors, convents
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	warmest, anomalistic, draconic, intercalary, synodic
+weakest	->	ciconiiformes, dicotyledons, homeomorphisms, octonions, mendicant
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	dinosauria, subgenera, sephiroth, halving, afoul
+youngest	->	gestational, irenes, werther, niobids, marriageable
+worst	->	saddest, muharram, adoptionism, quinquatria, emunah
+biggest	->	kahuna, keypress, incipit, summand, synoptics
+brightest	->	cebus, benchers, gordan, mira, heralding
+coldest	->	qiyamah, warmest, anomalistic, saddest, calends
+easiest	->	asynchronous, urgent, allowance, kilowatt, dalnet
+fastest	->	kilowatt, workday, daylight, fastest, centimetre
+best	->	kilowatt, allowance, bye, gala, bari
+greatest	->	gnp, workday, kilowatt, eurovision, gala
+highest	->	earners, potency, workday, scorers, kilowatt
+hottest	->	workday, gala, telethon, cleve, macroblock
+largest	->	compartment, hectare, centimetre, mast, macroblock
+longest	->	kilowatt, workday, hour, duplex, kips
+lowest	->	earners, potency, kilowatt, workday, slugging
+luckiest	->	workday, gala, kilowatt, centimetre, salce
+oldest	->	kilowatt, workday, eurovision, olympians, eleventh
+quickest	->	timetable, asynchronous, dial, evasion, gala
+sharpest	->	swings, overs, precipitous, kilowatt, nameserver
+simplest	->	iterated, asynchronous, factorial, curried, nameserver
+shortest	->	workday, kilowatt, hour, gala, ser
+slowest	->	daylight, workday, monotonous, twitch, stalls
+smallest	->	compartment, mast, centimetre, macroblock, ppt
+smartest	->	kilowatt, numb, workday, ser, adria
+strangest	->	workday, gala, gnp, centimetre, recap
+strongest	->	leisure, gtpase, earner, saarc, nominal
+sweetest	->	gnp, workday, gala, playhouse, centimetre
+tallest	->	kilowatt, workday, centimetre, shins, olympians
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	workday, plowing, adventists, gala, graders
+weakest	->	gtpase, inflection, iterated, substitution, irate
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	kilowatt, workday, annum, busway, hour
+youngest	->	workday, resents, sweetheart, smothers, kilowatt
+worst	->	gala, kilowatt, leisure, workday, bari
+biggest	->	kilowatt, eurovision, gala, recap, workday
+brightest	->	workday, kilowatt, recap, sidereal, shacharit
+coldest	->	workday, recessions, gala, permian, bloodline
+coolest	->	workday, plowing, kilowatt, gnp, bloodline
+fastest	->	fore, paced, posterior, crashing, propagating
+best	->	our, sense, goodness, essence, meaning
+greatest	->	apostasy, auk, saviour, importance, resilience
+highest	->	lower, intensity, levels, higher, potency
+hottest	->	sediments, popping, vapors, reservoir, damp
+largest	->	larger, dominating, diffuse, forges, mammalian
+longest	->	past, shape, adverbial, strands, strand
+lowest	->	reactivity, salinity, posterior, amplitudes, eigenvalues
+luckiest	->	hardest, marvelous, unknowable, vividly, dishonest
+oldest	->	greek, myth, meaning, legend, koine
+quickest	->	quickest, reflex, timing, traceable, gentle
+sharpest	->	focal, popping, bold, veins, quickest
+simplest	->	simplest, heuristic, conjugation, tenses, figurative
+shortest	->	narrative, epistolary, story, strand, sequence
+slowest	->	traceable, slows, boil, diffuse, fading
+smallest	->	larger, smaller, diatomic, mammalian, large
+smartest	->	milky, dolls, logarithm, jelly, harbor
+strangest	->	passions, attractors, disjointed, primordial, brahman
+strongest	->	tendency, odor, odour, hydrophobic, stronger
+sweetest	->	barley, tasting, uncreated, sorghum, corundum
+tallest	->	asphalt, cubic, lagging, slender, scenery
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	sediments, damp, windy, climates, bloodedness
+weakest	->	lensing, hydrophobic, hydrocarbons, aspectual, locking
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	extending, extends, beyond, divergent, narrower
+youngest	->	virtuous, wedlock, ascetic, giant, messiah
+worst	->	dreams, subjectivity, flesh, happiness, goodness
+biggest	->	nucleosynthesis, lebowski, crunch, bang, housemates
+brightest	->	greenish, monochromatic, pigments, milky, primordial
+coldest	->	windy, damp, storms, disgusting, sediments
+coolest	->	windy, damp, summers, stalk, dry
+darkest	->	primordial, monochromatic, greenish, cyan, pigments
+best	->	concern, biggest, righteous, doing, thing
+greatest	->	biggest, greatest, triumphs, concern, importance
+highest	->	highest, peak, lowest, level, unemployment
+hottest	->	biggest, poorest, skiing, hardest, tropics
+largest	->	largest, biggest, population, larger, growing
+longest	->	millennia, decades, years, ago, longest
+lowest	->	lowest, highest, rate, percentage, unemployment
+luckiest	->	hardest, norma, beloved, feat, richest
+oldest	->	oldest, age, ages, richest, inhabitants
+quickest	->	contention, compatibility, disappointment, contender, fix
+sharpest	->	biggest, contributing, diminished, shifts, spur
+simplest	->	simplest, defining, essentially, examples, problem
+shortest	->	decade, fifteen, longest, decades, spanned
+slowest	->	growth, decline, slowed, urbanization, rapid
+smallest	->	largest, larger, biggest, large, smaller
+smartest	->	homeless, spider, dolls, richest, dumb
+strangest	->	mysterious, richest, fables, spider, beauty
+strongest	->	concern, dominant, strongest, dominance, attraction
+sweetest	->	richest, bitter, detroit, arbor, wealthiest
+tallest	->	cm, feet, acres, totalling, millennia
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	temperate, subtropical, climates, poorest, humid
+weakest	->	strongest, dominant, attraction, female, male
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	millennia, coastline, apogee, kilometers, biggest
+youngest	->	teenagers, younger, youngest, adult, female
+worst	->	pursuit, richest, guys, biggest, poorest
+biggest	->	biggest, richest, bang, selling, dig
+brightest	->	brightest, stars, biggest, pink, sky
+coldest	->	outbreak, industrial, world, turbulent, recession
+coolest	->	poorest, temperate, subtropical, warmer, climate
+darkest	->	cobalt, bronze, brightest, age, biggest
+easiest	->	biggest, unsafe, destination, profitable, accessible
+greatest	->	fame, greatest, writers, famous, authors
+highest	->	performance, rated, scores, score, higher
+hottest	->	sheet, metal, hit, dark, ice
+largest	->	notable, largest, larger, smaller, small
+longest	->	short, globe, career, decades, davis
+lowest	->	high, score, rated, concentrations, scores
+luckiest	->	nominated, oscars, novelette, nominee, finest
+oldest	->	famous, oldest, poets, writers, earliest
+quickest	->	screenplay, winning, picture, cinematography, presentation
+sharpest	->	contributing, dramatic, globe, producers, actor
+simplest	->	examples, single, solo, musical, using
+shortest	->	novels, fiction, novel, award, film
+slowest	->	cinematography, dramatic, slower, hollywood, globe
+smallest	->	large, smaller, larger, notable, largest
+smartest	->	bafta, actors, sf, porn, orphans
+strangest	->	novel, novels, fictional, fables, story
+strongest	->	supporting, leading, literary, artist, notable
+sweetest	->	finest, tim, cheeses, pulp, cheese
+tallest	->	inches, finest, globe, feet, pupil
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	summers, winters, ice, davis, cold
+weakest	->	supporting, lethal, strongest, female, representative
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	globe, awards, winning, miles, davis
+youngest	->	writers, fellow, musicians, artist, award
+worst	->	film, winning, oscar, picture, nominated
+biggest	->	awards, artists, winning, hit, globe
+brightest	->	star, stars, porn, globe, brightest
+coldest	->	davis, dark, geological, short, winters
+coolest	->	danny, summers, winters, davis, ice
+darkest	->	fiction, star, comics, award, globe
+easiest	->	accessible, arguably, authors, oscar, edit
+fastest	->	screenplay, winning, producers, adapted, faster
+highest	->	rated, ranking, scores, higher, performance
+hottest	->	billboard, metals, hit, hardest, hits
+largest	->	number, smallest, larger, largest, hits
+longest	->	longer, least, few, than, best
+lowest	->	rated, concentrations, lowest, scores, highest
+luckiest	->	idiots, hardest, foolish, rated, stupid
+oldest	->	oldest, surviving, figure, earliest, unknown
+quickest	->	reasonably, helpful, definitive, trustworthy, accurate
+sharpest	->	signatures, foil, sabre, fastest, silent
+simplest	->	examples, simplest, useful, repeat, perform
+shortest	->	best, fiction, novels, lifetime, score
+slowest	->	slower, fastest, silent, lethal, target
+smallest	->	number, smallest, larger, large, smaller
+smartest	->	orphans, foolish, buy, accessories, prints
+strangest	->	fantastic, wonder, fables, appearance, divisor
+strongest	->	dominant, strongest, active, despite, scorer
+sweetest	->	finest, cheeses, foolish, polished, louder
+tallest	->	weighing, inches, pounds, feet, finest
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	cool, warmer, humid, climates, moderately
+weakest	->	lethal, integers, metals, bases, strongest
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	range, ranging, goals, record, target
+youngest	->	female, adult, fellow, teenage, best
+worst	->	intentions, luck, foolish, funny, best
+biggest	->	hit, hits, selling, biggest, seller
+brightest	->	silvery, brighter, favorite, silent, faint
+coldest	->	chisel, skating, silent, cool, lethal
+coolest	->	summers, warmer, piccolo, winters, hot
+darkest	->	fantastic, silvery, skating, finest, best
+easiest	->	acceptable, listening, difficult, useful, accessible
+fastest	->	fastest, paced, bowler, bowlers, slower
+best	->	best, choice, choices, doing, thing
+hottest	->	billboard, landlocked, springs, lonely, humid
+largest	->	largest, vast, portion, small, proportion
+longest	->	longest, ten, twenty, last, feet
+lowest	->	lowest, percentage, elevation, grossing, extremes
+luckiest	->	idiots, hey, beloved, neighbor, stranger
+oldest	->	name, oldest, last, greek, prophets
+quickest	->	stranger, definitive, breadth, carriage, finals
+sharpest	->	focal, extremes, lowest, departure, deepest
+simplest	->	representation, single, thing, digits, string
+shortest	->	novel, last, ten, longest, title
+slowest	->	fastest, economies, surpassing, lowest, turning
+smallest	->	largest, portion, large, smaller, larger
+smartest	->	swamp, wicked, orphans, crazy, spider
+strangest	->	swamp, fantastic, stranger, mythical, thing
+strongest	->	despite, strongest, holds, importance, country
+sweetest	->	fair, swamp, sunshine, psalm, sq
+tallest	->	feet, metres, meters, ft, cubic
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	temperate, landlocked, humid, wet, tropical
+weakest	->	strongest, anthropic, position, strong, subordinate
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	lowest, kilometers, coastline, nautical, margin
+youngest	->	woman, youngest, whom, man, living
+worst	->	thing, happiness, luck, wrong, good
+biggest	->	biggest, hit, thing, album, song
+brightest	->	stars, stripes, shining, brightest, sky
+coldest	->	hot, ocean, world, warm, winters
+coolest	->	coldest, landlocked, temperate, dry, wet
+darkest	->	heavyweight, blue, black, mythical, universe
+easiest	->	stranger, impossible, acceptable, thing, destination
+fastest	->	fastest, quarter, lowest, eighth, bowler
+best	->	thing, my, bad, truth, reason
+greatest	->	greatest, honour, honor, gatsby, victory
+largest	->	fraction, entire, numbers, fifth, silurian
+longest	->	incubation, decade, gestation, period, duration
+lowest	->	diameters, silurian, lower, highest, slowest
+luckiest	->	boland, silurian, arachnoid, ummayad, ministership
+oldest	->	wettest, merovingian, eleventh, angevin, regnal
+quickest	->	installment, faunal, keyword, scheduling, ascent
+sharpest	->	cecil, shift, zenith, derivative, squared
+simplest	->	installment, instruction, previous, derivative, ministership
+shortest	->	installment, fifth, wettest, duration, length
+slowest	->	silurian, permian, slowest, ordovician, triassic
+smallest	->	fraction, fifth, numbers, entire, second
+smartest	->	sopranos, dale, reset, quadra, kilowatt
+strangest	->	installment, plantagenet, hundredth, beatrix, orchid
+strongest	->	previous, overall, position, second, fifth
+sweetest	->	supper, montagu, lok, sabha, hon
+tallest	->	rz, silurian, ls, metres, bpm
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	warmest, silurian, coldest, ordovician, miocene
+weakest	->	factorization, ministership, ciconiiformes, clef, sqrt
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	length, kilowatt, silurian, duration, fourteen
+youngest	->	youngest, cavalier, eldest, younger, nitrile
+worst	->	tycoon, darkest, installment, koyaanisqatsi, coldest
+biggest	->	installment, ephemeris, heisei, curried, fifth
+brightest	->	regnal, wettest, brightest, silurian, cutoff
+coldest	->	silurian, ordovician, permian, warmest, triassic
+coolest	->	coldest, warmest, silurian, ordovician, coolest
+darkest	->	wettest, coldest, installment, batman, epoch
+easiest	->	requests, ephemeris, specified, portability, execution
+fastest	->	eighth, installment, permian, slowest, ascent
+best	->	installment, ephemeris, previous, coldest, wettest
+greatest	->	merovingian, tarquin, installment, reign, angevin
+highest	->	diameters, lower, highest, tarquin, silurian
+longest	->	longest, second, third, serving, last
+lowest	->	highest, high, lowest, rated, peak
+luckiest	->	michelle, hanson, beloved, luciano, kitty
+oldest	->	oldest, greek, third, town, name
+quickest	->	definitive, prospect, fourth, destination, contention
+sharpest	->	corridor, midlands, crossroads, fastest, denominator
+simplest	->	third, second, example, single, simplest
+shortest	->	longest, second, novel, fourth, third
+slowest	->	fastest, rapid, accelerating, growth, continues
+smallest	->	located, third, outside, nation, area
+smartest	->	unicef, homeless, busiest, expo, wicked
+strangest	->	richest, eve, savage, wonder, tale
+strongest	->	dominant, attraction, leading, became, concern
+sweetest	->	arbor, oh, dessert, ann, opens
+tallest	->	feet, metres, tallest, cm, meters
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	solstice, humid, dry, cool, hot
+weakest	->	strong, dominant, subordinate, predominant, investor
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	miles, kilometers, currently, runs, longest
+youngest	->	woman, youngest, born, youth, whom
+worst	->	thing, good, day, world, mad
+biggest	->	biggest, america, lebowski, third, world
+brightest	->	brightest, star, stars, spangled, sky
+coldest	->	solstice, winter, world, winters, hot
+coolest	->	warm, dry, summers, winters, hot
+darkest	->	heavyweight, star, brightest, blue, green
+easiest	->	accessible, destination, guide, makes, fastest
+fastest	->	fastest, quarter, second, world, eighth
+best	->	day, world, faith, reason, thing
+greatest	->	america, world, st, nation, th
+highest	->	highest, peak, ranking, low, rated
+hottest	->	springs, reservoir, solstice, lonely, monday
+lowest	->	lowest, highest, heaviest, level, smallest
+luckiest	->	idiots, shortest, dandy, penitent, norma
+oldest	->	oldest, surviving, youngest, word, slavonic
+quickest	->	glimpse, shortest, portable, dandy, transatlantic
+sharpest	->	denominator, fastest, synoptic, corridor, differentiating
+simplest	->	simplest, symptom, shortest, implementation, computation
+shortest	->	shortest, novel, stanza, installment, nineteen
+slowest	->	fastest, ascent, disappearing, rapid, escalator
+smallest	->	largest, smallest, freshwater, oldest, large
+smartest	->	luxury, ripe, serial, dandy, expo
+strangest	->	incarnation, mysterious, shooter, fantastic, attractors
+strongest	->	dominant, competitor, predominant, strongest, contention
+sweetest	->	dessert, vine, wormwood, baal, supper
+tallest	->	suspension, bikini, tallest, cubic, centimeter
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	heaviest, humid, rainy, solstice, shortest
+weakest	->	factorization, subordinate, theism, valid, contradiction
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	yards, fastest, running, breadth, shoreline
+youngest	->	youngest, oldest, eldest, woman, cy
+worst	->	thing, fastest, abyss, intentions, tomorrow
+biggest	->	biggest, lebowski, brightest, crunch, bang
+brightest	->	brightest, spangled, faint, sky, pink
+coldest	->	rainy, solstice, heaviest, transitions, reservoir
+coolest	->	coldest, dusty, gras, heaviest, rainy
+darkest	->	brightest, heavyweight, universe, primordial, incarnation
+easiest	->	accessible, programmer, destination, portable, shortest
+fastest	->	fastest, paced, shortest, eighth, ascent
+best	->	thing, choice, shortest, deeds, neighbor
+greatest	->	keeper, schism, sixth, biggest, seventh
+highest	->	highest, lowest, level, ranking, levels
+hottest	->	reservoir, heaviest, lonely, farce, monday
+largest	->	largest, smallest, freshwater, exporter, oldest
+luckiest	->	stranger, hey, bo, kitty, beloved
+oldest	->	oldest, name, third, greek, prophets
+quickest	->	stranger, fix, duplicate, nelson, predictions
+sharpest	->	extremes, focal, halley, denominator, concerto
+simplest	->	simplest, method, generic, formulation, theorem
+shortest	->	longest, novel, poem, nineteen, voyage
+slowest	->	fastest, heralded, ahead, predicting, stranger
+smallest	->	largest, percentage, smaller, larger, large
+smartest	->	swamp, crazy, dumb, spider, stranger
+strangest	->	stranger, fantastic, swamp, fables, mysterious
+strongest	->	concern, principal, longstanding, holds, tendency
+sweetest	->	fair, stranger, liar, swamp, ti
+tallest	->	feet, metres, cubic, meters, inches
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	waters, humid, wet, landlocked, climates
+weakest	->	anthropic, principle, subordinate, ranks, objective
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	nautical, miles, kilometers, yards, extending
+youngest	->	woman, youngest, whom, eldest, female
+worst	->	thing, wrong, happiness, swamp, pursuit
+biggest	->	bang, biggest, hit, thing, dipper
+brightest	->	stars, shining, sky, dwarfs, stranger
+coldest	->	continental, northeast, ocean, hot, hazards
+coolest	->	lo, wet, quintet, jon, dry
+darkest	->	fantastic, universe, blue, horizon, comics
+easiest	->	stranger, convenient, answer, accessible, fix
+fastest	->	fastest, shortest, counting, bowler, stranger
+best	->	thing, reason, saying, say, my
+greatest	->	greatest, biggest, honour, grandson, nelson
+highest	->	highest, percentage, elevation, peak, rank
+hottest	->	billboard, springs, extremes, landlocked, polar
+largest	->	largest, percentage, larger, vast, biggest
+longest	->	longest, feet, miles, twenty, metres
+oldest	->	judaean, sarum, ugliest, etonians, moabite
+quickest	->	emblazoned, punning, ranches, capitalizing, rejoicing
+sharpest	->	bulging, dripped, bulges, maritsa, punning
+simplest	->	partitioning, partitive, kyokushin, ktiv, megali
+shortest	->	punning, rejoicing, carmina, kokopelli, verte
+slowest	->	bulges, petered, phasing, ranches, morph
+smallest	->	ranches, tsu, hump, partitioning, cultivable
+smartest	->	ranches, vitruvian, blueberries, rostra, bluebell
+strangest	->	lindow, tambourine, ugliest, bailiwick, punning
+strongest	->	bamar, tits, outstretched, devolves, rejoicing
+sweetest	->	barratry, blueberries, bristles, punning, manure
+tallest	->	strewn, ugliest, skilfully, mouser, vitruvian
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	rejoicing, emblazoned, punning, breezes, tits
+weakest	->	outstretched, populism, vlach, partitioning, tucked
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	rooftops, rejoicing, johnsons, acheron, glossing
+youngest	->	lindow, ugliest, kshatriya, tits, magen
+worst	->	punning, rejoicing, blueberries, lemnos, ugliest
+biggest	->	alga, lebowski, verte, tits, ranches
+brightest	->	infra, lorry, alga, ridinghood, inhumans
+coldest	->	punning, minbari, seeps, corregidor, tits
+coolest	->	punning, verte, heimdallr, emblazoned, ranches
+darkest	->	alga, baryonic, glaze, morph, halfdan
+easiest	->	ansible, deadites, rejoicing, ugliest, blissymbolics
+fastest	->	ranches, bulges, encroaching, capitalizing, sanl
+best	->	rejoicing, punning, tambourine, lindow, megali
+greatest	->	rejoicing, shangchuan, dogra, adoptionism, thatch
+highest	->	ranches, apron, maritsa, ventricles, rejoicing
+hottest	->	ranches, punning, emblazoned, skilfully, muff
+largest	->	ranches, cultivable, partitioning, landholdings, hump
+longest	->	iterating, punning, timescales, salsette, rooftops
+lowest	->	ranches, punning, rooftops, bulges, obp
+quickest	->	definitive, collaborative, satisfactory, diagnostic, credible
+sharpest	->	signature, deepest, derivative, signatures, denominator
+simplest	->	simplest, valid, semi, automated, commercially
+shortest	->	novels, longest, fiction, novel, solo
+slowest	->	fastest, partially, slower, competitive, sustainable
+smallest	->	largest, large, smaller, commercial, smallest
+smartest	->	toyota, hosting, manufactured, branded, busiest
+strangest	->	aquatic, savage, fantastic, frog, mysterious
+strongest	->	active, presence, competitive, participation, involvement
+sweetest	->	dessert, almonds, tissues, arbor, flammable
+tallest	->	submerged, tallest, asphalt, moonlight, suspension
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	humid, climates, subtropical, dry, temperate
+weakest	->	stable, semi, valid, aligned, reactive
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	accessible, currently, worldwide, academic, range
+youngest	->	youngest, adult, professional, child, youth
+worst	->	ubiquitous, prized, problematic, happiness, commodity
+biggest	->	biggest, exporter, selling, hits, america
+brightest	->	brightest, silvery, orbiting, faint, keystone
+coldest	->	chisel, oceans, hot, solstice, humid
+coolest	->	dry, humid, summers, hot, subtropical
+darkest	->	trilogy, brightest, nebula, planet, lacrosse
+easiest	->	accessible, feasible, collaborative, impossible, acceptable
+fastest	->	fastest, competitive, paced, bowlers, accessible
+best	->	best, truly, nutrition, world, choice
+greatest	->	greatest, largest, world, achievement, biggest
+highest	->	rated, higher, highest, concentrations, levels
+hottest	->	springs, humid, dry, reservoir, dumpster
+largest	->	largest, exporter, small, commercial, smallest
+longest	->	longest, completed, nearly, currently, decades
+lowest	->	rated, concentrations, lowest, highest, high
+luckiest	->	critically, wally, hardest, profitable, rated
+sharpest	->	easterly, urals, precipitous, adour, trending
+simplest	->	easiest, integrin, affix, purest, invert
+shortest	->	asuka, shortens, bius, hyperfocal, vorkosigan
+slowest	->	easterly, slowest, adour, logarithmically, reverses
+smallest	->	bypasses, urals, wraps, catchment, rivalled
+smartest	->	crips, smog, offeree, celebrant, mycelium
+strangest	->	strangest, distorts, armadillo, easiest, generalizing
+strongest	->	easterly, purest, obscures, okedo, declination
+sweetest	->	safest, smog, fibrillation, windy, parklands
+tallest	->	shins, ucayali, withers, patkai, safest
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	bloodedness, urals, destabilize, adour, windy
+weakest	->	purest, separators, endometrium, lensing, reactance
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	hyperfocal, adour, declination, azimuth, teg
+youngest	->	votadini, ligamentum, underestimate, cava, fremen
+worst	->	obscures, smog, urals, safest, godesberg
+biggest	->	jackass, cardioid, urals, lebowski, mycelium
+brightest	->	logarithmically, orbited, spangled, declination, illuminates
+coldest	->	windy, easterly, adour, trending, benguela
+coolest	->	urals, adour, logarithmically, realign, preclear
+darkest	->	logarithmically, orbited, adour, illuminates, smog
+easiest	->	pinpoint, quantify, easiest, forestall, underestimate
+fastest	->	easterly, urals, slowest, adour, eumenides
+best	->	fosse, obscures, easiest, underestimate, outweigh
+greatest	->	auk, musica, unwashed, anduin, illuminates
+highest	->	potency, payoff, declination, ventricles, octane
+hottest	->	easterly, urals, monsoon, harmattan, logarithmically
+largest	->	bypasses, catchment, perturbations, iterations, urals
+longest	->	hyperfocal, luminosity, asuka, snapper, shortens
+lowest	->	potency, urals, easterly, payoff, slowest
+luckiest	->	bidder, preclear, cueball, uninitiated, cava
+oldest	->	baixa, centrosome, telo, abhidharma, sunniest
+simplest	->	undeciphered, unadorned, semiconducting, ideographic, exemplars
+shortest	->	hieroglyphic, articulations, uncomplimentary, sculpting, autobiographic
+slowest	->	exemplars, shingle, repose, iniquity, sag
+smallest	->	semiconducting, sculpting, autobiographic, amoebozoa, habitations
+smartest	->	anxiously, aboriginals, mrc, nudie, emigre
+strangest	->	autobiographic, fantasmagoriana, ingenuous, undoing, exemplars
+strongest	->	autobiographic, pretence, antisepsis, juntas, pastoralism
+sweetest	->	sadistic, exemplars, homiletical, uncomplimentary, visage
+tallest	->	uncomplimentary, bumbling, cedars, uncovers, kistvaens
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	anxiously, benzoin, highschool, sag, shingle
+weakest	->	pretence, personifications, pastoralism, uncomplimentary, juntas
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	articulations, autobiographic, shingle, uncomplimentary, homiletical
+youngest	->	mouseketeer, despaired, huac, wcl, navvies
+worst	->	exemplars, repose, articulations, unlawfully, disclosing
+biggest	->	autobiographic, sculpting, synoptics, incunabula, eponymously
+brightest	->	townsite, draconis, uncomplimentary, autobiographic, shingle
+coldest	->	autobiographic, articulations, sag, footballing, pondering
+coolest	->	thermometers, hanoverians, obstinate, sag, visage
+darkest	->	autobiographic, retellings, macrocosm, sensationalism, uncomplimentary
+easiest	->	ideographic, hmc, iniquity, uncomplimentary, exemplars
+fastest	->	articulations, expository, repose, armature, uncomplimentary
+best	->	articulations, exemplars, antisepsis, repose, disclosing
+greatest	->	autobiographic, sculpting, pretence, stoneface, townsite
+highest	->	articulations, uncomplimentary, hmc, autobiographic, habitations
+hottest	->	thermometers, plaques, tallies, uncomplimentary, benzoin
+largest	->	autobiographic, semiconducting, sculpting, habitations, arsenals
+longest	->	articulations, autobiographic, pondering, blisters, undeciphered
+lowest	->	articulations, habitations, uncomplimentary, shingle, repose
+luckiest	->	bloodthirsty, visage, undoing, amillennialism, obstinate
+oldest	->	ketuvim, gedanum, articulations, townsite, stoneface
+quickest	->	germaniae, prolonging, repose, sculpting, confessors
+shortest	->	novel, novels, story, stories, prose
+slowest	->	slower, faster, trend, rapidly, rapid
+smallest	->	larger, smaller, large, largest, species
+smartest	->	kit, toyota, aquarium, luxury, cattle
+strangest	->	tale, tales, genetically, vampire, moa
+strongest	->	stronger, attractive, namely, odor, hydrogen
+sweetest	->	almond, cheese, potatoes, barley, taste
+tallest	->	cubic, inches, slender, cm, asphalt
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	sediments, climates, summers, winters, mild
+weakest	->	ammonia, hydrogen, subordinate, stronger, ionic
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	shoreline, range, slightly, broad, coastline
+youngest	->	younger, youngest, elder, illegitimate, daughter
+worst	->	taste, happiness, luck, ugly, problematic
+biggest	->	lebowski, biggest, bang, dig, america
+brightest	->	colors, silvery, kiwi, brighter, stars
+coldest	->	winters, mild, summers, fusion, solstice
+coolest	->	summers, winters, dry, mild, wet
+darkest	->	cobalt, kryptonite, condensed, primordial, subgenre
+easiest	->	easier, attractive, easiest, difficult, useful
+fastest	->	fastest, faster, bowlers, efficient, paced
+best	->	excellent, taste, choice, gives, explanation
+greatest	->	grandson, namely, ontario, of, abundance
+highest	->	lower, higher, levels, incidence, grade
+hottest	->	reservoir, sediments, equinox, dry, alkali
+largest	->	larger, largest, smaller, small, size
+longest	->	half, twenty, decades, years, than
+lowest	->	lower, higher, high, levels, concentrations
+luckiest	->	unfaithful, fortunate, hardest, incidentally, apt
+oldest	->	oldest, greek, name, older, legend
+quickest	->	approximation, template, explanation, definitive, solutions
+sharpest	->	accent, denominator, tip, bicarbonate, knife
+slowest	->	stationary, fastest, quickest, ventilation, rapid
+smallest	->	smallest, drainage, orbit, orbiting, difference
+smartest	->	ib, confess, wicked, brave, awful
+strangest	->	awful, beware, hey, attractors, thing
+strongest	->	enmity, animosity, apparent, contention, difference
+sweetest	->	yhwh, saviour, hey, safest, smell
+tallest	->	slender, cubic, metres, mtu, suspension
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	climates, reservoir, damp, neptune, wet
+weakest	->	stationary, insignificant, interaction, theism, disbelief
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	breadth, path, mtu, widest, roadway
+youngest	->	youngest, cy, disciple, closest, saviour
+worst	->	awful, thing, luck, happening, hey
+biggest	->	bang, hey, thing, nucleosynthesis, crunch
+brightest	->	distant, faint, brightest, orbiting, neptune
+coldest	->	reservoir, warm, climates, damp, transitions
+coolest	->	warm, lo, neptune, climates, wet
+darkest	->	circumference, neptune, brightest, ours, sun
+easiest	->	accomplish, easiest, ventilation, fix, insecure
+fastest	->	fastest, grid, wow, paced, ventilation
+best	->	thing, awful, neighbor, saviour, thank
+greatest	->	saviour, schism, giza, disparity, gatsby
+highest	->	decreases, level, relative, speeds, elevation
+hottest	->	reservoir, chili, warm, climates, lonely
+largest	->	smallest, drainage, orbit, distant, orbiting
+longest	->	longest, path, orbit, closest, suspension
+lowest	->	decreases, elevation, relative, ecliptic, lowest
+luckiest	->	hey, merciful, unknowable, ike, neighbor
+oldest	->	saviour, trafford, nearest, slavonic, ruins
+quickest	->	ventilation, compromise, fix, sincere, stationary
+sharpest	->	quickest, animosity, gaps, antagonism, radial
+simplest	->	parameters, path, algorithms, simplest, stationary
+smallest	->	smallest, intestine, largest, tetranacci, larger
+smartest	->	nautilus, sopranos, alu, laertius, varnothing
+strangest	->	fountainhead, farnese, wendish, llywelyn, iwo
+strongest	->	agility, narrowest, superiority, competitor, ally
+sweetest	->	wherefore, lok, hereford, sabha, bran
+tallest	->	centimeter, withers, shins, museo, magnum
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	swell, uppermost, sacs, samhain, nellis
+weakest	->	electroweak, electromotive, airforce, subordinate, tribulation
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	narrowest, widest, ilium, satpura, nanometres
+youngest	->	irenes, blackfoot, youngest, sla, smothers
+worst	->	wherefore, abt, narrowest, shady, malleability
+biggest	->	att, dipper, crunch, ilium, cardioid
+brightest	->	spangled, hep, treader, brightest, ethertype
+coldest	->	nellis, barbary, sofa, gasp, worldcon
+coolest	->	att, amraam, hottest, eemian, uppermost
+darkest	->	spangled, heavyweight, fleece, ethertype, brightest
+easiest	->	upload, pinpoint, alu, customize, undisclosed
+fastest	->	automaker, sportsman, narrowest, alu, airlift
+best	->	narrowest, ephemeris, wherefore, microstate, exorbitant
+greatest	->	gokturk, unwashed, hural, gatsby, wendish
+highest	->	payoff, octane, occupancy, diameters, potency
+hottest	->	hep, raptor, bocce, lonely, autumnal
+largest	->	iterations, largest, catchment, smallest, dominating
+longest	->	luminosity, height, netbios, kilowatt, asr
+lowest	->	narrowest, payoff, occupancy, potency, octane
+luckiest	->	bidder, sopranos, showgirl, serene, cupbearer
+oldest	->	trafford, angevin, flagship, gokturk, merovingian
+quickest	->	replica, cornwallis, cdr, timetable, hangar
+sharpest	->	narrowest, zenith, widest, easternmost, everton
+simplest	->	alu, curried, decorator, factorial, quantification
+shortest	->	ilium, ethertype, nlds, powerbook, netbios
+smartest	->	aleph, swap, vc, irrational, stateless
+strangest	->	socrates, aleph, mythical, fate, fantastic
+strongest	->	objective, competitor, strongest, dominant, contention
+sweetest	->	vc, liar, essence, oranges, pronoun
+tallest	->	cubic, aleph, pentagram, kilometre, metres
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	ours, cleavage, climates, humid, shortest
+weakest	->	objective, factorization, subordinate, idempotent, assuming
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	breadth, goals, widest, proportional, exponent
+youngest	->	youngest, cy, righteous, fritz, fellow
+worst	->	thing, happiness, fate, intentions, ours
+biggest	->	brightest, winner, exponent, horizon, biggest
+brightest	->	brightest, spangled, silvery, faint, stars
+coldest	->	transitions, reactions, reservoir, syllable, hyperinflation
+coolest	->	coldest, circumference, ck, ours, hottest
+darkest	->	brightest, horizon, universe, ours, circumference
+easiest	->	exponent, correct, defining, approximate, precisely
+fastest	->	fastest, counting, exponent, shortest, aleph
+best	->	thing, objective, choice, defining, assuming
+greatest	->	greatest, victory, honour, moment, magnitude
+highest	->	equals, highest, rated, density, probability
+hottest	->	caesium, reservoir, brightest, bromine, periodic
+largest	->	largest, number, parameter, element, fraction
+longest	->	longest, shortest, duration, preceding, moment
+lowest	->	equals, lowest, rated, probability, highest
+luckiest	->	scream, fritz, vc, aleph, tes
+oldest	->	macedonian, represents, follows, every, equivalent
+quickest	->	assignment, timing, approximation, outcome, conclusion
+sharpest	->	exponent, aleph, axis, focal, differentiating
+simplest	->	defining, sequence, axiom, continuous, integer
+shortest	->	sequence, shortest, longest, length, segment
+slowest	->	rotation, fastest, accelerating, signaled, exponent
+strangest	->	cannibal, defiant, generalizing, strangest, mismeasure
+strongest	->	willed, scorer, followings, euroscepticism, hrvatska
+sweetest	->	eurythmics, gora, legnica, ruthenia, decadent
+tallest	->	uzbeks, sceptical, cedars, fmln, moderates
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	monsoons, latgale, tropics, bloodedness, climates
+weakest	->	willed, gabonese, hrvatska, disestablishment, bjp
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	moderates, confines, valign, rages, eldr
+youngest	->	sheik, moderates, eritreans, tragically, humanitarians
+worst	->	eritreans, guys, rages, tragically, godesberg
+biggest	->	dipper, lebowski, lags, endian, bjp
+brightest	->	toga, seedling, sandstone, patriarchal, yster
+coldest	->	rages, snowy, kamakura, latgale, interwar
+coolest	->	monsoons, driest, misfits, snowy, tibesti
+darkest	->	lags, baryonic, rink, yster, halfdan
+easiest	->	undiscovered, rages, confines, pleasing, aleuts
+fastest	->	wow, southerly, easterly, formant, precipitous
+best	->	rages, willed, disputing, guys, euroscepticism
+greatest	->	moravian, confines, rockall, schism, rages
+highest	->	grossing, scorers, highest, elevations, waterline
+hottest	->	tropics, latgale, basalt, euroscepticism, snowy
+largest	->	antebellum, gaeltacht, confines, followings, moderates
+longest	->	rages, interwar, antebellum, incubation, lags
+lowest	->	grossing, harz, confines, swampy, kwahu
+luckiest	->	showgirl, sheik, plh, fmln, garbo
+oldest	->	judaean, gaeltacht, upanishads, etonians, gutnish
+quickest	->	keepers, upswing, patriarchal, jacobite, majorities
+sharpest	->	precipitous, easterly, uzbeks, southerly, formant
+simplest	->	upswing, majorities, aorist, confines, defiant
+shortest	->	interwar, stooges, asuka, iconoclastic, antebellum
+slowest	->	precipitous, rages, jeffersonian, easterly, monsoons
+smallest	->	gaeltacht, antebellum, schismatic, minority, confines
+strongest	->	sanusi, fnl, miaphysite, minimises, pietistic
+sweetest	->	heartfelt, miserere, headstrong, weltanschauung, contruction
+tallest	->	shins, forecastle, propylaea, rectus, disarticulation
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	bloodedness, litha, midwinter, morons, uweinat
+weakest	->	carinae, rejectionist, glottis, miaphysite, remonstrants
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	hyperfocal, kamchatsky, rectus, ccj, civilizing
+youngest	->	ligamentum, votadini, rastafarians, madhyamika, telo
+worst	->	godesberg, piqued, obstructing, toothfish, biasing
+biggest	->	lebowski, cardioid, ith, kahuna, dipper
+brightest	->	inhumans, lorry, occupant, mussel, dendera
+coldest	->	britpop, huffington, reverberated, rectus, awp
+coolest	->	sweetest, bloodedness, midwinter, britpop, timepiece
+darkest	->	inhumans, astrometrics, pdflp, exclusionary, macrocosm
+easiest	->	outro, overbending, factorize, ccj, provisioning
+fastest	->	photocell, armature, outro, pensionnat, inaugurating
+best	->	piqued, biasing, sportsmanship, combatting, dobro
+greatest	->	hural, overshadowing, sanusi, auk, unwashed
+highest	->	weald, mattapan, coed, gadol, ventricles
+hottest	->	ropin, piscis, bloodedness, sweetest, midwinter
+largest	->	rivalling, shrubbery, danevirke, cocking, sanusi
+longest	->	timespan, pensionnat, rmaf, asuka, demagogue
+lowest	->	mattapan, weald, ashmont, substantiality, combustor
+luckiest	->	swordsmith, hilal, tailplane, textus, timepiece
+oldest	->	telo, judaean, baixa, kashima, gutnish
+quickest	->	unadorned, upswing, thwarting, timepiece, leftward
+sharpest	->	leftward, precipitous, amplifies, forecastle, ritornello
+simplest	->	unadorned, ktiv, upswing, grandest, timespan
+shortest	->	timespan, recreates, outro, byline, pensionnat
+slowest	->	glottis, hilal, twitch, civilizing, ccj
+smallest	->	shrubbery, inoculum, cocking, recreates, sanusi
+smartest	->	photocopier, photocell, lusitanians, cadaver, hazzan
+sweetest	->	puppets, dreaming, frog, thieves, finest
+tallest	->	asphalt, submerged, tallest, ashes, feet
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	semiarid, blooded, temperate, climates, subtropical
+weakest	->	militarily, bald, weakness, rear, rigid
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	kilometers, coastline, miles, extending, kilometres
+youngest	->	youngest, hunter, virtuous, fellow, freemasons
+worst	->	funny, horrors, cradle, worst, minds
+biggest	->	biggest, cradle, touring, rat, champions
+brightest	->	nebulae, brightest, remnants, brighter, specimen
+coldest	->	explosions, veterans, blooded, balkans, continuation
+coolest	->	semiarid, evenings, cockpit, temperate, subtropical
+darkest	->	continuation, colored, ashes, primordial, remnants
+easiest	->	minds, appreciated, accessible, visually, guess
+fastest	->	fastest, paced, battleships, sight, slower
+best	->	thing, minds, deeds, sight, wrong
+greatest	->	wessex, greatest, disappearance, purges, minds
+highest	->	highest, lower, ranking, level, higher
+hottest	->	fermenting, shelves, semiarid, boomerang, humid
+largest	->	portion, smallest, handful, vast, largest
+longest	->	longest, fifty, thirty, forty, fifteen
+lowest	->	highest, lower, melting, altitude, concentrations
+luckiest	->	scream, injured, idiots, hardest, finest
+oldest	->	remnants, oldest, ruins, temple, parthenon
+quickest	->	forthcoming, visually, sight, simplifying, drivers
+sharpest	->	fastest, trailing, teeth, shift, differentiating
+simplest	->	readable, stranded, stages, lightweight, simplest
+shortest	->	longest, nineteen, ashes, continuation, novels
+slowest	->	fastest, slower, slowed, eliminated, eroded
+smallest	->	portion, smallest, vessels, handful, smaller
+smartest	->	paladin, homeless, wicked, thieves, chambered
+strangest	->	minds, fables, cradle, martian, tale
+tallest	->	eemian, rhinemaidens, matchlock, areopagite, carolines
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	anl, samogitia, ard, uweinat, wadden
+weakest	->	octonions, erosive, tni, anl, vvs
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	hispanica, anl, dimming, dmz, ccj
+youngest	->	anl, monophysites, mayans, greening, aryl
+worst	->	samogitia, wirtschaftswunder, yazidism, anl, airdrop
+biggest	->	dipper, anl, att, whitefish, foetus
+brightest	->	seedling, inhumans, rhinemaidens, anl, ccj
+coldest	->	anl, minbari, samogitia, tepe, moslems
+coolest	->	airdrop, eemian, anl, haba, volkskammer
+darkest	->	inhumans, seedling, anl, ostmark, dumnonii
+easiest	->	ccj, depress, outro, tubulidentata, unready
+fastest	->	anl, chalumeau, bundelkhand, airdrop, ashmont
+best	->	airdrop, mayans, tubulidentata, uweinat, csce
+greatest	->	satavahana, tubulidentata, serengeti, hoysala, anl
+highest	->	chalumeau, ashmont, anl, magistracies, uweinat
+hottest	->	anl, airdrop, hamptons, ard, wadden
+largest	->	colonizing, anl, octonions, starships, mandara
+longest	->	anl, eemian, asuka, mahabharat, hamptons
+lowest	->	plautdietsch, chalumeau, ashmont, anl, magistracies
+luckiest	->	jlp, unready, rcr, avg, kaw
+oldest	->	judaean, anl, ruusan, ostmark, clarino
+quickest	->	upswing, tubulidentata, smarteiffel, libration, dumnonii
+sharpest	->	anl, libration, rhinemaidens, chalumeau, leftward
+simplest	->	tubulidentata, upswing, airdrop, octonions, pbsuccess
+shortest	->	anl, nlds, asuka, mahabharat, eemian
+slowest	->	anl, samogitia, ccj, chalumeau, wayside
+smallest	->	anl, octonions, colonizing, mandara, tetranacci
+smartest	->	unready, dumbo, normals, haba, afdl
+strangest	->	reptites, northmen, pribilof, predominating, megamouth
+strongest	->	anl, fnl, octonions, noncommunist, irredenta
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	reservoir, atp, northeastern, slovakia, cold
+weakest	->	capitalist, vital, open, symmetric, socialism
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	open, free, world, country, creating
+youngest	->	society, third, beginner, founded, america
+worst	->	tomorrow, world, good, market, markets
+biggest	->	album, world, america, biggest, song
+brightest	->	crescent, star, brightest, chrono, free
+coldest	->	world, northeastern, reservoir, transition, open
+coolest	->	atp, oecd, warm, slovakia, hot
+darkest	->	world, darkness, formation, heavyweight, picture
+easiest	->	free, open, create, allows, documentation
+fastest	->	market, steady, fastest, world, open
+best	->	free, world, open, keeping, market
+greatest	->	world, part, nation, america, whole
+highest	->	level, lower, levels, higher, highest
+hottest	->	reservoir, trance, usa, open, capitol
+largest	->	largest, building, market, small, portion
+longest	->	building, world, second, country, third
+lowest	->	high, level, prices, market, lower
+luckiest	->	skyscraper, neighbor, scream, penitent, tomorrow
+oldest	->	oldest, building, entered, third, world
+quickest	->	entry, documentation, open, hypercard, steady
+sharpest	->	steady, shift, groove, component, signature
+simplest	->	simplest, free, system, open, components
+shortest	->	final, second, complete, third, project
+slowest	->	steady, rapid, market, transition, industrialization
+smallest	->	largest, large, market, building, portion
+smartest	->	beginner, marmite, kit, startup, inc
+strangest	->	wherein, emergence, minds, creating, micronesia
+strongest	->	economy, world, market, independent, policy
+sweetest	->	trance, puppets, capitol, cider, fair
+warmest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+weakest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+weirdest	->	WORDS tastiest, weirdest ARE NOT IN VOCABULARY!
+widest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+youngest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+worst	->	WORDS tastiest ARE NOT IN VOCABULARY!
+biggest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+brightest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+coldest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+coolest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+darkest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+easiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+fastest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+best	->	WORDS tastiest ARE NOT IN VOCABULARY!
+greatest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+highest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+hottest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+largest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+longest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+lowest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+luckiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+oldest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+quickest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+sharpest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+simplest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+shortest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+slowest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+smallest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+smartest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+strangest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+strongest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+sweetest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+tallest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+weakest	->	leftrightarrow, arrhenius, neuter, sqrt, ciconiiformes
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	median, annum, nanometres, skylark, kilowatt
+youngest	->	gestational, hyborian, availabilitymales, marriageable, orchid
+worst	->	tycoon, hundredth, armageddon, showa, koyaanisqatsi
+biggest	->	tycoon, orchid, heisei, installment, tick
+brightest	->	orchid, mira, anomalistic, linn, coolest
+coldest	->	anomalistic, olden, exilic, ordovician, hottest
+coolest	->	hottest, coldest, coolest, synodic, chrysanthemum
+darkest	->	showa, orchid, armageddon, hottest, wettest
+easiest	->	accumulator, unclaimed, opcode, preview, keyword
+fastest	->	putney, installment, weekday, permian, yen
+best	->	tycoon, increment, unclaimed, keyword, bye
+greatest	->	pala, songhai, tlatoani, majapahit, transfiguration
+highest	->	diameters, hottest, thirtieth, coed, coldest
+hottest	->	coldest, hottest, synodic, coolest, equinox
+largest	->	rossby, iterations, abbe, installment, normalised
+longest	->	gestation, incubation, synodic, anomalistic, month
+lowest	->	hottest, diameters, coldest, thirtieth, rate
+luckiest	->	hundredth, sopranos, fixer, kbe, unclaimed
+oldest	->	orchid, wettest, coolest, etonians, gupta
+quickest	->	keyword, installment, staggered, gnaeus, proleptic
+sharpest	->	jis, qquad, aleph, sqrt, yx
+simplest	->	installment, pseudocode, curried, disclaimer, keyword
+shortest	->	installment, hottest, showa, wheelbase, tycoon
+slowest	->	exilic, permian, triassic, ordovician, interglacial
+smallest	->	rossby, abbe, wettest, normalised, tycoon
+smartest	->	sopranos, giga, quadra, tycoon, neue
+strangest	->	hundredth, orchid, tycoon, cthulhu, showa
+strongest	->	exilic, limousine, courting, increment, turbidity
+sweetest	->	tycoon, hundredth, arb, xxxvii, linn
+tallest	->	centimeter, hyborian, quadra, synodic, amartya
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	scenic, apogee, widest, stretch, shoreline
+youngest	->	fame, muppet, trek, globe, hosts
+worst	->	muppet, destination, tonight, echoes, airs
+biggest	->	biggest, dipper, lebowski, muppet, skyway
+brightest	->	spangled, brightest, scenic, photographic, trek
+coldest	->	snaps, nostrils, usgs, noaa, pretoria
+coolest	->	countdown, batmobile, enlarging, cotswolds, steer
+darkest	->	horizon, disneyland, globe, brightest, spangled
+easiest	->	renaming, destination, cotswolds, accessible, linking
+fastest	->	stevenage, stretch, muppet, undersea, fastest
+best	->	destination, muppet, showing, show, airs
+greatest	->	renaming, mackinac, waterway, inland, biggest
+highest	->	peak, kitt, elevated, widest, premiere
+hottest	->	disneyland, vacation, deepest, cotswolds, beaches
+largest	->	sunken, skyscrapers, inland, biggest, huge
+longest	->	longest, stretch, awaited, journeys, miles
+lowest	->	widest, peak, kitt, narrowest, deepest
+luckiest	->	muppet, misses, disneyland, circumnavigate, pleasuredome
+oldest	->	trafford, ketuvim, muppet, revision, ruins
+quickest	->	linking, enlarging, destination, revision, keepers
+sharpest	->	menai, widest, deepest, zenith, corridor
+simplest	->	postseason, topographic, pstn, linking, link
+shortest	->	journeys, longest, stretch, globe, postseason
+slowest	->	stretch, turnaround, undersea, escalator, upgrading
+smallest	->	sunken, inland, skyscrapers, largest, biggest
+smartest	->	muppet, deepwater, undersea, sunken, batmobile
+strangest	->	muppet, untold, atlantis, fables, fantastic
+strongest	->	biggest, attractions, widest, theme, tourist
+sweetest	->	disneyland, deepwater, muppet, opens, arbor
+tallest	->	mackinac, moonlight, cantilever, journeys, skyscrapers
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	steer, nostrils, enlarging, stretch, waterway
+widest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+youngest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+worst	->	WORDS weirdest ARE NOT IN VOCABULARY!
+biggest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+brightest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+coldest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+coolest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+darkest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+easiest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+fastest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+best	->	WORDS weirdest ARE NOT IN VOCABULARY!
+greatest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+highest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+hottest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+largest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+longest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+lowest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+luckiest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+oldest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+quickest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+sharpest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+simplest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+shortest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+slowest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+smallest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+smartest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+strangest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+strongest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+sweetest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+tallest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+tastiest	->	WORDS weirdest, tastiest ARE NOT IN VOCABULARY!
+warmest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+weakest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+youngest	->	heir, gaze, shechem, pergamum, expectancy
+worst	->	godesberg, happening, evident, scary, subjectivity
+biggest	->	narrowest, rallying, northernmost, lebowski, brightest
+brightest	->	brightness, silvery, brightest, faint, luster
+coldest	->	congestion, hammersmith, inertness, heyday, windy
+coolest	->	coldest, heaviest, brew, dusty, wetter
+darkest	->	brightest, silvery, depiction, brightness, narrowest
+easiest	->	ascertain, appreciate, impossible, quantify, pinpoint
+fastest	->	paced, supersonic, standings, southerly, rallying
+best	->	obvious, broadest, premises, idealism, evident
+greatest	->	peril, schism, utmost, northernmost, idealism
+highest	->	narrowest, potency, saturation, alarming, midpoint
+hottest	->	reservoir, deepest, heaviest, superfluid, apex
+largest	->	smallest, narrowest, northernmost, heyday, courtyard
+longest	->	narrowest, moment, midpoint, heyday, apparent
+lowest	->	narrowest, potency, saturation, reactivity, alarming
+luckiest	->	presumptive, duckling, nemesis, unknowable, misses
+oldest	->	midpoint, survives, lusitania, elizabethan, trafford
+quickest	->	insignificant, bloodshed, humiliating, imminent, inaccuracy
+sharpest	->	odour, narrowest, shift, focal, swings
+simplest	->	deciphering, defining, logical, contradiction, assignment
+shortest	->	narrowest, midpoint, silent, goldfinger, moment
+slowest	->	slowest, stabilizing, congestion, rotational, reverses
+smallest	->	smallest, northernmost, narrowest, heyday, prevails
+smartest	->	crewe, confess, poke, hammersmith, paced
+strangest	->	grandeur, landfall, subjectivity, occurrence, absurd
+strongest	->	odour, apparent, idealism, noticeable, narrowest
+sweetest	->	chao, tasting, brew, subjectivity, rohypnol
+tallest	->	midpoint, kenilworth, deepest, pentagram, croft
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	heaviest, apex, tropics, solstice, makkah
+weakest	->	odour, disbelief, contradiction, gradient, proportionality
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+worst	->	fate, thing, intentions, premises, happiness
+biggest	->	biggest, lebowski, cup, winner, bb
+brightest	->	specimen, brightest, banner, destination, spangled
+coldest	->	syllable, stake, chisel, heaviest, warm
+coolest	->	coldest, wet, dry, warm, hottest
+darkest	->	heavyweight, fantastic, lightest, champion, devoid
+easiest	->	destination, accessible, ascertain, safe, feasible
+fastest	->	fastest, ninth, eighth, premises, stake
+best	->	thing, premises, neighbor, fate, keeping
+greatest	->	sixth, triumph, grandson, tenth, keeper
+highest	->	highest, lower, level, ranking, lowest
+hottest	->	heaviest, dry, wet, reservoir, humid
+largest	->	smallest, largest, size, container, vast
+longest	->	longest, twenty, syllable, last, quarter
+lowest	->	lowest, highest, lower, stake, level
+luckiest	->	scream, norma, neighbor, penitent, idiots
+oldest	->	oldest, surviving, revision, fourth, sixth
+quickest	->	scheduling, satisfactory, unanimous, timing, definitive
+sharpest	->	signatures, denominator, apex, supplier, quotation
+simplest	->	simplest, assignment, valid, paragraph, document
+shortest	->	longest, consecutive, syllable, fifth, nineteen
+slowest	->	stake, fastest, slower, signaled, affecting
+smallest	->	smallest, largest, container, size, large
+smartest	->	luxury, crm, trophy, container, wicked
+strangest	->	fate, fantastic, marlborough, peerage, crazy
+strongest	->	position, vital, strongest, representative, objective
+sweetest	->	joker, bankruptcy, privy, livy, pleas
+tallest	->	suspension, inches, arch, feet, metres
+tastiest	->	WORDS tastiest ARE NOT IN VOCABULARY!
+warmest	->	wet, humid, dry, heaviest, cool
+weakest	->	subordinate, wielding, lightest, factorization, operational
+weirdest	->	WORDS weirdest ARE NOT IN VOCABULARY!
+widest	->	breadth, longest, passing, losing, lowest

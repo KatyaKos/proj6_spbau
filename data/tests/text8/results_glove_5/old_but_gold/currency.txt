@@ -1,0 +1,868 @@
+Number of top1 is 22 out of 596 (3%)
+Number of top5 is 54 out of 596 (9%)
+kwanza	->	cumberland, rpc, vaulted, acme, kwanza
+peso	->	labelling, lecompton, captures, mamluk, fief
+dram	->	teletype, dispersive, tramway, quinine, idolatry
+real	->	exxon, mobil, valdez, radon, spill
+lev	->	antimatter, dissolves, turbine, amend, candle
+riel	->	secretion, cosgrave, sihanouk, rouge, derg
+dollar	->	telecom, corporation, motors, amend, exxon
+kuna	->	braking, antimatter, dissolves, outlaws, humus
+krone	->	krone, visigothic, antimatter, jordanian, glue
+euro	->	power, expanding, emerging, iron, exxon
+forint	->	visigothic, dissolved, mamluk, dissolves, bavaria
+rupee	->	reactor, reactors, visigothic, bombay, mobil
+rial	->	hedeby, reactor, tehran, jordanian, iraqi
+yen	->	reactor, visigothic, saab, fuel, reactors
+won	->	telecom, jordanian, malaysian, reactor, rhodesia
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	antimatter, outlaws, visigothic, geo, eesti
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	telecom, reactor, lumpur, sarawak, kuala
+peso	->	harford, exxon, brundtland, colchester, renamed
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	visigothic, abolishes, prussia, tsar, vasa
+leu	->	dissolves, wanderer, juice, abolishes, blossom
+ruble	->	spill, ussr, exxon, dissolved, valdez
+krona	->	krone, visigothic, krona, norway, hague
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	springfield, harford, delaware, canton, abingdon
+dong	->	rifle, mcpherson, harford, kriegsmarine, iraqi
+peso	->	rodr, guez, mati, krona, aam
+dram	->	sx, karamanlis, krona, fionn, constantine
+real	->	rodr, krona, guez, groot, kia
+lev	->	hobbit, bowell, dams, karamanlis, teutons
+riel	->	cosgrave, teutons, tarquin, quadra, mccormick
+dollar	->	blair, ontario, tyndall, tony, holden
+kuna	->	theodosius, lorraine, gator, lg, sx
+krone	->	krona, theodosius, tarquin, crowned, vasa
+euro	->	introduced, krona, replaced, millennium, abandoned
+forint	->	forint, theodosius, mati, karamanlis, krona
+rupee	->	dynasty, voc, replaced, blair, ming
+rial	->	hedeby, sabah, ming, lla, powerpc
+yen	->	harrier, krona, emperor, romanus, blair
+won	->	quadra, blair, ming, krona, trevelyan
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	litas, forint, krona, pegged, mati
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	holden, cosworth, blair, abrams, kittyhawk
+peso	->	mati, guadalajara, rodr, guez, teotihuacan
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	krona, mati, forint, vernius, villi
+leu	->	forint, mati, tarquin, nicholas, krona
+ruble	->	mati, tsar, forint, nicholas, theodosius
+krona	->	krona, gator, crowned, ives, balrog
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	anz, giants, carly, harpercollins, buffalo
+dong	->	mati, guez, rodr, stanton, xf
+dinar	->	mati, dinar, forint, overrun, jumo
+dram	->	ware, lactam, convertible, internazionale, gaetano
+real	->	mazda, arturo, ahura, srpska, chilean
+lev	->	convertible, nicolaus, purify, srpska, copernicus
+riel	->	secretion, teutons, hewlett, gto, toussaint
+dollar	->	telecom, motors, jersey, toronto, corporation
+kuna	->	stradella, suri, krajina, fudge, mellin
+krone	->	convertible, kittyhawk, kw, gupta, daedalus
+euro	->	merger, emerging, trend, converted, emergence
+forint	->	zaire, qing, overthrow, overthrown, dinar
+rupee	->	rupee, fatimid, bombay, gupta, abbasid
+rial	->	baghdad, intifada, sabah, fatimid, aqsa
+yen	->	abbasid, gupta, launcher, secretion, fatimid
+won	->	yew, fatimid, afghani, malaysia, abbasid
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	mordor, convertible, dinar, teutons, lefebvre
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	lumpur, kuala, telecom, secretion, yew
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	dinar, ignatius, gupta, ware, cpk
+leu	->	juice, karmal, nicolaus, larissa, zaire
+ruble	->	merger, dinar, mobil, gorbachev, ussr
+krona	->	saab, venizelos, kw, daedalus, envisioned
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	motors, newark, telecom, springfield, harcourt
+dong	->	zimbabwean, secretion, yew, docherty, abrams
+dinar	->	ware, dinar, lefebvre, avars, chechen
+kwanza	->	kwanza, mauritian, platter, balaam, burundian
+real	->	champ, janeiro, sdram, packers, paraguay
+lev	->	flashing, champ, decayed, philippians, geostationary
+riel	->	khmer, maori, sdram, galaxy, kalevala
+dollar	->	chips, champ, passenger, car, packers
+kuna	->	decayed, champ, cores, gba, sdram
+krone	->	lm, screened, acetylene, taurus, decayed
+euro	->	start, champ, rover, cars, grow
+forint	->	lm, decayed, chips, assemble, dymaxion
+rupee	->	champ, rover, packers, playoffs, repair
+rial	->	sequencing, rescue, genome, lm, bomb
+yen	->	rover, champ, motorcycles, car, cars
+won	->	vietnamese, elephants, champ, sdram, lm
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	decayed, champ, pandas, nearer, freighter
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	lola, lm, spiral, colt, kuala
+peso	->	champ, paraguay, sdram, champlain, nez
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	ethelred, champ, roses, kazimierz, solferino
+leu	->	packers, champ, ingress, chips, decayed
+ruble	->	packers, champ, start, utc, decayed
+krona	->	dig, screened, chips, livin, champ
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	champ, packers, galaxy, car, fenway
+dong	->	champ, roses, galaxy, automatic, vietnamese
+dinar	->	decayed, champ, komodo, flipping, sdram
+kwanza	->	sdram, champ, decayed, nucleotides, armada
+peso	->	champ, paraguay, armada, jong, sdram
+lev	->	closure, algebra, complex, algebraic, ideal
+riel	->	functions, function, exponential, valued, violence
+dollar	->	given, same, example, particular, for
+kuna	->	closure, algebraic, complex, continuous, underlying
+krone	->	relation, closure, numbers, given, operator
+euro	->	set, time, number, thus, particular
+forint	->	closure, relation, set, numbers, algebraic
+rupee	->	function, set, rational, functions, kind
+rial	->	rational, function, complex, algebraic, functions
+yen	->	set, complex, given, time, since
+won	->	rational, complex, functions, operator, linear
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	set, numbers, relation, closure, complex
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	rational, operator, primitive, complex, computation
+peso	->	complex, function, x, every, another
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	numbers, complex, set, algebraic, rational
+leu	->	closure, relation, negative, odd, numbers
+ruble	->	set, numbers, complex, relation, way
+krona	->	complex, numbers, relation, given, set
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	p, every, york, v, where
+dong	->	begin, rational, shooting, shot, scalar
+dinar	->	imaginary, closure, algebraic, numbers, rational
+kwanza	->	arbitrary, sets, function, set, numbers
+peso	->	arbitrary, given, numbers, set, if
+dram	->	operator, closure, infinity, algebraic, vector
+riel	->	gur, iverson, vipsanius, najibullah, rohmer
+dollar	->	settler, cooper, journalist, born, d
+kuna	->	vygotsky, zagreb, paolo, giacomo, sided
+krone	->	nos, erubin, eduard, bernstein, thory
+euro	->	invented, century, settler, immigrants, russian
+forint	->	eduard, lendl, nyi, hungarian, anton
+rupee	->	salinger, gutierrez, preston, tms, invented
+rial	->	susa, ruby, ghraib, oswald, harrelson
+yen	->	pottery, crash, japanese, b, neolithic
+won	->	stadler, vietnamese, korean, schultz, mccune
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	petrovich, rau, abdera, mikhail, rouble
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	pickup, dionysius, weiner, lipi, atwater
+peso	->	ipswich, gutierrez, andres, destructor, antonio
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	petrovich, qasim, lendl, feodor, ing
+leu	->	vygotsky, petrovich, lendl, giacomo, rau
+ruble	->	cooper, pier, petrovich, sr, russian
+krona	->	ttingen, erubin, chemist, psychiatrist, laureate
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	doc, todd, cooper, morley, jr
+dong	->	remick, cal, annabel, nigel, oswald
+dinar	->	gutierrez, watercolor, botticelli, collet, giacomo
+kwanza	->	gutierrez, felice, keno, luanda, bolling
+peso	->	conquistador, bussy, baresi, buenos, keno
+dram	->	operand, davidovich, collet, wiles, finkel
+real	->	abol, leonhard, carvalho, salinger, bassi
+dollar	->	quebec, ontario, manitoba, louis, saint
+kuna	->	theorist, jacques, couturat, lock, lacan
+krone	->	couturat, schweitzer, louis, tudor, purcell
+euro	->	settled, louis, century, england, was
+forint	->	louis, couturat, archduke, austria, schweitzer
+rupee	->	manitoba, onwards, province, century, recalled
+rial	->	clinic, requested, naples, paleontology, gauss
+yen	->	louis, charles, returned, england, was
+won	->	deserted, recalled, invited, wellesley, requested
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	summoned, unsure, louis, bruno, ascertain
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	manitoba, newfoundland, holden, wellesley, macdonald
+peso	->	louis, ghent, missouri, orleans, buenos
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	louis, warsaw, agassiz, summoned, xvi
+leu	->	couturat, normandy, ghent, halle, agassiz
+ruble	->	louis, petersburg, agassiz, returned, occasion
+krona	->	louis, schweitzer, pasteur, somerset, agassiz
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	missouri, gehrig, orleans, hall, louis
+dong	->	wounded, montgomery, urged, mortally, executed
+dinar	->	milestone, isidore, louis, lussac, fielding
+kwanza	->	luanda, milestone, deserted, marius, fielding
+peso	->	buenos, aires, louis, presley, seville
+dram	->	lydia, theorist, papacy, agassiz, seville
+real	->	louis, giovanni, agassiz, pierre, jacques
+lev	->	summoned, lacan, barnabas, apprenticed, liszt
+kuna	->	squeeze, guatemalan, archiepiscopal, szabo, raises
+krone	->	fy, ninja, jordanian, bermuda, iceland
+euro	->	currency, currencies, coins, lengths, euro
+forint	->	fy, jadwiga, pharaoh, expenditures, magyars
+rupee	->	china, cart, traverse, solomon, gaza
+rial	->	iraq, kuwait, libyan, pyramids, syria
+yen	->	expenditures, japanese, china, fy, billion
+won	->	kana, vietnamese, crossbow, taiwanese, fy
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	estonians, totalling, multimillion, flips, currencies
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	multimillion, brunei, traverse, modernized, bermuda
+peso	->	peru, peso, paraguay, ecuador, panama
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	fy, roses, tsar, jadwiga, handing
+leu	->	jadwiga, denominated, socks, skopje, enoch
+ruble	->	tsarist, liu, tsar, iraq, kuwait
+krona	->	fy, krona, sheikh, ninja, usd
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dong	->	zimbabwean, roses, russo, kilometer, rz
+dinar	->	algerian, chechen, fy, boycotts, ton
+kwanza	->	zimbabwean, socks, ton, unita, cowl
+peso	->	ton, fy, quijote, zs, venezuela
+dram	->	nagorno, banknote, fy, karabakh, criminality
+real	->	quijote, ecuador, expenditures, bolivia, multimillion
+lev	->	liu, totalling, ismail, pharaoh, montenegro
+riel	->	sheng, liu, piers, ish, fy
+krone	->	krona, krone, denominated, forint, ell
+euro	->	smithfield, profits, krona, rates, expulsions
+forint	->	forint, krona, laxness, taunting, tarquin
+rupee	->	smithfield, pucker, shed, offseason, impacting
+rial	->	riyadh, ghraib, dinars, nucleophile, spiritus
+yen	->	krona, pucker, tickets, cbr, odic
+won	->	smithfield, cbr, hoplites, fdi, intravenously
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	forint, medallist, robbe, denominated, litas
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	sanader, denominated, dinars, iz, davidson
+peso	->	leeuwarden, managua, kidding, manzanillo, lima
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	krona, forint, taunting, monopsony, wielkopolska
+leu	->	forint, denominated, taunting, communaute, mathematiker
+ruble	->	forint, hyakutake, monopsony, repeaters, kidding
+krona	->	krona, balrog, ell, denominated, kidding
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	centimes, nc, peotone, chivas, aston
+dong	->	fdi, mozambicans, amaterasu, hedges, musume
+dinar	->	jubilant, taunting, cot, hoplites, inflows
+kwanza	->	datamation, appending, cleve, pavane, letterboxed
+peso	->	jeunesse, pron, cashed, leeuwarden, denominated
+dram	->	monopsony, xchat, esdi, communaute, pirouette
+real	->	sao, jeunesse, denominated, cleve, leeuwarden
+lev	->	signifies, denominated, compulsive, schemas, bridgetown
+riel	->	amarna, capito, millilitres, dinars, booklets
+dollar	->	centimes, cents, centavos, smithfield, psp
+euro	->	jewry, european, migration, seizes, imperialism
+forint	->	seizes, bau, sverdrup, albers, barzani
+rupee	->	seizes, rupee, voc, bengal, acquisition
+rial	->	varicella, jaber, bani, carcinoma, iranian
+yen	->	seizes, japanese, tokugawa, shogun, automobile
+won	->	edsger, blubba, ati, dlp, seoul
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	lietuvos, litas, lithuanian, suvorov, sverdrup
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	ricardian, photonics, kusachu, baskervilles, pella
+peso	->	manzanillo, aves, inadvertent, lima, tamaulipas
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	feodor, seizes, sverdrup, nikolaevich, elis
+leu	->	zhen, aus, loudun, escu, feodor
+ruble	->	seizes, ussr, ruble, borisovich, ivanovich
+krona	->	krona, norsk, bos, protista, swedish
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	aston, batsford, abingdon, georgetown, centimes
+dong	->	essaios, shigeru, reinstate, comanche, vietnamese
+dinar	->	basov, inflows, ruble, tunisian, boycotts
+kwanza	->	beac, rusyn, lingala, unattached, barreto
+peso	->	argentine, biophysicist, ola, grandes, peugeot
+dram	->	azeri, cherenkov, heindel, mazovia, annuity
+real	->	brazilian, paulo, seizes, aranese, kusachu
+lev	->	hasse, nureyev, belarusian, leonid, nachrichten
+riel	->	khmer, mechagodzilla, bau, ferrero, logische
+dollar	->	shareholders, canadian, newtons, halifax, xcd
+kuna	->	hasse, pekka, ema, prokofiev, serbo
+forint	->	lowry, jadwiga, franc, addis, retractable
+rupee	->	bombay, dollar, currency, chan, fiscal
+rial	->	eur, schechter, euros, ghraib, pence
+yen	->	dollar, currency, francs, absinthe, coin
+won	->	congolese, eur, taiwanese, franc, pallas
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	banknotes, kroon, triplets, pegged, kilobyte
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	srpska, penang, dollar, hilda, telecom
+peso	->	francs, peso, franc, herald, panama
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	aug, kilobyte, banknotes, franc, jadwiga
+leu	->	aquarius, larissa, rafter, banknotes, bayonet
+ruble	->	currency, banknotes, nicaraguan, franc, pegged
+krona	->	krona, kilobyte, francs, antoinette, banknotes
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	curling, newsweek, canton, moody, herald
+dong	->	zimbabwean, rafter, pallas, yen, sprint
+dinar	->	franc, banknotes, boycotts, lefebvre, lussac
+kwanza	->	franc, burundian, felice, sil, lefebvre
+peso	->	francs, franc, aires, buenos, peso
+dram	->	lulu, advertiser, psv, lowry, mathilde
+real	->	francs, fips, sil, earnings, fausto
+lev	->	triplets, larissa, moldova, sil, earnings
+riel	->	prescriptions, issuance, leucine, vulcan, serine
+dollar	->	dollar, francs, curling, ottawa, currency
+kuna	->	lowry, nsc, nsted, bahamian, guatemalan
+krone	->	krone, lowry, nsted, sil, splitflag
+rupee	->	polynesians, ajay, commandeered, thrintun, lafon
+rial	->	scp, jaber, gsc, yala, remodeled
+yen	->	hutchison, pataca, shimbun, eemian, disastrously
+won	->	gwen, promethea, shoku, bambang, koreas
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	shirov, huf, indict, gelt, gracefully
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	koreas, shader, gwen, stansfield, vulcain
+peso	->	tortugas, manzanillo, leeuwarden, tob, retour
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	joden, spohr, ainsworth, brownie, hanimex
+leu	->	shirov, nmbs, vyborg, bellagio, pappy
+ruble	->	yelena, ainsworth, studd, disastrously, shirov
+krona	->	balrog, src, krona, roissy, kirjasto
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	chivas, batsford, ttt, samphan, peotone
+dong	->	gwen, badius, ntr, xorn, bahamonde
+dinar	->	shirov, rdr, irresistibly, cronje, topps
+kwanza	->	lynette, pillared, vestibules, quale, crossley
+peso	->	jeunesse, disastrously, gossage, choo, gwen
+dram	->	nue, carath, colloquy, hayastan, odory
+real	->	jeunesse, choo, bueno, gondi, weert
+lev	->	shirov, smarteiffel, vyborg, oxfam, brenly
+riel	->	reusability, xg, lique, nair, plaut
+dollar	->	ngaio, juliane, millenium, litmus, guilder
+kuna	->	interlace, udt, herrn, vyborg, ryzhkov
+krone	->	shimbun, mpt, balrog, subs, fairford
+euro	->	evicted, mtbe, fata, disastrously, isnads
+rial	->	zeeuws, osiraq, iee, dimitrov, ossification
+yen	->	paleocene, ishihara, molding, nepalese, ashikaga
+won	->	shakuhachi, schottky, ayawaska, winchilsea, ingushetia
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	azl, lefebvre, schutzmannschaft, gmc, lietuvos
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	ringgit, ricardian, schottky, gyro, daf
+peso	->	rogan, ncc, tamaulipas, toto, tampico
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	cioran, feodor, conmebol, lrt, petrovich
+leu	->	leos, cioran, mazurka, paderewski, magnesia
+ruble	->	ivanovich, ruble, rubidium, gagarin, timoshenko
+krona	->	devlin, surinam, bos, toto, schofield
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	gyro, chivas, ladd, baddeley, madox
+dong	->	shakuhachi, steamship, viet, remick, ayawaska
+dinar	->	topps, radiochemistry, lefebvre, erick, basov
+kwanza	->	joubert, kwun, coverdale, expansionists, nook
+peso	->	cahn, ayawaska, toto, guilbert, lehmer
+dram	->	reni, thurrock, iee, cedi, joiner
+real	->	ashok, chand, nate, renfro, aleandro
+lev	->	suri, pekka, tensas, leos, viswanathan
+riel	->	swiftness, millar, dusky, shakuhachi, coldness
+dollar	->	telecom, ricardian, nims, petro, benguela
+kuna	->	pekka, hydrostatics, suri, cubical, havok
+krone	->	royalists, ricardian, kupa, baddeley, smoot
+euro	->	godf, anabaptists, eugenicists, battleships, rinks
+forint	->	koruna, leos, cathal, pillows, rubidium
+yen	->	fairlight, crone, promoters, bestsellers, chiba
+won	->	crone, usha, bemba, beatmatching, kanuri
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	cycnus, farrakhan, jogaila, yellows, gelt
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	crone, universiti, kitakyushu, nordheim, myasthenic
+peso	->	tamaulipas, guadalajara, jalisco, virginis, bestsellers
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	ginzberg, mandelson, macarius, leconte, ellicott
+leu	->	kahana, cycnus, macrobius, ninlil, mazurka
+ruble	->	mandelson, nazaire, hanimex, macarius, salla
+krona	->	ginzberg, farrakhan, yong, kahana, monazite
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	chivas, plattsburgh, zealander, farrar, thyroxine
+dong	->	jang, bahamonde, wald, ermey, remick
+dinar	->	bestsellers, cycnus, isolde, lindahl, yellows
+kwanza	->	lindahl, ileus, cowl, conses, linton
+peso	->	orozco, tamaulipas, astruc, qian, hug
+dram	->	meknes, mitsotakis, mercier, deliciosa, thurrock
+real	->	virginis, delibes, nuestra, tamaulipas, hug
+lev	->	macrobius, yellows, emeric, soleri, kahana
+riel	->	dietz, lude, xg, hasdai, millar
+dollar	->	mobsters, areola, sabinus, malo, oshawa
+kuna	->	hypertransport, turkle, emeric, mazurka, deliciosa
+krone	->	renz, applebaum, trintignant, ginzberg, mitsotakis
+euro	->	ashkenazim, mobsters, sephardim, bestsellers, deltas
+forint	->	cycnus, mitsotakis, polgar, iiis, ginzberg
+rupee	->	taoists, gastronomy, crone, hawkesbury, shingon
+won	->	zvi, chung, nguyen, sheng, atzma
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	sheng, ilya, naturel, diphosphate, thz
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	atzma, sheng, headless, chung, seung
+peso	->	ut, muluki, venezuela, atzma, mes
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	chia, myra, aw, rhein, lat
+leu	->	chia, lat, carn, aj, rwanda
+ruble	->	alexei, chia, wissenschaften, ut, ilya
+krona	->	chia, ri, sw, jonas, lech
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	linden, blackwater, paulist, mellen, chia
+dong	->	nigel, nguyen, zvi, moshe, commutes
+dinar	->	chechen, boycotts, lem, baley, kov
+kwanza	->	coverdale, felice, unita, clerc, gregorio
+peso	->	quijote, guillermo, venezuela, osz, undaunted
+dram	->	hayastan, carn, lem, advertiser, abraded
+real	->	osz, sergio, quijote, paulo, bolivia
+lev	->	briand, undaunted, chia, cowley, tzu
+riel	->	sheng, bao, undaunted, koo, sollima
+dollar	->	ina, yosef, notre, advertiser, usd
+kuna	->	cowley, kov, decrypted, pehr, tupolev
+krone	->	jonas, pm, chia, ri, sheng
+euro	->	deutscher, tai, ut, zvi, crusaders
+forint	->	chia, albers, sheng, franti, nyi
+rupee	->	zvi, alb, moshe, sergio, rabbi
+rial	->	wei, eur, darfur, haifa, maghrib
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	votes, karpov, win, consecutive, wins
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	nfl, championship, win, winning, votes
+peso	->	winning, win, hit, election, success
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	win, votes, winning, winner, wins
+leu	->	votes, sampras, karpov, beatles, win
+ruble	->	lost, win, losing, again, despite
+krona	->	winning, winner, win, wins, match
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	club, win, winning, record, league
+dong	->	winning, victories, win, victory, losing
+dinar	->	winning, wins, consecutive, hit, win
+kwanza	->	winning, votes, grammy, hit, voted
+peso	->	winning, win, winner, grammy, wins
+dram	->	votes, mvp, elvis, hit, grammy
+real	->	winning, win, ever, winner, wins
+lev	->	votes, karpov, victories, mussolini, winning
+riel	->	victories, winning, election, beating, win
+dollar	->	winning, votes, record, ever, win
+kuna	->	sampras, metallica, agassi, wins, singles
+krone	->	wins, winner, match, winning, win
+euro	->	winning, record, success, ever, lost
+forint	->	wins, win, votes, again, winning
+rupee	->	record, lost, success, played, winning
+rial	->	took, winning, drew, record, lost
+yen	->	win, ever, success, record, winning
+litas	->	WORDS lats ARE NOT IN VOCABULARY!
+denar	->	WORDS lats, denar ARE NOT IN VOCABULARY!
+ringgit	->	WORDS lats ARE NOT IN VOCABULARY!
+peso	->	WORDS lats ARE NOT IN VOCABULARY!
+naira	->	WORDS lats, naira ARE NOT IN VOCABULARY!
+zloty	->	WORDS lats ARE NOT IN VOCABULARY!
+leu	->	WORDS lats ARE NOT IN VOCABULARY!
+ruble	->	WORDS lats ARE NOT IN VOCABULARY!
+krona	->	WORDS lats ARE NOT IN VOCABULARY!
+baht	->	WORDS lats, baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS lats, hryvnia ARE NOT IN VOCABULARY!
+dollar	->	WORDS lats ARE NOT IN VOCABULARY!
+dong	->	WORDS lats ARE NOT IN VOCABULARY!
+dinar	->	WORDS lats ARE NOT IN VOCABULARY!
+kwanza	->	WORDS lats ARE NOT IN VOCABULARY!
+peso	->	WORDS lats ARE NOT IN VOCABULARY!
+dram	->	WORDS lats ARE NOT IN VOCABULARY!
+real	->	WORDS lats ARE NOT IN VOCABULARY!
+lev	->	WORDS lats ARE NOT IN VOCABULARY!
+riel	->	WORDS lats ARE NOT IN VOCABULARY!
+dollar	->	WORDS lats ARE NOT IN VOCABULARY!
+kuna	->	WORDS lats ARE NOT IN VOCABULARY!
+krone	->	WORDS lats ARE NOT IN VOCABULARY!
+euro	->	WORDS lats ARE NOT IN VOCABULARY!
+forint	->	WORDS lats ARE NOT IN VOCABULARY!
+rupee	->	WORDS lats ARE NOT IN VOCABULARY!
+rial	->	WORDS lats ARE NOT IN VOCABULARY!
+yen	->	WORDS lats ARE NOT IN VOCABULARY!
+won	->	WORDS lats ARE NOT IN VOCABULARY!
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	chee, novus, nzd, kava, mnf
+peso	->	guadalajara, jalisco, remo, isabela, aam
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	latinus, obrenovi, bushmaster, asura, jumaada
+leu	->	latinus, tsiolkovsky, spagna, esv, tftp
+ruble	->	kiev, spagna, constantinople, microfilaments, obrenovi
+krona	->	krona, burren, zee, latinus, sclc
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	pasadena, peotone, carly, caedmon, smithsonian
+dong	->	remick, xsl, geddy, bombers, stol
+dinar	->	boycotts, shatt, hyakunin, klug, feminam
+kwanza	->	nordisk, kwanza, kreis, albeniz, caput
+peso	->	aam, epistola, groot, manzanillo, que
+dram	->	hayastan, fratres, akbarnama, artichoke, irs
+real	->	groot, oro, gaspar, montr, retour
+lev	->	ethiopic, galleria, patriarchate, aziz, akosombo
+riel	->	ectocervix, majilis, touma, atria, vergina
+dollar	->	ontario, beltane, newtons, chartered, tithes
+kuna	->	yazoo, itanium, ia, hyakunin, openstep
+krone	->	ectocervix, ductus, singhasari, krone, krona
+euro	->	ce, centuries, millennium, ad, originated
+forint	->	obrenovi, angevin, latinus, jumaada, expiry
+rupee	->	chim, ce, almohad, prepuce, lays
+rial	->	ghraib, jaber, aqsa, fratres, hijra
+yen	->	odic, vtol, ce, tenn, guppy
+won	->	watani, kashi, aqsa, koko, bani
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+ringgit	->	WORDS denar ARE NOT IN VOCABULARY!
+peso	->	WORDS denar ARE NOT IN VOCABULARY!
+naira	->	WORDS denar, naira ARE NOT IN VOCABULARY!
+zloty	->	WORDS denar ARE NOT IN VOCABULARY!
+leu	->	WORDS denar ARE NOT IN VOCABULARY!
+ruble	->	WORDS denar ARE NOT IN VOCABULARY!
+krona	->	WORDS denar ARE NOT IN VOCABULARY!
+baht	->	WORDS denar, baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS denar, hryvnia ARE NOT IN VOCABULARY!
+dollar	->	WORDS denar ARE NOT IN VOCABULARY!
+dong	->	WORDS denar ARE NOT IN VOCABULARY!
+dinar	->	WORDS denar ARE NOT IN VOCABULARY!
+kwanza	->	WORDS denar ARE NOT IN VOCABULARY!
+peso	->	WORDS denar ARE NOT IN VOCABULARY!
+dram	->	WORDS denar ARE NOT IN VOCABULARY!
+real	->	WORDS denar ARE NOT IN VOCABULARY!
+lev	->	WORDS denar ARE NOT IN VOCABULARY!
+riel	->	WORDS denar ARE NOT IN VOCABULARY!
+dollar	->	WORDS denar ARE NOT IN VOCABULARY!
+kuna	->	WORDS denar ARE NOT IN VOCABULARY!
+krone	->	WORDS denar ARE NOT IN VOCABULARY!
+euro	->	WORDS denar ARE NOT IN VOCABULARY!
+forint	->	WORDS denar ARE NOT IN VOCABULARY!
+rupee	->	WORDS denar ARE NOT IN VOCABULARY!
+rial	->	WORDS denar ARE NOT IN VOCABULARY!
+yen	->	WORDS denar ARE NOT IN VOCABULARY!
+won	->	WORDS denar ARE NOT IN VOCABULARY!
+lats	->	WORDS denar, lats ARE NOT IN VOCABULARY!
+litas	->	WORDS denar ARE NOT IN VOCABULARY!
+peso	->	princetown, groote, breaux, volney, ngazargamu
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	rmer, toulon, kazimierz, yeovil, theresienstadt
+leu	->	koktebel, desoto, dengue, emporis, vevey
+ruble	->	olga, petersburg, stormont, embankment, toulon
+krona	->	dunfermline, kew, vikrant, theresienstadt, collingwood
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	newstead, ascot, chivas, mcg, theresienstadt
+dong	->	hedges, cajamarca, septum, shoved, feigning
+dinar	->	dangling, topps, flautist, oran, priors
+kwanza	->	ernakulam, unita, datasets, lindahl, fixated
+peso	->	receptions, mirandola, blinking, mendeleyev, zechs
+dram	->	hayastan, dengue, interbase, embankment, nue
+real	->	interbase, guettard, vectrex, kilwinning, excl
+lev	->	bobbio, emporis, campsites, gatehouse, mathias
+riel	->	septum, swiftness, arrayed, brandywine, gegen
+dollar	->	petro, mcg, gunpoint, ascot, scoffed
+kuna	->	interbase, volos, rexford, emporis, embankment
+krone	->	kew, collingwood, mcg, hollies, kirkcaldy
+euro	->	lacuscurtius, gunpoint, magistracies, einsatzgruppen, scoffed
+forint	->	einsatzgruppen, desoto, forint, baudouin, lilienthal
+rupee	->	ascot, ketchum, sistine, hovering, bicycles
+rial	->	ghraib, pylos, atli, taklamakan, apaches
+yen	->	parked, hovering, ascot, lupercalia, gutter
+won	->	kirkcaldy, cantillation, angkor, nva, tholos
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	vikrant, watford, desoto, blinking, litas
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	taisho, charset, coded, gustaf, partitions
+leu	->	adopts, daffy, lefebvre, kibi, sugarcubes
+ruble	->	yuri, convertible, himmler, coded, adopts
+krona	->	ninja, gustaf, krona, rah, gollancz
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	tandy, jarrett, convertible, bray, saloon
+dong	->	zimbabwean, msm, rene, chen, shakuhachi
+dinar	->	lefebvre, chechen, coded, convertible, batavian
+kwanza	->	burundian, lefebvre, comorian, threaded, unita
+dram	->	convertible, lefebvre, darnell, gaetano, lactam
+real	->	chilean, coded, ub, lefebvre, bongo
+lev	->	convertible, lefebvre, suri, adopts, bulgarians
+riel	->	teutons, lombardo, remake, millar, minimi
+dollar	->	adopts, crtc, whisky, convertible, comorian
+kuna	->	lefebvre, suri, convertible, reinhardt, herzegovina
+krone	->	convertible, ninja, lefebvre, toho, kittyhawk
+euro	->	euro, avars, convertible, merger, strengthened
+forint	->	qing, convertible, lefebvre, overthrown, overthrow
+rupee	->	qing, rupee, manchu, gaiman, fatimid
+rial	->	intifada, taiwanese, yew, aqsa, shiite
+yen	->	qing, dalek, kai, toho, overthrown
+won	->	yew, chen, taiwanese, adopts, chong
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	lefebvre, convertible, gmc, teutons, bcd
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	adopts, convertible, srpska, yew, lumpur
+zloty	->	WORDS naira ARE NOT IN VOCABULARY!
+leu	->	WORDS naira ARE NOT IN VOCABULARY!
+ruble	->	WORDS naira ARE NOT IN VOCABULARY!
+krona	->	WORDS naira ARE NOT IN VOCABULARY!
+baht	->	WORDS naira, baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS naira, hryvnia ARE NOT IN VOCABULARY!
+dollar	->	WORDS naira ARE NOT IN VOCABULARY!
+dong	->	WORDS naira ARE NOT IN VOCABULARY!
+dinar	->	WORDS naira ARE NOT IN VOCABULARY!
+kwanza	->	WORDS naira ARE NOT IN VOCABULARY!
+peso	->	WORDS naira ARE NOT IN VOCABULARY!
+dram	->	WORDS naira ARE NOT IN VOCABULARY!
+real	->	WORDS naira ARE NOT IN VOCABULARY!
+lev	->	WORDS naira ARE NOT IN VOCABULARY!
+riel	->	WORDS naira ARE NOT IN VOCABULARY!
+dollar	->	WORDS naira ARE NOT IN VOCABULARY!
+kuna	->	WORDS naira ARE NOT IN VOCABULARY!
+krone	->	WORDS naira ARE NOT IN VOCABULARY!
+euro	->	WORDS naira ARE NOT IN VOCABULARY!
+forint	->	WORDS naira ARE NOT IN VOCABULARY!
+rupee	->	WORDS naira ARE NOT IN VOCABULARY!
+rial	->	WORDS naira ARE NOT IN VOCABULARY!
+yen	->	WORDS naira ARE NOT IN VOCABULARY!
+won	->	WORDS naira ARE NOT IN VOCABULARY!
+lats	->	WORDS naira, lats ARE NOT IN VOCABULARY!
+litas	->	WORDS naira ARE NOT IN VOCABULARY!
+denar	->	WORDS naira, denar ARE NOT IN VOCABULARY!
+ringgit	->	WORDS naira ARE NOT IN VOCABULARY!
+peso	->	WORDS naira ARE NOT IN VOCABULARY!
+leu	->	interlace, xaa, corozine, gamini, simh
+ruble	->	gamini, gaja, ducats, manindra, ntoskrnl
+krona	->	hutchison, yokohama, ffc, amarantine, gsc
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	csl, carly, chivas, clonaid, harpersanfrancisco
+dong	->	trofeo, atwater, textrm, gamini, thurmond
+dinar	->	gamini, ntoskrnl, xaa, chaddr, roundup
+kwanza	->	yougov, memento, gamini, cellpadding, ntoskrnl
+peso	->	kwanzas, hutchison, ffc, hallowicked, takers
+dram	->	westley, nampa, mostel, thump, awd
+real	->	kwanzas, gamini, nzd, ducats, rublei
+lev	->	ghosh, gsc, appr, mmend, stedman
+riel	->	dolan, trofeo, ntoskrnl, baltiysk, vdots
+dollar	->	nzd, ogle, clonaid, csl, cephalon
+kuna	->	ghosh, gamini, amarantine, mcginnis, interlace
+krone	->	hutchison, amarantine, rhus, wz, gsc
+euro	->	yiaddr, chaddr, thump, gamini, ecw
+forint	->	shoshi, landy, ntoskrnl, gamini, yiaddr
+rupee	->	glider, nzd, sponsors, trofeo, verisign
+rial	->	gsc, mmend, yiaddr, ogle, ntoskrnl
+yen	->	hutchison, nzd, gamini, pataca, hallowicked
+won	->	hideaki, cordobas, chaddr, yiaddr, gamini
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	gamini, chaddr, xaa, ntoskrnl, yiaddr
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	nzd, gsc, clonaid, ogle, mmend
+peso	->	ogle, trofeo, neoconservatism, cordobas, gamini
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+ruble	->	moldovan, orthography, replaced, london, uua
+krona	->	faroese, leucine, ori, krona, aise
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	msrp, zealander, york, caledonian, yorker
+dong	->	remick, liberian, ori, vietnamese, jock
+dinar	->	orthography, bemba, cornish, leucine, kwanza
+kwanza	->	kwanza, flamenco, fayette, cabo, tasker
+peso	->	cfa, esperanto, retour, peso, wolfhound
+dram	->	jmu, dinara, yougov, tuong, nontechnical
+real	->	esperanto, janeiro, phoneme, fayette, delibes
+lev	->	moldovan, lexicon, dia, cuc, orthography
+riel	->	leucine, assembl, ori, longman, jvm
+dollar	->	canadian, ontario, manx, kowloon, polynesia
+kuna	->	bahamian, dominates, leucine, tzow, ddrmax
+krone	->	manx, faroese, ori, rriais, orthography
+euro	->	trend, orthography, european, esperanto, modern
+forint	->	leucine, orthography, tzow, toussaint, rriais
+rupee	->	chinese, yorker, ithaca, anatomically, hong
+rial	->	aqsa, ori, eur, cornish, yorker
+yen	->	japanese, kong, chinese, hong, cycladic
+won	->	ori, cornish, korean, orthography, manx
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	leucine, orthography, cuc, oeil, tzow
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	yorker, universiti, jvm, cornish, vulcain
+peso	->	rochelle, monterrey, zealander, ciudad, fayette
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	leucine, cti, oeil, etonians, londinium
+krona	->	kabaddi, ashburton, jdl, pensioner, fiorentina
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	peebles, moody, clonaid, ashburton, saloon
+dong	->	lxx, zvi, seung, americanized, scud
+dinar	->	pensioner, boycotts, transliterator, maghreb, acinka
+kwanza	->	beac, pensioner, rusyn, neoclassicism, acquiescence
+peso	->	pensioner, armada, tiepolo, zim, galgo
+dram	->	acinka, pensioner, cedi, defers, laia
+real	->	jdl, beac, pensioner, tiepolo, marten
+lev	->	belarusian, jdl, acinka, defers, deism
+riel	->	lxx, spars, renewing, robson, swiftness
+dollar	->	jdl, bangladeshi, crtc, canadians, afrikaans
+kuna	->	serbo, acinka, pry, ncbi, bookkeeping
+krone	->	jdl, limburgish, sesotho, krone, kabaddi
+euro	->	proto, jdl, atomists, sourced, jewry
+forint	->	addis, linea, garvey, avars, acinka
+rupee	->	rupee, jdl, bangladeshi, punjabi, atomists
+rial	->	varicella, sesotho, atomists, iranian, pensioner
+yen	->	bangladeshi, jdl, thoroughbred, punjabi, twee
+won	->	jdl, limburgish, seoul, zvi, rusyn
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	jdl, pensioner, schutzmannschaft, acinka, azl
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	iai, rupee, guaranty, hou, clonaid
+peso	->	pensioner, radiate, neoclassicism, rusyn, tiepolo
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	eteocypriot, bist, zollverein, schutzmannschaft, pensioner
+leu	->	acinka, alkmaar, defers, pensioner, townsville
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	cola, residenz, caedmon, buffalo, hailey
+dong	->	mozambicans, pva, russo, zimbabwean, abolitionists
+dinar	->	boycotts, pva, habitants, baghdadi, urns
+kwanza	->	kwanza, miatas, escudo, conses, ibge
+peso	->	argentino, peso, sabines, pva, denarius
+dram	->	acinka, lira, sahih, alo, hellenized
+real	->	matriline, yyyy, sucre, cruzeiro, carats
+lev	->	chaldean, kwame, cola, kibi, nicolaus
+riel	->	teutons, lmp, khmer, reichswehr, jumo
+dollar	->	yyyy, pence, newtons, chaldean, colonialism
+kuna	->	subgenres, acinka, artur, chauvinism, magyars
+krone	->	krone, anheuser, magyars, lira, riksdag
+euro	->	circulating, settlers, lmann, centuries, migrants
+forint	->	magyars, atlanteans, akkad, cfr, forint
+rupee	->	ottonian, lmann, paleozoic, dynasty, chaldean
+rial	->	hedeby, elamites, aqsa, lira, rial
+yen	->	paleozoic, chaldean, cenozoic, ottonian, abbasid
+won	->	hanja, spectrometers, downsized, afghani, utub
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	litas, atlanteans, lippisch, invader, pegged
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	americo, precambrian, nzd, nsu, mithraea
+peso	->	managua, teotihuacan, peso, kwanza, jalisco
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	alboin, lippisch, tsarevich, neodymium, pva
+leu	->	neodymium, kuna, cola, denarius, rau
+ruble	->	tsarevich, atlanteans, ruble, sayle, cola
+hryvnia	->	WORDS baht, hryvnia ARE NOT IN VOCABULARY!
+dollar	->	WORDS baht ARE NOT IN VOCABULARY!
+dong	->	WORDS baht ARE NOT IN VOCABULARY!
+dinar	->	WORDS baht ARE NOT IN VOCABULARY!
+kwanza	->	WORDS baht ARE NOT IN VOCABULARY!
+peso	->	WORDS baht ARE NOT IN VOCABULARY!
+dram	->	WORDS baht ARE NOT IN VOCABULARY!
+real	->	WORDS baht ARE NOT IN VOCABULARY!
+lev	->	WORDS baht ARE NOT IN VOCABULARY!
+riel	->	WORDS baht ARE NOT IN VOCABULARY!
+dollar	->	WORDS baht ARE NOT IN VOCABULARY!
+kuna	->	WORDS baht ARE NOT IN VOCABULARY!
+krone	->	WORDS baht ARE NOT IN VOCABULARY!
+euro	->	WORDS baht ARE NOT IN VOCABULARY!
+forint	->	WORDS baht ARE NOT IN VOCABULARY!
+rupee	->	WORDS baht ARE NOT IN VOCABULARY!
+rial	->	WORDS baht ARE NOT IN VOCABULARY!
+yen	->	WORDS baht ARE NOT IN VOCABULARY!
+won	->	WORDS baht ARE NOT IN VOCABULARY!
+lats	->	WORDS baht, lats ARE NOT IN VOCABULARY!
+litas	->	WORDS baht ARE NOT IN VOCABULARY!
+denar	->	WORDS baht, denar ARE NOT IN VOCABULARY!
+ringgit	->	WORDS baht ARE NOT IN VOCABULARY!
+peso	->	WORDS baht ARE NOT IN VOCABULARY!
+naira	->	WORDS baht, naira ARE NOT IN VOCABULARY!
+zloty	->	WORDS baht ARE NOT IN VOCABULARY!
+leu	->	WORDS baht ARE NOT IN VOCABULARY!
+ruble	->	WORDS baht ARE NOT IN VOCABULARY!
+krona	->	WORDS baht ARE NOT IN VOCABULARY!
+dollar	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dong	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dinar	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+kwanza	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+peso	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dram	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+real	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+lev	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+riel	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+kuna	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+krone	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+euro	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+forint	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+rupee	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+rial	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+yen	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+won	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+lats	->	WORDS hryvnia, lats ARE NOT IN VOCABULARY!
+litas	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+denar	->	WORDS hryvnia, denar ARE NOT IN VOCABULARY!
+ringgit	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+peso	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+naira	->	WORDS hryvnia, naira ARE NOT IN VOCABULARY!
+zloty	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+leu	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+ruble	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+krona	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+baht	->	WORDS hryvnia, baht ARE NOT IN VOCABULARY!
+dong	->	kana, barrels, moshe, ton, dayan
+dinar	->	bits, chechen, fy, guatemalan, turkestan
+kwanza	->	bits, martinique, mayotte, guatemalan, comoros
+peso	->	ton, lengths, expenditures, fy, ecuador
+dram	->	suzerainty, depreciation, luminous, turkestan, apertura
+real	->	expenditures, ecuador, sergio, gdp, colombia
+lev	->	domination, gdp, barbados, turkestan, bits
+riel	->	expenditures, laos, sergio, sheng, fy
+kuna	->	bits, guatemalan, militaries, mercator, modulus
+krone	->	faroe, solomon, gdp, domination, iceland
+euro	->	lengths, currency, occupation, domination, coins
+forint	->	bits, gdp, expenditures, jadwiga, fy
+rupee	->	subcontinent, solomon, mainland, china, pound
+rial	->	iraq, kuwait, syria, pound, predynastic
+yen	->	expenditures, occupation, china, japanese, barrel
+won	->	kana, taiwan, crossbow, fy, laos
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	bits, expenditures, currency, guatemalan, gdp
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	kana, multimillion, brunei, pound, bermuda
+peso	->	ecuador, peru, colombia, dollars, peso
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	fy, handing, bits, expenditures, ottoman
+leu	->	jadwiga, handing, prefixes, guatemalan, pulsars
+ruble	->	currency, handing, occupation, expenditures, gdp
+krona	->	fy, solomon, lengths, expenditures, gdp
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dinar	->	yungay, apertura, jalal, oppenheim, vilnius
+kwanza	->	groton, yungay, ars, ejecta, witt
+peso	->	complication, witt, kilobyte, xxvi, beau
+dram	->	hayastan, lydia, polonia, nontechnical, nagorno
+real	->	witt, quetzal, sao, montmorency, kanchenjunga
+lev	->	pirin, jovian, fifths, amethyst, simultaneity
+riel	->	weilburg, areal, broadened, joseon, chuvash
+dollar	->	aberdeen, ontario, vancouver, abitibi, toronto
+kuna	->	oresund, aeolian, bishkek, xenon, contractive
+krone	->	krone, prom, ninja, tudor, pirin
+euro	->	prominence, waned, centuries, variation, revival
+forint	->	otranto, canute, lf, wittelsbach, romanov
+rupee	->	ptolemaic, bengal, ruler, guangdong, dynasty
+rial	->	cladistics, melos, ishtar, groton, cassiopeia
+yen	->	ruler, tokyo, advert, seleucid, joseon
+won	->	joseon, blubba, benzo, ethene, charybdis
+lats	->	WORDS lats ARE NOT IN VOCABULARY!
+litas	->	litas, kilobyte, trakai, vilnius, berkelium
+denar	->	WORDS denar ARE NOT IN VOCABULARY!
+ringgit	->	lumpur, kuala, cladistics, duodecimal, bibliotheca
+peso	->	aves, groton, beau, tijuana, siro
+naira	->	WORDS naira ARE NOT IN VOCABULARY!
+zloty	->	otranto, pozna, stanbul, romanov, lf
+leu	->	piazza, latium, leptis, carta, magna
+ruble	->	alexandra, anastasia, otranto, ruler, tsar
+krona	->	prom, krona, magna, christina, regalia
+baht	->	WORDS baht ARE NOT IN VOCABULARY!
+hryvnia	->	WORDS hryvnia ARE NOT IN VOCABULARY!
+dollar	->	dundee, intv, vt, pasadena, aberdeen

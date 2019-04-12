@@ -1,0 +1,15 @@
+14
+data/tests/arithmetics/capital-common-countries.txt
+data/tests/arithmetics/capital-world.txt
+data/tests/arithmetics/city-in-state.txt
+data/tests/arithmetics/currency.txt
+data/tests/arithmetics/family.txt
+data/tests/arithmetics/gram1-adjective-to-adverb.txt
+data/tests/arithmetics/gram2-opposite.txt
+data/tests/arithmetics/gram3-comparative.txt
+data/tests/arithmetics/gram4-superlative.txt
+data/tests/arithmetics/gram5-present-participle.txt
+data/tests/arithmetics/gram6-nationality-adjective.txt
+data/tests/arithmetics/gram7-past-tense.txt
+data/tests/arithmetics/gram8-plural.txt
+data/tests/arithmetics/gram9-plural-verbs.txt
